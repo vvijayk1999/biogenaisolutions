@@ -108,7 +108,23 @@
     ],
     "disclaimer": "En BioGenAI Solutions valoramos tu confianza y nos comprometemos a mantener la confidencialidad y la seguridad de tu información. Cualquier información enviada a través de nuestro sitio web se utiliza exclusivamente para responder a tus solicitudes, ofrecer servicios profesionales de consultoría y mantenerte informado sobre novedades relevantes en Inteligencia Artificial, Bioestadística, Bioinformática, Medicina de Precisión, Tecnología de la Salud y Ciencias de la Vida. Puedes darte de baja de las comunicaciones en cualquier momento. Consulta nuestra Política de Privacidad para obtener más información sobre nuestras prácticas de protección de datos y privacidad."
   },
+  "carousel": {
+    "eyebrow": "A quién servimos",
+    "heading": "Sectores que atendemos",
+    "lead": "Confianza en todo el ecosistema de la salud y las ciencias de la vida.",
+    "slides": [
+      { "title": "Proveedores de Salud", "description": "Apoyo a la decisión clínica, conocimientos sobre pacientes e interoperabilidad HL7 que mejoran los resultados." },
+      { "title": "Biotecnología", "description": "Pipelines de genómica y machine learning que aceleran el descubrimiento del laboratorio a la práctica." },
+      { "title": "Industria Farmacéutica", "description": "IA en I+D, ensayos clínicos y operaciones para decisiones más rápidas y basadas en datos." },
+      { "title": "Instituciones de Investigación", "description": "Bioinformática y biología computacional escalables para una ciencia rigurosa y reproducible." },
+      { "title": "Empresas", "description": "Sistemas de LLM, RAG y agentes que extraen valor de datos complejos a gran escala." }
+    ]
+  },
   "ui": {
+    "menuLabel": "Menú",
+    "searchPlaceholder": "Buscar en el sitio…",
+    "searchNoResults": "No se encontraron resultados",
+    "searchLabel": "Buscar",
     "nav": { "home": "Inicio", "solutions": "Soluciones", "services": "Servicios", "research": "Investigación", "news": "Noticias", "about": "Acerca de", "contact": "Contacto", "contactCta": "Contáctanos" },
     "capabilitiesLabel": "Capacidades principales",
     "readPaper": "Leer el artículo",

@@ -1,5 +1,6 @@
 ---
-import { getContent, localizedPath, LOCALES, LANG_NAMES, type Locale } from '../i18n';
+import { getCollection } from 'astro:content';
+import { getContent, localizedPath, LOCALES, LANG_NAMES, DEFAULT_LOCALE, type Locale } from '../i18n';
 
 export interface Props {
   locale?: Locale;
@@ -8,27 +9,130 @@ const { locale = 'en' } = Astro.props;
 const c = getContent(locale);
 const nav = c.ui.nav;
 const home = localizedPath(locale, '');
+
+// Recent news for the News mega-menu (locale, falling back to default).
+const allNews = await getCollection('news', ({ data }) => !data.draft);
+let recent = allNews.filter((p) => (p.data.lang ?? DEFAULT_LOCALE) === locale);
+if (recent.length === 0) recent = allNews.filter((p) => (p.data.lang ?? DEFAULT_LOCALE) === DEFAULT_LOCALE);
+recent = recent.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 4);
+
+const solHalf = Math.ceil(c.solutions.items.length / 2);
 ---
 <header class="navbar" id="navbar">
-  <div class="container nav-inner">
+  <div class="container nav-bar">
     <a href={home} class="brand" aria-label={`${c.general.brandName} ${c.general.brandAccent} home`}>
       <img src="/logo.png" alt={`${c.general.brandName} ${c.general.brandAccent} logo`} class="brand-logo" />
       <span class="brand-name">{c.general.brandName}<span class="brand-name-accent"> {c.general.brandAccent}</span></span>
     </a>
 
-    <nav class="nav-links" id="navLinks" aria-label="Primary">
-      <a href={`${home}#home`} class="nav-link">{nav.home}</a>
-      <a href={`${home}#solutions`} class="nav-link">{nav.solutions}</a>
-      <a href={`${home}#services`} class="nav-link">{nav.services}</a>
-      <a href={`${home}#research`} class="nav-link">{nav.research}</a>
-      <a href={`${home}#news`} class="nav-link">{nav.news}</a>
-      <a href={`${home}#about`} class="nav-link">{nav.about}</a>
-      <div class="nav-mobile-cta">
-        <a href={`${home}#contact`} class="btn btn-gradient nav-cta">{nav.contact}</a>
+    <nav class="nav-menu" id="navLinks" aria-label="Primary">
+      <div class="nav-item">
+        <a href={`${home}#home`} class="nav-link">{nav.home}</a>
+      </div>
+
+      <div class="nav-item has-mega">
+        <a href={`${home}#solutions`} class="nav-link">{nav.solutions}</a>
+        <div class="mega">
+          <div class="container mega-inner">
+            <div class="mega-col mega-feature">
+              <h4>{c.solutions.eyebrow}</h4>
+              {c.solutions.items.slice(0, solHalf).map((it) => (
+                <a class="mega-link-lg" href={`${home}#solutions`}>{it.title}</a>
+              ))}
+            </div>
+            <div class="mega-col">
+              <h4>{nav.solutions}</h4>
+              {c.solutions.items.slice(solHalf).map((it) => (
+                <a href={`${home}#solutions`}>{it.title}</a>
+              ))}
+              <a class="mega-more" href={`${home}#solutions`}>{nav.solutions} →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item has-mega">
+        <a href={`${home}#services`} class="nav-link">{nav.services}</a>
+        <div class="mega">
+          <div class="container mega-inner">
+            <div class="mega-col mega-feature">
+              <h4>{c.services.eyebrow}</h4>
+              {c.services.items.map((it) => (
+                <a class="mega-link-lg" href={`${home}#services`}>{it.title}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item has-mega">
+        <a href={`${home}#research`} class="nav-link">{nav.research}</a>
+        <div class="mega">
+          <div class="container mega-inner">
+            <div class="mega-col mega-feature">
+              <h4>{c.research.eyebrow}</h4>
+              {c.research.items.map((it) => (
+                <a class="mega-link-lg" href={it.url} target="_blank" rel="noopener noreferrer">{it.title}</a>
+              ))}
+            </div>
+            <div class="mega-col">
+              <h4>{c.carousel.eyebrow}</h4>
+              <a href={`${home}#industries`}>{c.carousel.heading}</a>
+              <a href={`${home}#research`}>{c.research.heading} →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item has-mega">
+        <a href={`${home}#news`} class="nav-link">{nav.news}</a>
+        <div class="mega">
+          <div class="container mega-inner">
+            <div class="mega-col mega-feature">
+              <h4>{c.ui.newsHeading}</h4>
+              {recent.map((p) => (
+                <a class="mega-link-lg" href={`/news/${p.id}`}>{p.data.title}</a>
+              ))}
+            </div>
+            <div class="mega-col">
+              <h4>{nav.news}</h4>
+              <a class="mega-more" href={`${home}#news`}>{nav.news} →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item has-mega">
+        <a href={`${home}#about`} class="nav-link">{nav.about}</a>
+        <div class="mega">
+          <div class="container mega-inner">
+            <div class="mega-col mega-feature">
+              <h4>{c.about.eyebrow}</h4>
+              <a class="mega-link-lg" href={`${home}#about`}>{c.about.founderName}</a>
+            </div>
+            <div class="mega-col">
+              <h4>{c.ui.footer.company}</h4>
+              <a href={`${home}#about`}>{nav.about}</a>
+              <a href={`${home}#principles`}>{c.principles.visionLabel} &amp; {c.principles.missionLabel}</a>
+              <a href={`${home}#principles`}>{c.principles.philosophyLabel}</a>
+              <a href={`${home}#contact`}>{nav.contact}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href={`${home}#contact`} class="nav-link">{nav.contact}</a>
       </div>
     </nav>
 
     <div class="nav-actions">
+      <button class="icon-btn" id="searchToggle" aria-label={c.ui.searchLabel} aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.2-3.2"></path>
+        </svg>
+      </button>
+
       <div class="lang-select" id="langSelect">
         <button class="lang-trigger" aria-haspopup="true" aria-expanded="false" id="langTrigger" title="Select language">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -54,6 +158,23 @@ const home = localizedPath(locale, '');
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
+    </div>
+  </div>
+
+  <!-- Search bar (revealed by the search icon, sits below the menu) -->
+  <div class="nav-search" id="navSearch">
+    <div class="container">
+      <form role="search" class="search-box" id="searchForm" autocomplete="off">
+        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.2-3.2"></path>
+        </svg>
+        <input type="search" id="siteSearch" class="search-input" placeholder={c.ui.searchPlaceholder} aria-label={c.ui.searchLabel} />
+        <button type="button" class="search-close" id="searchClose" aria-label="Close search">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </form>
+      <ul class="search-results" id="searchResults" role="listbox" hidden></ul>
+      <p class="search-empty" id="searchEmpty" hidden>{c.ui.searchNoResults}</p>
     </div>
   </div>
 </header>

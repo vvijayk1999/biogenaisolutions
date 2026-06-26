@@ -105,6 +105,40 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
     </div>
   </section>
 
+  <!-- CAROUSEL: INDUSTRIES -->
+  <section class="section carousel-section" id="industries">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.carousel.eyebrow}</span>
+        <h2 class="section-title">{c.carousel.heading}</h2>
+        <p class="section-lead">{c.carousel.lead}</p>
+      </div>
+
+      <div class="carousel" id="carousel">
+        <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-viewport">
+          <ul class="carousel-track" id="carouselTrack">
+            {c.carousel.slides.map((s, i) => (
+              <li class="carousel-slide">
+                <div class="carousel-card">
+                  <span class="carousel-badge">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{s.title}</h3>
+                  <p>{s.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Next">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Carousel navigation"></div>
+    </div>
+  </section>
+
   <!-- VISION / MISSION / PHILOSOPHY -->
   <section class="section" id="principles">
     <div class="container">

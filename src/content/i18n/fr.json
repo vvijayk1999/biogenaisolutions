@@ -108,7 +108,23 @@
     ],
     "disclaimer": "Chez BioGenAI Solutions, nous accordons une grande importance à votre confiance et nous nous engageons à préserver la confidentialité et la sécurité de vos informations. Toute information transmise via notre site web est utilisée exclusivement pour répondre à vos demandes, fournir des services de conseil professionnels et vous tenir informé des évolutions pertinentes en matière d'Intelligence Artificielle, de Biostatistique, de Bio-informatique, de Médecine de Précision, de Technologies de la Santé et de Sciences de la Vie. Vous pouvez vous désabonner des communications à tout moment. Veuillez consulter notre Politique de Confidentialité pour en savoir plus sur nos pratiques en matière de protection des données et de vie privée."
   },
+  "carousel": {
+    "eyebrow": "Qui nous servons",
+    "heading": "Les secteurs que nous accompagnons",
+    "lead": "La confiance de tout l'écosystème de la santé et des sciences de la vie.",
+    "slides": [
+      { "title": "Établissements de Santé", "description": "Aide à la décision clinique, connaissance des patients et interopérabilité HL7 qui améliorent les résultats." },
+      { "title": "Biotechnologies", "description": "Pipelines génomiques et machine learning qui accélèrent la découverte, du laboratoire à l'insight." },
+      { "title": "Industrie Pharmaceutique", "description": "L'IA en R&D, essais cliniques et opérations pour des décisions plus rapides et fondées sur les données." },
+      { "title": "Instituts de Recherche", "description": "Bio-informatique et biologie computationnelle évolutives pour une science rigoureuse et reproductible." },
+      { "title": "Entreprises", "description": "Systèmes LLM, RAG et agentiques qui révèlent la valeur de données complexes à grande échelle." }
+    ]
+  },
   "ui": {
+    "menuLabel": "Menu",
+    "searchPlaceholder": "Rechercher sur le site…",
+    "searchNoResults": "Aucun résultat trouvé",
+    "searchLabel": "Rechercher",
     "nav": { "home": "Accueil", "solutions": "Solutions", "services": "Services", "research": "Recherche", "news": "Actualités", "about": "À propos", "contact": "Contact", "contactCta": "Nous contacter" },
     "capabilitiesLabel": "Compétences clés",
     "readPaper": "Lire l'article",

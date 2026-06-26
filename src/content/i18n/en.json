@@ -108,7 +108,23 @@
     ],
     "disclaimer": "At BioGenAI Solutions, we value your trust and are committed to maintaining the confidentiality and security of your information. Any information submitted through our website is used exclusively to respond to your requests, provide professional consulting services, and keep you informed about relevant developments in Artificial Intelligence, Biostatistics, Bioinformatics, Precision Medicine, Healthcare Technology, and Life Sciences. You may unsubscribe from communications at any time. Please review our Privacy Policy to learn more about our data protection and privacy practices."
   },
+  "carousel": {
+    "eyebrow": "Who we serve",
+    "heading": "Industries we serve",
+    "lead": "Trusted across the healthcare and life sciences ecosystem.",
+    "slides": [
+      { "title": "Healthcare Providers", "description": "Clinical decision support, patient insights, and HL7 interoperability that improve outcomes." },
+      { "title": "Biotechnology", "description": "Genomics pipelines and machine learning that accelerate discovery from lab to insight." },
+      { "title": "Pharmaceutical", "description": "AI across R&D, clinical trials, and operations for faster, data-driven decisions." },
+      { "title": "Research Institutions", "description": "Scalable bioinformatics and computational biology for rigorous, reproducible science." },
+      { "title": "Enterprises", "description": "LLM, RAG, and agentic systems that unlock value from complex, large-scale data." }
+    ]
+  },
   "ui": {
+    "menuLabel": "Menu",
+    "searchPlaceholder": "Search the site…",
+    "searchNoResults": "No results found",
+    "searchLabel": "Search",
     "nav": { "home": "Home", "solutions": "Solutions", "services": "Services", "research": "Research", "news": "News", "about": "About", "contact": "Contact", "contactCta": "Contact Us" },
     "capabilitiesLabel": "Core capabilities",
     "readPaper": "Read the paper",

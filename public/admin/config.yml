@@ -177,11 +177,28 @@ collections:
               - { label: Response Time Note, name: responseTime, widget: string }
               - { label: "Interested-in Options", name: interests, widget: list }
               - { label: Disclaimer, name: disclaimer, widget: text }
+          - label: Carousel (Industries)
+            name: carousel
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Lead, name: lead, widget: text }
+              - label: Slides
+                name: slides
+                widget: list
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
           - label: UI Labels
             name: ui
             widget: object
             collapsed: true
             fields:
+              - { label: Menu Label, name: menuLabel, widget: string }
+              - { label: Search Placeholder, name: searchPlaceholder, widget: string }
+              - { label: Search — No Results, name: searchNoResults, widget: string }
+              - { label: Search Label, name: searchLabel, widget: string }
               - label: Navigation
                 name: nav
                 widget: object

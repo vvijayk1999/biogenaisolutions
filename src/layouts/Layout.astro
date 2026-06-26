@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/variation-1.css';
 import { dir, type Locale } from '../i18n';
 
 export interface Props {
@@ -53,15 +54,15 @@ const {
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // Mobile menu
+      // Mobile menu — toggles the expanding navbar panel
       const navToggle = document.getElementById('navToggle');
       const navLinks = document.getElementById('navLinks');
       const closeMenu = () => {
-        navLinks?.classList.remove('open');
+        navbar?.classList.remove('nav-open');
         navToggle?.setAttribute('aria-expanded', 'false');
       };
       navToggle?.addEventListener('click', () => {
-        const open = navLinks?.classList.toggle('open');
+        const open = navbar?.classList.toggle('nav-open');
         navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
       navLinks?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
@@ -124,6 +125,139 @@ const {
       // Footer year
       const yearEl = document.getElementById('year');
       if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // ---------- Site search ----------
+      const searchInput = document.getElementById('siteSearch') as HTMLInputElement | null;
+      const searchResults = document.getElementById('searchResults');
+      const searchEmpty = document.getElementById('searchEmpty');
+      const searchForm = document.getElementById('searchForm');
+      if (searchInput && searchResults && searchForm) {
+        // Build an index from the page: nav sections + section headings.
+        type Entry = { title: string; section: string; href: string };
+        const index: Entry[] = [];
+        const seen = new Set<string>();
+        document.querySelectorAll('main section[id]').forEach((sec) => {
+          const id = sec.getAttribute('id')!;
+          const headingEl = sec.querySelector('.section-title, .hero-title');
+          const sectionName = (headingEl?.textContent || id).trim();
+          // The section itself
+          if (!seen.has('#' + id)) {
+            index.push({ title: sectionName, section: 'Section', href: '#' + id });
+            seen.add('#' + id);
+          }
+          // Cards / items inside the section
+          sec.querySelectorAll('.card h3, .service-row h3, .pillar h3, .research-card h3, .news-card h3, .carousel-card h3').forEach((h) => {
+            const t = (h.textContent || '').trim();
+            if (t) index.push({ title: t, section: sectionName, href: '#' + id });
+          });
+        });
+
+        const closeSearch = () => {
+          searchResults.hidden = true;
+          if (searchEmpty) searchEmpty.hidden = true;
+        };
+        // Toggle the search bar open/closed from the navbar icon
+        const searchToggle = document.getElementById('searchToggle');
+        const searchClose = document.getElementById('searchClose');
+        const openSearchBar = () => {
+          navbar?.classList.add('search-open');
+          searchToggle?.setAttribute('aria-expanded', 'true');
+          setTimeout(() => searchInput.focus(), 60);
+        };
+        const hideSearchBar = () => {
+          navbar?.classList.remove('search-open');
+          searchToggle?.setAttribute('aria-expanded', 'false');
+          closeSearch();
+        };
+        searchToggle?.addEventListener('click', () => {
+          navbar?.classList.contains('search-open') ? hideSearchBar() : openSearchBar();
+        });
+        searchClose?.addEventListener('click', hideSearchBar);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideSearchBar(); });
+        const render = (q: string) => {
+          const query = q.trim().toLowerCase();
+          if (!query) { closeSearch(); return; }
+          const matches = index.filter((e) => e.title.toLowerCase().includes(query)).slice(0, 8);
+          searchResults.innerHTML = '';
+          if (matches.length === 0) {
+            searchResults.hidden = true;
+            if (searchEmpty) searchEmpty.hidden = false;
+            return;
+          }
+          if (searchEmpty) searchEmpty.hidden = true;
+          matches.forEach((m) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = m.href;
+            a.innerHTML = '<span class="sr-section">' + m.section + '</span><span class="sr-title">' + m.title + '</span>';
+            a.addEventListener('click', () => { searchInput.value = ''; hideSearchBar(); });
+            li.appendChild(a);
+            searchResults.appendChild(li);
+          });
+          searchResults.hidden = false;
+        };
+        searchInput.addEventListener('input', () => render(searchInput.value));
+        searchForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const first = searchResults.querySelector('a') as HTMLAnchorElement | null;
+          if (first) { first.click(); window.location.hash = first.getAttribute('href') || ''; }
+        });
+        document.addEventListener('click', (e) => {
+          if (!searchForm.contains(e.target as Node) && !searchResults.contains(e.target as Node)) closeSearch();
+        });
+      }
+
+      // ---------- Carousel ----------
+      const carousel = document.getElementById('carousel');
+      const track = document.getElementById('carouselTrack');
+      const dotsWrap = document.getElementById('carouselDots');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      if (carousel && track && dotsWrap) {
+        const slides = Array.from(track.children) as HTMLElement[];
+        const rtl = document.documentElement.dir === 'rtl';
+        let index = 0;
+        let timer: ReturnType<typeof setInterval> | null = null;
+
+        const perView = () => (window.innerWidth <= 640 ? 1 : window.innerWidth <= 960 ? 2 : 3);
+        const maxIndex = () => Math.max(0, slides.length - perView());
+
+        const buildDots = () => {
+          dotsWrap.innerHTML = '';
+          for (let i = 0; i <= maxIndex(); i++) {
+            const b = document.createElement('button');
+            b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            b.addEventListener('click', () => { go(i); restart(); });
+            dotsWrap.appendChild(b);
+          }
+        };
+        const apply = () => {
+          if (!slides.length) return;
+          const gap = parseFloat(getComputedStyle(track).columnGap || '24') || 24;
+          const step = slides[0].offsetWidth + gap;
+          const offset = index * step;
+          track.style.transform = 'translateX(' + (rtl ? offset : -offset) + 'px)';
+          Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === index));
+        };
+        const go = (i: number) => { index = Math.min(Math.max(i, 0), maxIndex()); apply(); };
+        const next = () => go(index >= maxIndex() ? 0 : index + 1);
+        const prev = () => go(index <= 0 ? maxIndex() : index - 1);
+        const restart = () => { if (timer) clearInterval(timer); timer = setInterval(next, 4800); };
+
+        nextBtn?.addEventListener('click', () => { next(); restart(); });
+        prevBtn?.addEventListener('click', () => { prev(); restart(); });
+        carousel.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
+        carousel.addEventListener('mouseleave', restart);
+        let resizeT: ReturnType<typeof setTimeout>;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeT);
+          resizeT = setTimeout(() => { buildDots(); go(index); }, 150);
+        });
+
+        buildDots();
+        apply();
+        restart();
+      }
     </script>
   </body>
 </html>
