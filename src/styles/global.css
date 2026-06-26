@@ -249,7 +249,9 @@ img { max-width: 100%; display: block; }
   transition: opacity .2s ease, transform .2s ease, visibility .2s;
 }
 .lang-select.open .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-.lang-menu li {
+.lang-menu li { list-style: none; }
+.lang-option {
+  display: block;
   font-family: var(--font-head);
   font-size: 14px;
   padding: 9px 12px;
@@ -258,8 +260,8 @@ img { max-width: 100%; display: block; }
   color: var(--slate-dark);
   transition: background .15s ease;
 }
-.lang-menu li:hover { background: var(--bg-soft); }
-.lang-menu li.active { color: var(--ink); font-weight: 700; background: var(--gradient-soft); }
+.lang-option:hover { background: var(--bg-soft); }
+.lang-option.active { color: var(--ink); font-weight: 700; background: var(--gradient-soft); }
 
 .nav-cta-desktop { padding: 10px 20px; }
 .nav-mobile-cta { display: none; }
@@ -696,6 +698,23 @@ img { max-width: 100%; display: block; }
   padding-top: 24px; padding-bottom: 28px;
   color: var(--muted); font-size: 14px;
 }
+
+/* ============================================================
+   RTL (Arabic) overrides
+   ============================================================ */
+[dir="rtl"] .eyebrow { padding-left: 0; padding-right: 26px; }
+[dir="rtl"] .eyebrow::before { left: auto; right: 0; }
+[dir="rtl"] .section-head .eyebrow,
+[dir="rtl"] .contact-copy .eyebrow { padding-right: 0; }
+[dir="rtl"] .strip-items li { padding-left: 0; padding-right: 18px; }
+[dir="rtl"] .strip-items li::before { left: auto; right: 0; }
+[dir="rtl"] .lang-menu { right: auto; left: 0; }
+[dir="rtl"] .hero-sub { margin-left: auto; }
+[dir="rtl"] .recaptcha-note { flex-direction: row; }
+/* Keep technical/Latin tokens and the email rendering left-to-right inline */
+[dir="rtl"] .brand-name,
+[dir="rtl"] .footer-bottom p:last-child,
+[dir="rtl"] .contact-points a[href^="mailto"] { direction: ltr; unicode-bidi: embed; }
 
 /* ============================================================
    REVEAL ANIMATION

@@ -139,19 +139,21 @@ const solHalf = Math.ceil(c.solutions.items.length / 2);
             <circle cx="12" cy="12" r="9"></circle>
             <path d="M3 12h18M12 3c2.5 2.7 3.8 6 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-6-3.8-9S9.5 5.7 12 3z"></path>
           </svg>
-          <span class="lang-current" id="langCurrent">EN</span>
+          <span class="lang-current" id="langCurrent">{LANG_NAMES[locale].code}</span>
           <svg class="chev" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <ul class="lang-menu" role="menu" aria-label="Language">
-          <li role="menuitem" data-lang="EN" class="active">English</li>
-          <li role="menuitem" data-lang="ES">Spanish</li>
-          <li role="menuitem" data-lang="AR">Arabic</li>
-          <li role="menuitem" data-lang="FR">French</li>
-          <li role="menuitem" data-lang="DE">German</li>
+          {LOCALES.map((l) => (
+            <li role="none">
+              <a role="menuitem" href={localizedPath(l, '')} class={`lang-option${l === locale ? ' active' : ''}`} hreflang={l}>
+                {LANG_NAMES[l].name}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
-      <a href="#contact" class="btn btn-gradient nav-cta-desktop">Contact Us</a>
+      <a href={`${home}#contact`} class="btn btn-gradient nav-cta-desktop">{nav.contactCta}</a>
 
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>

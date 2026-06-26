@@ -8,6 +8,8 @@ const news = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     summary: z.string(),
+    // Language of this article (en | es | fr | de | ar). Defaults to English.
+    lang: z.enum(['en', 'es', 'fr', 'de', 'ar']).default('en'),
     // Path to an uploaded image (stored in /public/uploads). Optional.
     thumbnail: z.string().optional(),
     draft: z.boolean().default(false),

@@ -5,25 +5,25 @@
 # ============================================================
 
 backend:
-  name: git-gateway          # Netlify Identity + Git Gateway (set up in Netlify)
-  branch: main               # branch the CMS writes to
+  name: git-gateway          # Netlify Identity + Git Gateway
+  branch: main
 
 # For local editing: run `npx decap-server` and `npm run dev`,
-# then open http://localhost:4321/admin (Decap connects to the local proxy).
+# then open http://localhost:4321/admin/index.html
 local_backend: true
 
-media_folder: "public/uploads"   # where uploaded files are stored in the repo
-public_folder: "/uploads"        # how they are referenced on the site
+media_folder: "public/uploads"
+public_folder: "/uploads"
 
-publish_mode: editorial_workflow  # draft → review → publish
+publish_mode: editorial_workflow
 
-site_url: https://www.biogenaisolutions.com
-display_url: https://www.biogenaisolutions.com
+site_url: https://biogenaisolutions.netlify.app
+display_url: https://biogenaisolutions.netlify.app
 logo_url: /logo.png
 
 collections:
   # ---------------------------------------------------------
-  # NEWS — clients can create, edit, and publish articles
+  # NEWS — create / edit / publish articles (per language)
   # ---------------------------------------------------------
   - name: news
     label: News Articles
@@ -36,13 +36,25 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Publish Date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
-      - { label: Summary, name: summary, widget: text, hint: "Short teaser shown on the News section cards." }
+      - label: Language
+        name: lang
+        widget: select
+        default: en
+        options:
+          - { label: English, value: en }
+          - { label: Spanish, value: es }
+          - { label: French, value: fr }
+          - { label: German, value: de }
+          - { label: Arabic, value: ar }
+      - { label: Summary, name: summary, widget: text, hint: "Short teaser shown on the News cards." }
       - { label: Featured Image, name: thumbnail, widget: image, required: false }
       - { label: Draft, name: draft, widget: boolean, default: false, hint: "Keep ON to hide from the live site." }
       - { label: Body, name: body, widget: markdown }
 
   # ---------------------------------------------------------
-  # SITE CONTENT — editable text/data for the landing page
+  # SITE CONTENT — one editable file per language.
+  # Field definitions are shared via a YAML anchor (&site_fields)
+  # so every language uses the exact same structure.
   # ---------------------------------------------------------
   - name: site
     label: Site Content

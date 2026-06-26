@@ -1,6 +1,7 @@
 ---
 title: "Introducing BioGenAI Solutions"
 date: 2026-06-26
+lang: en
 summary: "We're launching to help healthcare, biotech, and research teams deploy responsible, scalable GenAI for precision medicine."
 draft: false
 ---

@@ -1,43 +1,51 @@
 ---
-import general from '../content/site/general.json';
-import contact from '../content/site/contact.json';
+import { getContent, localizedPath, type Locale } from '../i18n';
+
+export interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const c = getContent(locale);
+const nav = c.ui.nav;
+const f = c.ui.footer;
+const home = localizedPath(locale, '');
 ---
 <footer class="footer">
   <div class="footer-gradient" aria-hidden="true"></div>
   <div class="container footer-inner">
     <div class="footer-brand">
-      <a href="#home" class="brand">
-        <img src="/logo.png" alt={`${general.brandName} ${general.brandAccent} logo`} class="brand-logo" />
-        <span class="brand-name">{general.brandName}<span class="brand-name-accent"> {general.brandAccent}</span></span>
+      <a href={home} class="brand">
+        <img src="/logo.png" alt={`${c.general.brandName} ${c.general.brandAccent} logo`} class="brand-logo" />
+        <span class="brand-name">{c.general.brandName}<span class="brand-name-accent"> {c.general.brandAccent}</span></span>
       </a>
-      <p>{general.tagline}</p>
+      <p>{c.general.tagline}</p>
     </div>
 
     <nav class="footer-nav" aria-label="Footer">
       <div class="footer-col">
-        <h4>Explore</h4>
-        <a href="#solutions">Solutions</a>
-        <a href="#services">Services</a>
-        <a href="#research">Research</a>
-        <a href="#news">News</a>
+        <h4>{f.explore}</h4>
+        <a href={`${home}#solutions`}>{nav.solutions}</a>
+        <a href={`${home}#services`}>{nav.services}</a>
+        <a href={`${home}#research`}>{nav.research}</a>
+        <a href={`${home}#news`}>{nav.news}</a>
       </div>
       <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#about">About</a>
-        <a href="#principles">Vision &amp; Mission</a>
-        <a href="#contact">Contact</a>
+        <h4>{f.company}</h4>
+        <a href={`${home}#about`}>{nav.about}</a>
+        <a href={`${home}#principles`}>{f.visionMission}</a>
+        <a href={`${home}#contact`}>{nav.contact}</a>
       </div>
       <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="/legal">Legal</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms of Service</a>
+        <h4>{f.legal}</h4>
+        <a href="/legal">{f.legalLink}</a>
+        <a href="/privacy">{f.privacy}</a>
+        <a href="/terms">{f.terms}</a>
       </div>
     </nav>
   </div>
 
   <div class="container footer-bottom">
-    <p>© <span id="year"></span> {general.brandName} {general.brandAccent}. All rights reserved.</p>
-    <p>{contact.email}</p>
+    <p>© <span id="year"></span> {c.general.brandName} {c.general.brandAccent}. {f.rights}</p>
+    <p>{c.contact.email}</p>
   </div>
 </footer>

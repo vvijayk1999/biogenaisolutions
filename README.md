@@ -92,6 +92,29 @@ Everything below is editable from `/admin` — no code required:
 > Update the `site` value in `astro.config.mjs` and the `site_url`/`display_url`
 > in `public/admin/config.yml` to the production domain before launch.
 
+## Multilingual (i18n)
+
+The site ships in **English, Spanish, French, German, and Arabic**.
+
+- English is served at `/`, the others at `/es/`, `/fr/`, `/de/`, `/ar/`
+  (Astro i18n, `prefixDefaultLocale: false`).
+- Arabic renders **right-to-left** automatically (`<html dir="rtl">` + RTL CSS).
+- All content + UI strings for a language live in one bundle:
+  `src/content/i18n/<locale>.json`. The language switcher in the navbar links
+  between locales.
+- **News** articles carry a `lang` field; each locale shows its own posts and
+  falls back to English posts when a translation doesn't exist yet.
+
+### Editing translations
+
+In `/admin` → **Site Content**, each language is a separate file
+(🇬🇧 English, 🇪🇸 Español, …) with identical fields. Edit any language's text
+and publish — this is the "review/refine" half of the hybrid translation model.
+
+> Translations were produced as a high-quality first pass and are meant to be
+> reviewed. When you change English copy, re-translate the matching fields in
+> the other language files (ask the team, or re-run a translation pass).
+
 ## Notes / follow-ups
 
 - The **contact form** uses a `mailto:` action (opens the visitor's email client).

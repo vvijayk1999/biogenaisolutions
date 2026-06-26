@@ -6,16 +6,18 @@ import { dir, type Locale } from '../i18n';
 export interface Props {
   title?: string;
   description?: string;
+  locale?: Locale;
 }
 
 const {
   title = 'BioGenAI Solutions — Advanced AI & Bioinformatics for Precision Medicine',
   description = 'BioGenAI Solutions develops advanced, scalable Artificial Intelligence and Bioinformatics solutions for precision medicine and healthcare innovation.',
+  locale = 'en',
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={locale} dir={dir(locale)}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,25 +67,14 @@ const {
       });
       navLinks?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
 
-      // Language selector
+      // Language selector (menu items are real links that navigate)
       const langSelect = document.getElementById('langSelect');
       const langTrigger = document.getElementById('langTrigger');
-      const langCurrent = document.getElementById('langCurrent');
-      const langItems = langSelect ? langSelect.querySelectorAll('.lang-menu li') : [];
       langTrigger?.addEventListener('click', (e) => {
         e.stopPropagation();
         const open = langSelect?.classList.toggle('open');
         langTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      langItems.forEach((li) =>
-        li.addEventListener('click', () => {
-          langItems.forEach((x) => x.classList.remove('active'));
-          li.classList.add('active');
-          if (langCurrent) langCurrent.textContent = li.getAttribute('data-lang') || 'EN';
-          langSelect?.classList.remove('open');
-          langTrigger?.setAttribute('aria-expanded', 'false');
-        })
-      );
       document.addEventListener('click', (e) => {
         if (langSelect && !langSelect.contains(e.target as Node)) {
           langSelect.classList.remove('open');
