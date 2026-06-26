@@ -41,6 +41,10 @@
       {
         "title": "Enterprises",
         "description": "LLM, RAG, and agentic systems that unlock value from complex, large-scale data."
+      },
+      {
+        "title": "My new SLIDE",
+        "description": "Blah blah"
       }
     ]
   },
