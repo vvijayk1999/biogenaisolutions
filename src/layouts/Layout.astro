@@ -21,9 +21,24 @@ const {
     <meta name="description" content={description} />
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Netlify Identity widget: handles invite/recovery tokens and CMS login -->
+    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <slot />
+
+    <!-- After accepting an invite / logging in, send the user to the CMS -->
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
 
     <script>
       // BioGenAI Solutions — UI interactions
