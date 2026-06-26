@@ -1,0 +1,122 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'BioGenAI Solutions — Advanced AI & Bioinformatics for Precision Medicine',
+  description = 'BioGenAI Solutions develops advanced, scalable Artificial Intelligence and Bioinformatics solutions for precision medicine and healthcare innovation.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // BioGenAI Solutions — UI interactions
+      const navbar = document.getElementById('navbar');
+      const onScroll = () => {
+        if (window.scrollY > 8) navbar?.classList.add('scrolled');
+        else navbar?.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Mobile menu
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      const closeMenu = () => {
+        navLinks?.classList.remove('open');
+        navToggle?.setAttribute('aria-expanded', 'false');
+      };
+      navToggle?.addEventListener('click', () => {
+        const open = navLinks?.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      navLinks?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+
+      // Language selector
+      const langSelect = document.getElementById('langSelect');
+      const langTrigger = document.getElementById('langTrigger');
+      const langCurrent = document.getElementById('langCurrent');
+      const langItems = langSelect ? langSelect.querySelectorAll('.lang-menu li') : [];
+      langTrigger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = langSelect?.classList.toggle('open');
+        langTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      langItems.forEach((li) =>
+        li.addEventListener('click', () => {
+          langItems.forEach((x) => x.classList.remove('active'));
+          li.classList.add('active');
+          if (langCurrent) langCurrent.textContent = li.getAttribute('data-lang') || 'EN';
+          langSelect?.classList.remove('open');
+          langTrigger?.setAttribute('aria-expanded', 'false');
+        })
+      );
+      document.addEventListener('click', (e) => {
+        if (langSelect && !langSelect.contains(e.target as Node)) {
+          langSelect.classList.remove('open');
+          langTrigger?.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          langSelect?.classList.remove('open');
+          closeMenu();
+        }
+      });
+
+      // Reveal on scroll
+      const revealEls = Array.from(
+        document.querySelectorAll(
+          '.card, .pillar, .service-row, .research-card, .news-card, .stat, .news-empty, .section-head, .hero-copy, .hero-visual, .about-copy, .contact-form'
+        )
+      );
+      revealEls.forEach((el) => el.classList.add('reveal'));
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('visible'));
+      }
+
+      // Contact form confirmation
+      const form = document.getElementById('contactForm') as HTMLFormElement | null;
+      const success = document.getElementById('formSuccess');
+      form?.addEventListener('submit', () => {
+        if (form.checkValidity() && success) {
+          success.hidden = false;
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+
+      // Footer year
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

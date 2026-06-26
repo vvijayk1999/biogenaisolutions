@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Services",
+  "heading": "Consulting that turns complexity into clarity",
+  "lead": "We help healthcare providers, biotech companies, pharmaceutical organizations, research institutions, and enterprises harness AI to accelerate discovery and unlock insight.",
+  "items": [
+    {
+      "number": "01",
+      "title": "AI Strategy & Advisory",
+      "description": "Roadmaps, feasibility, and architecture to deploy responsible AI with measurable ROI."
+    },
+    {
+      "number": "02",
+      "title": "Custom Model Development",
+      "description": "End-to-end design, training, and deployment of ML, deep learning, and GenAI systems."
+    },
+    {
+      "number": "03",
+      "title": "Bioinformatics Engineering",
+      "description": "Genomics pipelines, biostatistics, and computational biology built for scale and rigor."
+    },
+    {
+      "number": "04",
+      "title": "Healthcare Data Integration",
+      "description": "HL7 interoperability and data engineering that unify fragmented clinical systems."
+    }
+  ]
+}

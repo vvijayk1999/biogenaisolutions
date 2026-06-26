@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+import general from '../content/site/general.json';
+import hero from '../content/site/hero.json';
+import solutions from '../content/site/solutions.json';
+import services from '../content/site/services.json';
+import principles from '../content/site/principles.json';
+import about from '../content/site/about.json';
+import research from '../content/site/research.json';
+import contact from '../content/site/contact.json';
+
+// Published news, newest first
+const allNews = await getCollection('news', ({ data }) => !data.draft);
+const news = allNews.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<Layout>
+  <Navbar />
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">{hero.eyebrow}</span>
+          <h1 class="hero-title">
+            {hero.titleLead} <span class="gradient-text">{hero.titleHighlight}</span> {hero.titleTrail}
+          </h1>
+          <p class="hero-sub">{hero.subtitle}</p>
+          <div class="hero-cta">
+            <a href={hero.ctaPrimaryHref} class="btn btn-gradient btn-lg">{hero.ctaPrimaryLabel}</a>
+            <a href={hero.ctaSecondaryHref} class="btn btn-ghost btn-lg">{hero.ctaSecondaryLabel}</a>
+          </div>
+          <ul class="hero-trust">
+            {hero.stats.map((s) => (
+              <li><strong>{s.value}</strong> {s.label}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orb orb-1"></div>
+          <div class="orb orb-2"></div>
+          <div class="hero-card">
+            <img src="/logo.png" alt="" class="hero-logo" />
+            <div class="hero-card-glow"></div>
+            <div class="hero-tags">
+              {hero.tags.map((t) => <span>{t}</span>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES STRIP -->
+    <section class="strip" aria-label="Core capabilities">
+      <div class="container strip-inner">
+        <span class="strip-label">Core capabilities</span>
+        <ul class="strip-items">
+          {general.capabilities.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section class="section" id="solutions">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{solutions.eyebrow}</span>
+          <h2 class="section-title">{solutions.heading}</h2>
+          <p class="section-lead">{solutions.lead}</p>
+        </div>
+        <div class="grid grid-3">
+          {solutions.items.map((item) => (
+            <article class="card">
+              <div class="card-icon" data-icon={item.icon}></div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section section-alt" id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{services.eyebrow}</span>
+          <h2 class="section-title">{services.heading}</h2>
+          <p class="section-lead">{services.lead}</p>
+        </div>
+        <div class="grid grid-2 services-grid">
+          {services.items.map((item) => (
+            <div class="service-row">
+              <span class="service-no">{item.number}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION / MISSION / PHILOSOPHY -->
+    <section class="section" id="principles">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{principles.eyebrow}</span>
+          <h2 class="section-title">{principles.heading}</h2>
+        </div>
+        <div class="grid grid-3">
+          <article class="pillar">
+            <div class="pillar-bar"></div>
+            <h3>Vision</h3>
+            <p>{principles.vision}</p>
+          </article>
+          <article class="pillar">
+            <div class="pillar-bar"></div>
+            <h3>Mission</h3>
+            <p>{principles.mission}</p>
+          </article>
+          <article class="pillar">
+            <div class="pillar-bar"></div>
+            <h3>Philosophy</h3>
+            <p>{principles.philosophy}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section section-alt" id="about">
+      <div class="container about-inner">
+        <div class="about-copy">
+          <span class="eyebrow">{about.eyebrow}</span>
+          <h2 class="section-title">{about.heading}</h2>
+          {about.paragraphs.map((p) => <p>{p}</p>)}
+          <div class="founder">
+            <div class="founder-avatar" aria-hidden="true">{about.founderInitials}</div>
+            <div class="founder-info">
+              <h3>{about.founderName}</h3>
+              <p class="founder-role">{about.founderRole}</p>
+              <p class="founder-bio">{about.founderBio}</p>
+            </div>
+          </div>
+        </div>
+        <aside class="about-stats">
+          {about.stats.map((s) => (
+            <div class="stat">
+              <span class="stat-num gradient-text">{s.value}</span>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))}
+        </aside>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="section" id="research">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">{research.eyebrow}</span>
+          <h2 class="section-title">{research.heading}</h2>
+          <p class="section-lead">{research.lead}</p>
+        </div>
+        <div class="grid grid-2">
+          {research.items.map((item) => (
+            <a class="research-card" href={item.url} target="_blank" rel="noopener noreferrer">
+              <span class="research-tag">{item.tag}</span>
+              <h3>{item.title}</h3>
+              <p class="research-author">{item.author}</p>
+              <span class="research-link">Read the paper
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </span>
+            </a>
+          ))}
+          <div class="research-card research-soon" aria-hidden="true">
+            <span class="research-tag">Coming soon</span>
+            <h3>More publications on GenAI &amp; precision medicine</h3>
+            <p class="research-author">New research is published regularly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="section section-alt" id="news">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">News</span>
+          <h2 class="section-title">Latest from {general.brandName} {general.brandAccent}</h2>
+          <p class="section-lead">Announcements and developments across AI, precision medicine, and life sciences.</p>
+        </div>
+
+        {news.length > 0 ? (
+          <div class="news-grid">
+            {news.map((post) => (
+              <article class="news-card">
+                {post.data.thumbnail && (
+                  <div class="news-card-media"><img src={post.data.thumbnail} alt={post.data.title} /></div>
+                )}
+                <div class="news-card-body">
+                  <span class="news-date">{dateFmt(post.data.date)}</span>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.summary}</p>
+                  <a class="research-link" href={`/news/${post.id}`}>Read more
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="news-empty">
+            <div class="news-empty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 8h8M8 12h8M8 16h5"/></svg>
+            </div>
+            <h3>Updates are on the way</h3>
+            <p>We're preparing announcements about our latest solutions and research. Check back soon — or get in touch to stay informed.</p>
+            <a href="#contact" class="btn btn-outline">Keep me updated</a>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container contact-inner">
+        <div class="contact-copy">
+          <span class="eyebrow">{contact.eyebrow}</span>
+          <h2 class="section-title">{contact.heading}</h2>
+          <p class="section-lead">{contact.lead}</p>
+          <ul class="contact-points">
+            <li>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg>
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              {contact.responseTime}
+            </li>
+          </ul>
+        </div>
+
+        <form class="contact-form" id="contactForm" action={`mailto:${contact.email}`} method="post" enctype="text/plain" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="firstName">First Name <span class="req">*</span></label>
+              <input type="text" id="firstName" name="First Name" required autocomplete="given-name" />
+            </div>
+            <div class="field">
+              <label for="lastName">Last Name <span class="req">*</span></label>
+              <input type="text" id="lastName" name="Last Name" required autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="Email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="jobTitle">Job Title <span class="req">*</span></label>
+              <input type="text" id="jobTitle" name="Job Title" required autocomplete="organization-title" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="company">Company <span class="req">*</span></label>
+              <input type="text" id="company" name="Company" required autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="interest">Interested in <span class="req">*</span></label>
+              <select id="interest" name="Interested In" required>
+                <option value="" disabled selected>Select an option</option>
+                {contact.interests.map((i) => <option>{i}</option>)}
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="comments">Comments <span class="req">*</span></label>
+            <textarea id="comments" name="Comments" rows="5" required placeholder="Tell us about your project or question…"></textarea>
+          </div>
+
+          <div class="recaptcha-note">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
+            Protected by reCAPTCHA
+          </div>
+
+          <button type="submit" class="btn btn-gradient btn-lg btn-block">Submit</button>
+
+          <p class="form-success" id="formSuccess" role="status" hidden>Thank you — your message has been prepared. We'll respond within 24 hours.</p>
+
+          <p class="disclaimer">{contact.disclaimer}</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,18 @@
+{
+  "eyebrow": "About",
+  "heading": "A specialized AI, Bioinformatics & Healthcare Technology firm",
+  "paragraphs": [
+    "BioGenAI Solutions is a specialized Artificial Intelligence, Bioinformatics, and Healthcare Technology consulting firm dedicated to transforming healthcare and life sciences through responsible, human-centered innovation.",
+    "We help healthcare providers, biotechnology companies, pharmaceutical organizations, research institutions, and enterprises harness the power of LLMs, RAG, Agentic AI, Machine Learning, Deep Learning, Data Engineering, Bioinformatics, Genomics, and HL7 interoperability to accelerate discovery, improve patient outcomes, and unlock actionable insights from complex data."
+  ],
+  "founderInitials": "EB",
+  "founderName": "Ernest Bonat, Ph.D.",
+  "founderRole": "Founder & Principal — Data Science Professor, Senior AI Engineer, Bioinformatics Scientist",
+  "founderBio": "Over 25 years of software engineering experience and 8+ years developing advanced Machine Learning, Generative AI, Agentic AI, Biostatistics, Bioinformatics, and Computational Biology solutions.",
+  "stats": [
+    { "value": "25+", "label": "Years of software engineering" },
+    { "value": "8+", "label": "Years of ML & Generative AI" },
+    { "value": "5", "label": "Industries served" },
+    { "value": "24h", "label": "Response time commitment" }
+  ]
+}

@@ -1,0 +1,43 @@
+---
+import general from '../content/site/general.json';
+import contact from '../content/site/contact.json';
+---
+<footer class="footer">
+  <div class="footer-gradient" aria-hidden="true"></div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="#home" class="brand">
+        <img src="/logo.png" alt={`${general.brandName} ${general.brandAccent} logo`} class="brand-logo" />
+        <span class="brand-name">{general.brandName}<span class="brand-name-accent"> {general.brandAccent}</span></span>
+      </a>
+      <p>{general.tagline}</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#solutions">Solutions</a>
+        <a href="#services">Services</a>
+        <a href="#research">Research</a>
+        <a href="#news">News</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About</a>
+        <a href="#principles">Vision &amp; Mission</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/legal">Legal</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© <span id="year"></span> {general.brandName} {general.brandAccent}. All rights reserved.</p>
+    <p>{contact.email}</p>
+  </div>
+</footer>

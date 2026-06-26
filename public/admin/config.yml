@@ -1,0 +1,172 @@
+# ============================================================
+# Decap CMS configuration — BioGenAI Solutions
+# Edit content at /admin. Changes are committed to Git and the
+# static host rebuilds automatically.
+# ============================================================
+
+backend:
+  name: git-gateway          # Netlify Identity + Git Gateway (set up in Netlify)
+  branch: main               # branch the CMS writes to
+
+# For local editing: run `npx decap-server` and `npm run dev`,
+# then open http://localhost:4321/admin (Decap connects to the local proxy).
+local_backend: true
+
+media_folder: "public/uploads"   # where uploaded files are stored in the repo
+public_folder: "/uploads"        # how they are referenced on the site
+
+publish_mode: editorial_workflow  # draft → review → publish
+
+site_url: https://www.biogenaisolutions.com
+display_url: https://www.biogenaisolutions.com
+logo_url: /logo.png
+
+collections:
+  # ---------------------------------------------------------
+  # NEWS — clients can create, edit, and publish articles
+  # ---------------------------------------------------------
+  - name: news
+    label: News Articles
+    label_singular: News Article
+    folder: "src/content/news"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{date | date('YYYY-MM-DD')}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Publish Date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+      - { label: Summary, name: summary, widget: text, hint: "Short teaser shown on the News section cards." }
+      - { label: Featured Image, name: thumbnail, widget: image, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, hint: "Keep ON to hide from the live site." }
+      - { label: Body, name: body, widget: markdown }
+
+  # ---------------------------------------------------------
+  # SITE CONTENT — editable text/data for the landing page
+  # ---------------------------------------------------------
+  - name: site
+    label: Site Content
+    editor:
+      preview: false
+    files:
+      - name: general
+        label: General & Branding
+        file: "src/content/site/general.json"
+        fields:
+          - { label: Brand Name, name: brandName, widget: string }
+          - { label: Brand Accent (e.g. “Solutions”), name: brandAccent, widget: string }
+          - { label: Footer Tagline, name: tagline, widget: text }
+          - label: Core Capabilities
+            name: capabilities
+            widget: list
+            hint: "Shown in the capabilities strip below the hero."
+
+      - name: hero
+        label: Hero Section
+        file: "src/content/site/hero.json"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Title — Lead, name: titleLead, widget: string }
+          - { label: Title — Highlight (gradient), name: titleHighlight, widget: string }
+          - { label: Title — Trailing, name: titleTrail, widget: string }
+          - { label: Subtitle, name: subtitle, widget: text }
+          - { label: Primary Button Label, name: ctaPrimaryLabel, widget: string }
+          - { label: Primary Button Link, name: ctaPrimaryHref, widget: string, default: "#contact" }
+          - { label: Secondary Button Label, name: ctaSecondaryLabel, widget: string }
+          - { label: Secondary Button Link, name: ctaSecondaryHref, widget: string, default: "#solutions" }
+          - label: Hero Stats
+            name: stats
+            widget: list
+            fields:
+              - { label: Value, name: value, widget: string }
+              - { label: Label, name: label, widget: string }
+          - { label: Floating Tags, name: tags, widget: list }
+
+      - name: solutions
+        label: Solutions Section
+        file: "src/content/site/solutions.json"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Lead, name: lead, widget: text }
+          - label: Solution Cards
+            name: items
+            widget: list
+            fields:
+              - label: Icon
+                name: icon
+                widget: select
+                options: [precision, genomics, llm, hl7, data, ml]
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+
+      - name: services
+        label: Services Section
+        file: "src/content/site/services.json"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Lead, name: lead, widget: text }
+          - label: Services
+            name: items
+            widget: list
+            fields:
+              - { label: Number, name: number, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+
+      - name: principles
+        label: Vision / Mission / Philosophy
+        file: "src/content/site/principles.json"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Vision, name: vision, widget: text }
+          - { label: Mission, name: mission, widget: text }
+          - { label: Philosophy, name: philosophy, widget: text }
+
+      - name: about
+        label: About Section
+        file: "src/content/site/about.json"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Paragraphs, name: paragraphs, widget: list }
+          - { label: Founder Initials, name: founderInitials, widget: string }
+          - { label: Founder Name, name: founderName, widget: string }
+          - { label: Founder Role, name: founderRole, widget: text }
+          - { label: Founder Bio, name: founderBio, widget: text }
+          - label: Stats
+            name: stats
+            widget: list
+            fields:
+              - { label: Value, name: value, widget: string }
+              - { label: Label, name: label, widget: string }
+
+      - name: research
+        label: Research Section
+        file: "src/content/site/research.json"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Lead, name: lead, widget: text }
+          - label: Publications
+            name: items
+            widget: list
+            fields:
+              - { label: Tag, name: tag, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Author, name: author, widget: string }
+              - { label: URL, name: url, widget: string }
+
+      - name: contact
+        label: Contact Section
+        file: "src/content/site/contact.json"
+        fields:
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Lead, name: lead, widget: text }
+          - { label: Contact Email, name: email, widget: string }
+          - { label: Response Time Note, name: responseTime, widget: string }
+          - { label: "Interested In — Options", name: interests, widget: list }
+          - { label: Disclaimer, name: disclaimer, widget: text }

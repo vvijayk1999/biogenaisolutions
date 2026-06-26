@@ -1,0 +1,37 @@
+{
+  "eyebrow": "Solutions",
+  "heading": "Solutions built for scientific & clinical impact",
+  "lead": "Scalable, responsible AI tailored to the complex demands of healthcare, biotech, pharma, and research — from raw data to actionable insight.",
+  "items": [
+    {
+      "icon": "precision",
+      "title": "Precision Medicine AI",
+      "description": "Personalized models that translate genomic and clinical data into life-changing, patient-specific decisions."
+    },
+    {
+      "icon": "genomics",
+      "title": "Bioinformatics & Genomics",
+      "description": "Advanced pipelines for sequencing analysis, variant discovery, and computational biology at scale."
+    },
+    {
+      "icon": "llm",
+      "title": "Generative & Agentic AI",
+      "description": "LLM, RAG, and autonomous agent systems that reason over complex scientific and enterprise data."
+    },
+    {
+      "icon": "hl7",
+      "title": "Healthcare Interoperability",
+      "description": "HL7-driven integration that connects systems, streamlines workflows, and improves patient outcomes."
+    },
+    {
+      "icon": "data",
+      "title": "Data Engineering",
+      "description": "Robust, scalable data infrastructure that powers reliable analytics and production ML."
+    },
+    {
+      "icon": "ml",
+      "title": "Machine & Deep Learning",
+      "description": "Predictive and diagnostic models engineered for accuracy, transparency, and real-world deployment."
+    }
+  ]
+}

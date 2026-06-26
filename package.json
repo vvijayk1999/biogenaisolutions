@@ -1,0 +1,19 @@
+{
+  "name": "biogenai-solutions",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "BioGenAI Solutions — Astro + Decap CMS website",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "cms": "decap-server"
+  },
+  "dependencies": {
+    "astro": "^5.13.0"
+  },
+  "devDependencies": {
+    "decap-server": "^3.1.4"
+  }
+}

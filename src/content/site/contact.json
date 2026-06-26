@@ -1,0 +1,18 @@
+{
+  "eyebrow": "Contact",
+  "heading": "Send us a message",
+  "lead": "Fill out the form and our team will get back to you within 24 hours.",
+  "email": "ernest.bonat@biogenaisolutions.com",
+  "responseTime": "Response within 24 hours",
+  "interests": [
+    "Precision Medicine AI",
+    "Bioinformatics & Genomics",
+    "Generative & Agentic AI",
+    "Healthcare Interoperability (HL7)",
+    "Data Engineering",
+    "Machine & Deep Learning",
+    "AI Strategy & Advisory",
+    "Other"
+  ],
+  "disclaimer": "At BioGenAI Solutions, we value your trust and are committed to maintaining the confidentiality and security of your information. Any information submitted through our website is used exclusively to respond to your requests, provide professional consulting services, and keep you informed about relevant developments in Artificial Intelligence, Biostatistics, Bioinformatics, Precision Medicine, Healthcare Technology, and Life Sciences. You may unsubscribe from communications at any time. Please review our Privacy Policy to learn more about our data protection and privacy practices."
+}

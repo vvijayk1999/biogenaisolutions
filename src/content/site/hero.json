@@ -1,0 +1,17 @@
+{
+  "eyebrow": "AI & Bioinformatics for Precision Medicine",
+  "titleLead": "Intelligent",
+  "titleHighlight": "GenAI solutions",
+  "titleTrail": "advancing healthcare & life sciences",
+  "subtitle": "BioGenAI Solutions develops advanced, scalable Artificial Intelligence and Bioinformatics solutions that bridge precision medicine and responsible AI — empowering life-changing decisions and accelerating scientific discovery.",
+  "ctaPrimaryLabel": "Start a Conversation",
+  "ctaPrimaryHref": "#contact",
+  "ctaSecondaryLabel": "Explore Solutions",
+  "ctaSecondaryHref": "#solutions",
+  "stats": [
+    { "value": "25+", "label": "years software engineering" },
+    { "value": "8+", "label": "years ML & GenAI" },
+    { "value": "HL7", "label": "healthcare interoperability" }
+  ],
+  "tags": ["LLMs & RAG", "Agentic AI", "Genomics", "Deep Learning"]
+}
