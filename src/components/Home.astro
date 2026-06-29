@@ -268,16 +268,7 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
         <span class="eyebrow">{c.contact.eyebrow}</span>
         <h2 class="section-title">{c.contact.heading}</h2>
         <p class="section-lead">{c.contact.lead}</p>
-        <ul class="contact-points">
-          <li>
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg>
-            <a href={`mailto:${c.contact.email}`}>{c.contact.email}</a>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            {c.contact.responseTime}
-          </li>
-        </ul>
+        <p class="disclaimer">{c.contact.disclaimer}</p>
       </div>
 
       <form class="contact-form" id="contactForm" action={`mailto:${c.contact.email}`} method="post" enctype="text/plain" novalidate>
@@ -319,16 +310,16 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
           <textarea id="comments" name="Comments" rows="5" required placeholder={c.ui.form.commentsPlaceholder}></textarea>
         </div>
 
-        <div class="recaptcha-note">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
-          {c.ui.form.recaptcha}
+        <div class="form-actions-row">
+          <div class="recaptcha-note">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
+            {c.ui.form.recaptcha}
+          </div>
+
+          <button type="submit" class="btn btn-gradient">{c.ui.form.submit}</button>
         </div>
 
-        <button type="submit" class="btn btn-gradient btn-lg btn-block">{c.ui.form.submit}</button>
-
         <p class="form-success" id="formSuccess" role="status" hidden>{c.ui.form.success}</p>
-
-        <p class="disclaimer">{c.contact.disclaimer}</p>
       </form>
     </div>
   </section>
