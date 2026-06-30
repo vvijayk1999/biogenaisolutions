@@ -53,18 +53,25 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
     </div>
   </section>
 
-  <!-- CAPABILITIES STRIP -->
-  <section class="strip" aria-label="Core capabilities">
-    <div class="container strip-inner">
-      <span class="strip-label">{c.ui.capabilitiesLabel}</span>
-      <ul class="strip-items">
-        {c.general.capabilities.map((cap) => <li>{cap}</li>)}
-      </ul>
-    </div>
-  </section>
-
   <!-- SOLUTIONS -->
   <section class="section" id="solutions">
+    <div class="container capabilities-container">
+      <div class="strip-label">{c.ui.capabilitiesLabel}</div>
+      <div class="marquee-wrapper">
+        <div class="marquee-track">
+          <ul class="strip-items">
+            {c.general.capabilities.map((cap) => <li>{cap}</li>)}
+          </ul>
+          <ul class="strip-items" aria-hidden="true">
+            {c.general.capabilities.map((cap) => <li>{cap}</li>)}
+          </ul>
+          <ul class="strip-items" aria-hidden="true">
+            {c.general.capabilities.map((cap) => <li>{cap}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">{c.solutions.eyebrow}</span>
@@ -84,23 +91,31 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   </section>
 
   <!-- SERVICES -->
-  <section class="section section-alt" id="services">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">{c.services.eyebrow}</span>
-        <h2 class="section-title">{c.services.heading}</h2>
-        <p class="section-lead">{c.services.lead}</p>
+  <section class="section section-services-split" id="services">
+    <div class="services-top-bg">
+      <div class="services-top-overlay" aria-hidden="true"></div>
+      <div class="container services-header-container">
+        <div class="section-head">
+          <span class="eyebrow services-eyebrow">{c.services.eyebrow}</span>
+          <h2 class="section-title services-title">{c.services.heading}</h2>
+          <p class="section-lead services-lead">{c.services.lead}</p>
+        </div>
       </div>
-      <div class="grid grid-2 services-grid">
-        {c.services.items.map((item) => (
-          <div class="service-row">
-            <span class="service-no">{item.number}</span>
-            <div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+    </div>
+
+    <div class="services-bottom-content">
+      <div class="container">
+        <div class="grid grid-2 services-grid">
+          {c.services.items.map((item) => (
+            <div class="service-row">
+              <span class="service-no">{item.number}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -277,34 +292,36 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
             <label for="firstName">{c.ui.form.firstName} <span class="req">*</span></label>
             <input type="text" id="firstName" name="First Name" required autocomplete="given-name" />
           </div>
+
           <div class="field">
             <label for="lastName">{c.ui.form.lastName} <span class="req">*</span></label>
             <input type="text" id="lastName" name="Last Name" required autocomplete="family-name" />
           </div>
         </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="email">{c.ui.form.email} <span class="req">*</span></label>
-            <input type="email" id="email" name="Email" required autocomplete="email" />
-          </div>
-          <div class="field">
-            <label for="jobTitle">{c.ui.form.jobTitle} <span class="req">*</span></label>
-            <input type="text" id="jobTitle" name="Job Title" required autocomplete="organization-title" />
-          </div>
+
+        <div class="field">
+          <label for="email">{c.ui.form.email} <span class="req">*</span></label>
+          <input type="email" id="email" name="Email" required autocomplete="email" />
         </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="company">{c.ui.form.company} <span class="req">*</span></label>
-            <input type="text" id="company" name="Company" required autocomplete="organization" />
-          </div>
-          <div class="field">
-            <label for="interest">{c.ui.form.interest} <span class="req">*</span></label>
-            <select id="interest" name="Interested In" required>
-              <option value="" disabled selected>{c.ui.form.interestPlaceholder}</option>
-              {c.contact.interests.map((i) => <option>{i}</option>)}
-            </select>
-          </div>
+
+        <div class="field">
+          <label for="jobTitle">{c.ui.form.jobTitle} <span class="req">*</span></label>
+          <input type="text" id="jobTitle" name="Job Title" required autocomplete="organization-title" />
         </div>
+
+        <div class="field">
+          <label for="company">{c.ui.form.company} <span class="req">*</span></label>
+          <input type="text" id="company" name="Company" required autocomplete="organization" />
+        </div>
+
+        <div class="field">
+          <label for="interest">{c.ui.form.interest} <span class="req">*</span></label>
+          <select id="interest" name="Interested In" required>
+            <option value="" disabled selected>{c.ui.form.interestPlaceholder}</option>
+            {c.contact.interests.map((i) => <option>{i}</option>)}
+          </select>
+        </div>
+
         <div class="field">
           <label for="comments">{c.ui.form.comments} <span class="req">*</span></label>
           <textarea id="comments" name="Comments" rows="5" required placeholder={c.ui.form.commentsPlaceholder}></textarea>
