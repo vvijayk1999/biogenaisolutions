@@ -1,0 +1,263 @@
+{
+  "contact": {
+    "eyebrow": "聯絡我們",
+    "heading": "給我們發訊息",
+    "lead": "填寫表格，我們的團隊將在24小時內回覆您。",
+    "email": "ernest.bonat@biogenaisolutions.com",
+    "responseTime": "24小時內回覆",
+    "interests": [
+      "精準醫療人工智慧",
+      "生物資訊學與基因組學",
+      "生成式和代理人工智慧",
+      "醫療互操作性(HL7)",
+      "數據工程",
+      "機器學習與深度學習",
+      "人工智慧戰略與諮詢",
+      "其他"
+    ],
+    "disclaimer": "在 BioGenAI Solutions，我們珍視您的信任，並致力於對您的資訊保密。"
+  },
+  "carousel": {
+    "eyebrow": "我們服務",
+    "heading": "我們服務的行業",
+    "lead": "在醫療和生命科學領域備受信賴。",
+    "slides": [
+      {
+        "title": "醫療服務提供者",
+        "description": "臨床決策支援和 HL7 互操作性，可改善結果。"
+      },
+      {
+        "title": "生物技術",
+        "description": "基因組學管道和機器學習可加速發現。"
+      },
+      {
+        "title": "製藥",
+        "description": "用於研發和臨床試驗的人工智慧，以做出數據驅動的決策。"
+      },
+      {
+        "title": "研究機構",
+        "description": "可擴展的生物資訊學和計算生物學。"
+      },
+      {
+        "title": "企業",
+        "description": "LLM，RAG和代理系統，從複雜數據中釋放價值。"
+      },
+      {
+        "title": "My new SLIDE",
+        "description": "Blah blah"
+      }
+    ]
+  },
+  "general": {
+    "brandName": "BioGenAI",
+    "brandAccent": "Solutions",
+    "tagline": "用於精準醫療和醫療創新的高級可擴展人工智慧和生物資訊學解決方案。",
+    "capabilities": [
+      "大型語言模型",
+      "檢索增強生成",
+      "代理人工智慧系統",
+      "機器學習與深度學習",
+      "生物資訊學與基因組學",
+      "數據工程"
+    ]
+  },
+  "about": {
+    "eyebrow": "關於",
+    "heading": "一家專業的人工智慧、生物資訊學和醫療技術公司",
+    "paragraphs": [
+      "BioGenAI Solutions 是一家專業的人工智慧諮詢公司。",
+      "我們幫助醫療提供商和研究機構利用數據加速發現並釋放可操作的見解。"
+    ],
+    "founderInitials": "EB",
+    "founderName": "Ernest Bonat, 博士",
+    "founderRole": "創始人兼負責人 — 數據科學教授，高級AI工程師",
+    "founderBio": "超過25年的軟體工程經驗，以及8年以上的機器學習解決方案開發經驗。",
+    "stats": [
+      {
+        "value": "25+",
+        "label": "年軟體工程經驗"
+      },
+      {
+        "value": "8+",
+        "label": "年機器學習經驗"
+      },
+      {
+        "value": "5",
+        "label": "服務行業"
+      },
+      {
+        "value": "24h",
+        "label": "響應時間"
+      }
+    ]
+  },
+  "ui": {
+    "backToHome": "← 返回首頁",
+    "newsKeepUpdated": "保持更新",
+    "nav": {
+      "home": "首頁",
+      "solutions": "解決方案",
+      "services": "服務",
+      "research": "研究",
+      "news": "新聞",
+      "about": "關於",
+      "contact": "聯絡",
+      "contactCta": "聯絡我們"
+    },
+    "form": {
+      "lastName": "姓",
+      "success": "謝謝 — 您的訊息已發送。我們將在24小時內回覆。",
+      "recaptcha": "受 reCAPTCHA 保護",
+      "interestPlaceholder": "選擇一個選項",
+      "interest": "感興趣的",
+      "comments": "評論",
+      "submit": "提交",
+      "jobTitle": "職位",
+      "firstName": "名",
+      "email": "郵箱",
+      "company": "公司",
+      "commentsPlaceholder": "告訴我們您的項目或問題…"
+    },
+    "newsEmptyText": "我們正在準備有關最新解決方案和研究的公告。",
+    "readMore": "閱讀更多",
+    "searchPlaceholder": "搜索網站…",
+    "searchLabel": "搜索",
+    "searchNoResults": "未找到結果",
+    "newsLead": "人工智慧，精準醫學和生命科學領域的公告和發展。",
+    "newsHeading": "BioGenAI Solutions 的最新消息",
+    "menuLabel": "菜單",
+    "backToNews": "← 返回新聞",
+    "readPaper": "閱讀論文",
+    "footer": {
+      "explore": "探索",
+      "company": "公司",
+      "legal": "法律",
+      "visionMission": "願景與使命",
+      "rights": "版權所有。",
+      "privacy": "隱私政策",
+      "terms": "服務條款",
+      "legalLink": "法律資訊"
+    },
+    "newsEmptyTitle": "更新即將到來",
+    "capabilitiesLabel": "核心能力"
+  },
+  "principles": {
+    "eyebrow": "我們的動力",
+    "heading": "願景，使命和理念",
+    "visionLabel": "願景",
+    "missionLabel": "使命",
+    "philosophyLabel": "理念",
+    "vision": "提供智能化的個性化GenAI解決方案，徹底改變醫療保健行業。",
+    "mission": "將精準醫療與負責任的AI結合，提供個性化醫療。",
+    "philosophy": "我們構建以人為本，符合倫理道德的GenAI。"
+  },
+  "solutions": {
+    "eyebrow": "解決方案",
+    "heading": "為科學和臨床影響而建立的解決方案",
+    "lead": "為醫療保健、生物技術、製藥和研究的複雜需求量身定制。XYZ",
+    "items": [
+      {
+        "icon": "precision",
+        "title": "精準醫療人工智慧",
+        "description": "將基因組數據轉化為決策的個性化模型。"
+      },
+      {
+        "icon": "genomics",
+        "title": "生物資訊學與基因組學",
+        "description": "用於大規模測序分析的高級管道。"
+      },
+      {
+        "icon": "llm",
+        "title": "生成式和代理人工智慧",
+        "description": "推理複雜數據的 LLM、RAG 和自治代理系統。"
+      },
+      {
+        "icon": "hl7",
+        "title": "醫療互操作性",
+        "description": "HL7驅動的集成可連接系統並簡化工作流程。"
+      },
+      {
+        "icon": "data",
+        "title": "數據工程",
+        "description": "為可靠分析提供支持的強大數據基礎架構。"
+      },
+      {
+        "icon": "ml",
+        "title": "機器學習與深度學習",
+        "description": "專為準確性而設計的預測模型。"
+      }
+    ]
+  },
+  "hero": {
+    "ctaPrimaryLabel": "開始對話",
+    "eyebrow": "用於精準醫療的人工智慧和生物資訊學",
+    "titleTrail": "推動醫療與生命科學的發展",
+    "ctaSecondaryLabel": "探索解決方案",
+    "titleLead": "智能",
+    "subtitle": "This is my first change\n\nBioGenAI Solutions 開發高級人工智慧和生物資訊學解決方案。",
+    "tags": [
+      "LLMs & RAG",
+      "代理AI",
+      "基因組學",
+      "深度學習"
+    ],
+    "titleHighlight": "GenAI 解決方案",
+    "stats": [
+      {
+        "value": "25+",
+        "label": "年軟體工程經驗"
+      },
+      {
+        "value": "8+",
+        "label": "年 ML 和 GenAI 經驗"
+      },
+      {
+        "value": "HL7",
+        "label": "醫療互操作性"
+      }
+    ]
+  },
+  "research": {
+    "eyebrow": "研究",
+    "heading": "已發表的研究",
+    "lead": "關於人工智慧和生物資訊學的同行觀點。",
+    "items": [
+      {
+        "tag": "Medium · 文章",
+        "title": "人工智慧在生物統計學和生物資訊學中的應用",
+        "author": "Ernest Bonat 博士",
+        "url": "https://ernest-bonat.medium.com/machine-learning-applications-in-genomics-life-sciences-by-ernest-bonat-ph-d-83598e67ccbc"
+      }
+    ],
+    "comingSoonTag": "即將推出",
+    "comingSoonTitle": "更多關於 GenAI 的出版物",
+    "comingSoonText": "新研究定期發表。"
+  },
+  "services": {
+    "eyebrow": "服務",
+    "heading": "化繁為簡的諮詢",
+    "lead": "我們幫助組織利用人工智慧加速發現。",
+    "items": [
+      {
+        "number": "01",
+        "title": "人工智慧戰略與諮詢",
+        "description": "實施具有可衡量投資回報率的人工智慧架構。"
+      },
+      {
+        "number": "02",
+        "title": "自定義模型開發",
+        "description": "機器學習和深度學習系統的端到端設計和部署。"
+      },
+      {
+        "number": "03",
+        "title": "生物資訊學工程",
+        "description": "為規模化而構建的基因組學管道。"
+      },
+      {
+        "number": "04",
+        "title": "醫療數據集成",
+        "description": "統一臨床系統的 HL7 互操作性。"
+      }
+    ]
+  }
+}

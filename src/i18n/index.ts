@@ -3,19 +3,37 @@ import es from '../content/i18n/es.json';
 import fr from '../content/i18n/fr.json';
 import de from '../content/i18n/de.json';
 import ar from '../content/i18n/ar.json';
+import pt from '../content/i18n/pt.json';
+import ru from '../content/i18n/ru.json';
+import uk from '../content/i18n/uk.json';
+import ko from '../content/i18n/ko.json';
+import zh_CN from '../content/i18n/zh-CN.json';
+import yue from '../content/i18n/yue.json';
 
 export const DEFAULT_LOCALE = 'en' as const;
 
-export type Locale = 'en' | 'es' | 'fr' | 'de' | 'ar';
+export type Locale = 'en' | 'es' | 'fr' | 'de' | 'ar' | 'pt' | 'ru' | 'uk' | 'ko' | 'zh-CN' | 'yue';
 
-export const LOCALES: Locale[] = ['en', 'es', 'fr', 'de', 'ar'];
+export const LOCALES: Locale[] = ['en', 'es', 'fr', 'de', 'ar', 'pt', 'ru', 'uk', 'ko', 'zh-CN', 'yue'];
 
 // Non-default locales get a URL prefix (English stays at "/").
 export const NON_DEFAULT_LOCALES: Locale[] = LOCALES.filter((l) => l !== DEFAULT_LOCALE);
 
 export type Content = typeof en;
 
-const bundles: Record<Locale, Content> = { en, es, fr, de, ar };
+const bundles: Record<Locale, Content> = { 
+  en, 
+  es, 
+  fr, 
+  de, 
+  ar,
+  pt,
+  ru,
+  uk,
+  ko,
+  'zh-CN': zh_CN,
+  yue
+};
 
 // Each language is shown in its own name in the switcher.
 export const LANG_NAMES: Record<Locale, { code: string; name: string }> = {
@@ -24,6 +42,12 @@ export const LANG_NAMES: Record<Locale, { code: string; name: string }> = {
   fr: { code: 'FR', name: 'Français' },
   de: { code: 'DE', name: 'Deutsch' },
   ar: { code: 'AR', name: 'العربية' },
+  pt: { code: 'PT', name: 'Português' },
+  ru: { code: 'RU', name: 'Русский' },
+  uk: { code: 'UK', name: 'Українська' },
+  ko: { code: 'KO', name: '한국어' },
+  'zh-CN': { code: 'ZH', name: '中文 (简体)' },
+  yue: { code: 'YUE', name: '粵語' }
 };
 
 // BCP-47 codes for date formatting.
@@ -33,6 +57,12 @@ export const BCP47: Record<Locale, string> = {
   fr: 'fr-FR',
   de: 'de-DE',
   ar: 'ar',
+  pt: 'pt-BR',
+  ru: 'ru-RU',
+  uk: 'uk-UA',
+  ko: 'ko-KR',
+  'zh-CN': 'zh-CN',
+  yue: 'zh-HK'
 };
 
 export function isLocale(value: string): value is Locale {

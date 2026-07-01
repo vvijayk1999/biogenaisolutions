@@ -1,0 +1,263 @@
+{
+  "contact": {
+    "eyebrow": "연락처",
+    "heading": "메시지 보내기",
+    "lead": "양식을 작성해 주시면 24시간 이내에 답변해 드리겠습니다.",
+    "email": "ernest.bonat@biogenaisolutions.com",
+    "responseTime": "24시간 이내 응답",
+    "interests": [
+      "정밀 의료 AI",
+      "생물 정보학 및 유전체학",
+      "생성형 및 에이전트 AI",
+      "의료 상호 운용성(HL7)",
+      "데이터 엔지니어링",
+      "머신러닝 및 딥러닝",
+      "AI 전략 및 자문",
+      "기타"
+    ],
+    "disclaimer": "BioGenAI Solutions는 고객의 신뢰를 소중히 여기며 기밀 유지에 최선을 다하고 있습니다."
+  },
+  "carousel": {
+    "eyebrow": "고객",
+    "heading": "주요 서비스 분야",
+    "lead": "의료 및 생명과학 생태계 전반에서 신뢰받고 있습니다.",
+    "slides": [
+      {
+        "title": "의료 제공자",
+        "description": "결과를 개선하는 임상 결정 지원 및 HL7 상호 운용성."
+      },
+      {
+        "title": "생명 공학",
+        "description": "연구에서 통찰력까지 발견을 가속화하는 유전체학 파이프라인."
+      },
+      {
+        "title": "제약",
+        "description": "더 빠르고 데이터 기반 결정을 위한 R&D 및 임상 시험 AI."
+      },
+      {
+        "title": "연구 기관",
+        "description": "엄격하고 재현 가능한 과학을 위한 생물 정보학."
+      },
+      {
+        "title": "기업",
+        "description": "복잡한 대규모 데이터에서 가치를 창출하는 LLM, RAG 시스템."
+      },
+      {
+        "title": "My new SLIDE",
+        "description": "Blah blah"
+      }
+    ]
+  },
+  "general": {
+    "brandName": "BioGenAI",
+    "brandAccent": "Solutions",
+    "tagline": "정밀 의료 및 의료 혁신을 위한 고급 AI 및 생물 정보학 솔루션.",
+    "capabilities": [
+      "대규모 언어 모델",
+      "검색 증강 생성(RAG)",
+      "에이전트 AI 시스템",
+      "머신러닝 및 딥러닝",
+      "생물 정보학 및 유전체학",
+      "데이터 엔지니어링"
+    ]
+  },
+  "about": {
+    "eyebrow": "회사 소개",
+    "heading": "AI, 생물 정보학 및 의료 기술 전문 기업",
+    "paragraphs": [
+      "BioGenAI Solutions는 인공 지능, 생물 정보학 및 의료 기술 컨설팅 회사입니다.",
+      "우리는 의료 제공자 및 연구 기관이 데이터를 활용하여 발견을 가속화하도록 돕습니다."
+    ],
+    "founderInitials": "EB",
+    "founderName": "Ernest Bonat, Ph.D.",
+    "founderRole": "설립자 - 데이터 과학 교수, 수석 AI 엔지니어",
+    "founderBio": "소프트웨어 엔지니어링 분야에서 25년 이상, 기계 학습 및 생물 정보학 솔루션 개발에서 8년 이상의 경험.",
+    "stats": [
+      {
+        "value": "25+",
+        "label": "소프트웨어 엔지니어링 경력"
+      },
+      {
+        "value": "8+",
+        "label": "ML 및 AI 경력"
+      },
+      {
+        "value": "5",
+        "label": "서비스 분야"
+      },
+      {
+        "value": "24h",
+        "label": "응답 시간"
+      }
+    ]
+  },
+  "ui": {
+    "backToHome": "← 홈으로 돌아가기",
+    "newsKeepUpdated": "소식 받기",
+    "nav": {
+      "home": "홈",
+      "solutions": "솔루션",
+      "services": "서비스",
+      "research": "연구",
+      "news": "뉴스",
+      "about": "회사 소개",
+      "contact": "연락처",
+      "contactCta": "문의하기"
+    },
+    "form": {
+      "lastName": "성",
+      "success": "감사합니다. 메시지가 전송되었습니다. 24시간 이내에 답변해 드리겠습니다.",
+      "recaptcha": "reCAPTCHA 보호",
+      "interestPlaceholder": "옵션 선택",
+      "interest": "관심 분야",
+      "comments": "의견",
+      "submit": "제출",
+      "jobTitle": "직책",
+      "firstName": "이름",
+      "email": "이메일",
+      "company": "회사",
+      "commentsPlaceholder": "프로젝트에 대해 알려주세요…"
+    },
+    "newsEmptyText": "최신 솔루션 및 연구에 대한 공지를 준비 중입니다.",
+    "readMore": "자세히 보기",
+    "searchPlaceholder": "사이트 검색…",
+    "searchLabel": "검색",
+    "searchNoResults": "결과 없음",
+    "newsLead": "AI 및 정밀 의료에 대한 공지 및 개발.",
+    "newsHeading": "BioGenAI Solutions 최신 소식",
+    "menuLabel": "메뉴",
+    "backToNews": "← 뉴스로 돌아가기",
+    "readPaper": "논문 읽기",
+    "footer": {
+      "explore": "탐색",
+      "company": "회사",
+      "legal": "법적 고지",
+      "visionMission": "비전 및 미션",
+      "rights": "모든 권리 보유.",
+      "privacy": "개인정보 보호정책",
+      "terms": "서비스 약관",
+      "legalLink": "법적 고지"
+    },
+    "newsEmptyTitle": "업데이트 준비 중",
+    "capabilitiesLabel": "핵심 역량"
+  },
+  "principles": {
+    "eyebrow": "우리의 원동력",
+    "heading": "비전, 미션 및 철학",
+    "visionLabel": "비전",
+    "missionLabel": "미션",
+    "philosophyLabel": "철학",
+    "vision": "지능형 맞춤형 GenAI 솔루션을 제공하여 의료 서비스에 혁명을 일으킵니다.",
+    "mission": "정밀 의료와 책임감 있는 GenAI 솔루션을 연결합니다.",
+    "philosophy": "인간 중심적이고 윤리적인 GenAI를 구축합니다."
+  },
+  "solutions": {
+    "eyebrow": "솔루션",
+    "heading": "과학 및 임상적 영향을 위해 구축된 솔루션",
+    "lead": "의료 및 연구의 복잡한 요구 사항에 맞춘 확장 가능한 AI. XYZ",
+    "items": [
+      {
+        "icon": "precision",
+        "title": "정밀 의료 AI",
+        "description": "유전체 데이터를 생명을 구하는 결정으로 변환하는 개인 맞춤형 모델."
+      },
+      {
+        "icon": "genomics",
+        "title": "생물 정보학 및 유전체학",
+        "description": "대규모 시퀀싱 분석을 위한 고급 파이프라인."
+      },
+      {
+        "icon": "llm",
+        "title": "생성형 및 에이전트 AI",
+        "description": "복잡한 데이터에 대한 LLM, RAG 및 자율 에이전트 시스템."
+      },
+      {
+        "icon": "hl7",
+        "title": "의료 상호 운용성",
+        "description": "워크플로를 간소화하는 HL7 기반 통합."
+      },
+      {
+        "icon": "data",
+        "title": "데이터 엔지니어링",
+        "description": "안정적인 분석을 지원하는 데이터 인프라."
+      },
+      {
+        "icon": "ml",
+        "title": "머신러닝 및 딥러닝",
+        "description": "정확성을 위해 설계된 예측 및 진단 모델."
+      }
+    ]
+  },
+  "hero": {
+    "ctaPrimaryLabel": "대화 시작",
+    "eyebrow": "정밀 의료를 위한 AI 및 생물 정보학",
+    "titleTrail": "의료 및 생명과학 발전",
+    "ctaSecondaryLabel": "솔루션 탐색",
+    "titleLead": "지능형",
+    "subtitle": "This is my first change\n\nBioGenAI Solutions는 책임감 있는 AI와 정밀 의료를 연결하는 솔루션을 개발합니다.",
+    "tags": [
+      "LLMs & RAG",
+      "에이전트 AI",
+      "유전체학",
+      "딥러닝"
+    ],
+    "titleHighlight": "GenAI 솔루션",
+    "stats": [
+      {
+        "value": "25+",
+        "label": "년의 소프트웨어 경력"
+      },
+      {
+        "value": "8+",
+        "label": "년의 ML 및 GenAI"
+      },
+      {
+        "value": "HL7",
+        "label": "의료 상호 운용성"
+      }
+    ]
+  },
+  "research": {
+    "eyebrow": "연구",
+    "heading": "발표된 연구",
+    "lead": "AI, 생물 통계학 및 계산 생물학에 대한 전문가의 관점.",
+    "items": [
+      {
+        "tag": "Medium · 기사",
+        "title": "생물 통계학 및 생물 정보학에서의 인공 지능 적용",
+        "author": "Ernest Bonat, Ph.D.",
+        "url": "https://ernest-bonat.medium.com/machine-learning-applications-in-genomics-life-sciences-by-ernest-bonat-ph-d-83598e67ccbc"
+      }
+    ],
+    "comingSoonTag": "출시 예정",
+    "comingSoonTitle": "더 많은 연구 출판 예정",
+    "comingSoonText": "새로운 연구가 정기적으로 게시됩니다."
+  },
+  "services": {
+    "eyebrow": "서비스",
+    "heading": "복잡성을 명확성으로 바꾸는 컨설팅",
+    "lead": "우리는 발견을 가속화하기 위해 AI를 활용하도록 돕습니다.",
+    "items": [
+      {
+        "number": "01",
+        "title": "AI 전략 및 자문",
+        "description": "측정 가능한 ROI로 책임감 있는 AI를 구현하기 위한 로드맵."
+      },
+      {
+        "number": "02",
+        "title": "사용자 지정 모델 개발",
+        "description": "ML 및 GenAI 시스템의 설계 및 배포."
+      },
+      {
+        "number": "03",
+        "title": "생물 정보학 엔지니어링",
+        "description": "확장성을 위해 구축된 유전체학 파이프라인."
+      },
+      {
+        "number": "04",
+        "title": "의료 데이터 통합",
+        "description": "단편화된 임상 시스템을 통합하는 데이터 엔지니어링."
+      }
+    ]
+  }
+}
