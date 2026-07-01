@@ -246,6 +246,33 @@ const {
 
         nextBtn?.addEventListener('click', () => { next(); restart(); });
         prevBtn?.addEventListener('click', () => { prev(); restart(); });
+
+        // Hover-activated scrolling
+        let hoverTimer: ReturnType<typeof setInterval> | null = null;
+        const startHoverScroll = (dir: 'next' | 'prev') => {
+          if (hoverTimer) clearInterval(hoverTimer);
+          if (timer) clearInterval(timer);
+          if (dir === 'next') next();
+          else prev();
+
+          hoverTimer = setInterval(() => {
+            if (dir === 'next') next();
+            else prev();
+          }, 2000);
+        };
+        const stopHoverScroll = () => {
+          if (hoverTimer) {
+            clearInterval(hoverTimer);
+            hoverTimer = null;
+          }
+          restart();
+        };
+
+        nextBtn?.addEventListener('mouseenter', () => startHoverScroll('next'));
+        nextBtn?.addEventListener('mouseleave', stopHoverScroll);
+        prevBtn?.addEventListener('mouseenter', () => startHoverScroll('prev'));
+        prevBtn?.addEventListener('mouseleave', stopHoverScroll);
+
         carousel.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
         carousel.addEventListener('mouseleave', restart);
         let resizeT: ReturnType<typeof setTimeout>;

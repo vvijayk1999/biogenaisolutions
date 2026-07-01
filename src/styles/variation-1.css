@@ -20,15 +20,15 @@
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
   height: var(--nav-h);
+  gap: 14px;
 }
 .nav-menu {
   display: flex;
   align-items: stretch;
   gap: 2px;
   height: 100%;
+  margin-left: auto;
 }
 .nav-item { display: flex; align-items: center; position: static; }
 .nav-link { padding: 8px 13px; font-size: 15px; }
