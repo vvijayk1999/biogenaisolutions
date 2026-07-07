@@ -22,7 +22,7 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 <main>
   <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-bg" aria-hidden="true" style="background-image: url('/hero-bg.png'); background-size: cover; background-position: center;"></div>
     <div class="container hero-inner">
       <div class="hero-copy">
         <span class="eyebrow">{c.hero.eyebrow}</span>
@@ -31,8 +31,8 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
         </h1>
         <p class="hero-sub">{c.hero.subtitle}</p>
         <div class="hero-cta">
-          <a href="#contact" class="btn btn-gradient btn-lg">{c.hero.ctaPrimaryLabel}</a>
-          <a href="#solutions" class="btn btn-ghost btn-lg">{c.hero.ctaSecondaryLabel}</a>
+          <a href="#contact" class="btn btn-gradient">{c.hero.ctaPrimaryLabel}</a>
+          <a href="#solutions" class="btn btn-ghost">{c.hero.ctaSecondaryLabel}</a>
         </div>
         <ul class="hero-trust">
           {c.hero.stats.map((s) => (<li><strong>{s.value}</strong> {s.label}</li>))}
@@ -43,7 +43,7 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="hero-card">
-          <img src="/logo.png" alt="" class="hero-logo" />
+          <img src="/logo-white.png" alt="" class="hero-logo" />
           <div class="hero-card-glow"></div>
           <div class="hero-tags">
             {c.hero.tags.map((t) => <span>{t}</span>)}
@@ -204,12 +204,21 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   </section>
 
   <!-- ABOUT -->
-  <section class="section section-alt" id="about">
-    <div class="container about-inner">
-      <div class="about-copy">
-        <span class="eyebrow">{c.about.eyebrow}</span>
-        <h2 class="section-title">{c.about.heading}</h2>
-        {c.about.paragraphs.map((p) => <p>{p}</p>)}
+  <section class="section section-split section-alt" id="about">
+    <div class="split-top-bg" style="background-image: url('/about-bg.png');">
+      <div class="split-top-overlay" aria-hidden="true"></div>
+      <div class="container split-header-container">
+        <div class="section-head">
+          <span class="eyebrow split-eyebrow">{c.about.eyebrow}</span>
+          <h2 class="section-title split-title">{c.about.heading}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-bottom-content">
+      <div class="container about-inner">
+        <div class="about-copy">
+          {c.about.paragraphs.map((p) => <p>{p}</p>)}
         <div class="founder">
           <div class="founder-avatar" aria-hidden="true">{c.about.founderInitials}</div>
           <div class="founder-info">
@@ -314,14 +323,23 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   </section>
 
   <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="container contact-inner">
-      <div class="contact-copy">
-        <span class="eyebrow">{c.contact.eyebrow}</span>
-        <h2 class="section-title">{c.contact.heading}</h2>
-        <p class="section-lead">{c.contact.lead}</p>
-        <p class="disclaimer">{c.contact.disclaimer}</p>
+  <section class="section section-split" id="contact">
+    <div class="split-top-bg" style="background-image: url('/contact-bg.png');">
+      <div class="split-top-overlay" aria-hidden="true"></div>
+      <div class="container split-header-container">
+        <div class="section-head">
+          <span class="eyebrow split-eyebrow">{c.contact.eyebrow}</span>
+          <h2 class="section-title split-title">{c.contact.heading}</h2>
+          <p class="section-lead split-lead">{c.contact.lead}</p>
+        </div>
       </div>
+    </div>
+
+    <div class="split-bottom-content">
+      <div class="container contact-inner">
+        <div class="contact-copy">
+          <p class="disclaimer">{c.contact.disclaimer}</p>
+        </div>
 
       <form class="contact-form" id="contactForm" action={`mailto:${c.contact.email}`} method="post" enctype="text/plain" novalidate>
         <div class="form-row">

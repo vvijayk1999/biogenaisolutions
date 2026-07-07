@@ -23,6 +23,7 @@
   height: var(--nav-h);
   gap: 14px;
 }
+
 .nav-menu {
   display: flex;
   align-items: stretch;
@@ -34,6 +35,16 @@
 .nav-link { padding: 8px 13px; font-size: 15px; }
 
 .nav-actions { gap: 8px; }
+
+@media (min-width: 1025px) {
+  .nav-bar {
+    justify-content: space-between;
+    gap: 0;
+  }
+  .nav-menu, .nav-actions {
+    display: contents;
+  }
+}
 .icon-btn {
   width: 40px; height: 40px;
   border-radius: 50%;
