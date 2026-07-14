@@ -197,10 +197,12 @@ img {
 /* Alternating section background colors starting after hero section */
 main>section:nth-of-type(even) {
   background-color: #ECEFF3;
+  --section-bg: #ECEFF3;
 }
 
 main>section:nth-of-type(odd):not(:first-of-type) {
   background-color: #F6F8FA;
+  --section-bg: #F6F8FA;
 }
 
 .section-head {
@@ -688,6 +690,8 @@ main>section:nth-of-type(odd):not(:first-of-type) {
   color: #ffffff;
 }
 
+
+
 .split-top-overlay {
   position: absolute;
   inset: 0;
@@ -698,6 +702,12 @@ main>section:nth-of-type(odd):not(:first-of-type) {
 .split-top-bg .container {
   position: relative;
   z-index: 2;
+}
+
+.split-top-bg .section-head {
+  max-width: 720px;
+  margin: 0 auto 24px;
+  text-align: center;
 }
 
 .split-top-bg .split-eyebrow {
