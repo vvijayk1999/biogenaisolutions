@@ -13,7 +13,7 @@
     ]
   },
   "hero": {
-    "eyebrow": "IA y Bioinformática para la Medicina de Precisión. ¡Hola!",
+    "eyebrow": "IA y Bioinformática para la Medicina de Precisión. ¡Hola! probándolo en producción",
     "titleLead": "Inteligente",
     "titleHighlight": "soluciones GenAI",
     "titleTrail": "avanzando en salud y ciencias de la vida",
@@ -80,7 +80,7 @@
   },
   "services": {
     "eyebrow": "Servicios",
-    "heading": "Consultoría que convierte la complejidad en claridad",
+    "heading": "Consultoría que transforma la complejidad en claridad. prueba",
     "lead": "Ayudamos a proveedores de salud, empresas de biotecnología, organizaciones farmacéuticas, instituciones de investigación y empresas a aprovechar la AI para acelerar el descubrimiento y desbloquear información.",
     "items": [
       {

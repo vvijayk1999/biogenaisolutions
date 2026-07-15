@@ -13,7 +13,7 @@
     ]
   },
   "hero": {
-    "eyebrow": "KI & Bioinformatik für Präzisionsmedizin. Hallo!",
+    "eyebrow": "KI & Bioinformatik für präzise Medizin. Hallo! Test in der Produktion",
     "titleLead": "Intelligent",
     "titleHighlight": "GenAI-Lösungen",
     "titleTrail": "Gesundheitsversorgung & Lebenswissenschaften voranbringen",
@@ -80,7 +80,7 @@
   },
   "services": {
     "eyebrow": "Dienstleistungen",
-    "heading": "Beratung, die Komplexität in Klarheit verwandelt",
+    "heading": "Beratung, die Komplexität in Klarheit verwandelt. Test",
     "lead": "Wir helfen Gesundheitsdienstleistern, Biotech-Unternehmen, pharmazeutischen Organisationen, Forschungseinrichtungen und Unternehmen, KI zu nutzen, um Entdeckungen zu beschleunigen und Erkenntnisse zu gewinnen.",
     "items": [
       {

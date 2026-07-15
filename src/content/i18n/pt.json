@@ -190,7 +190,7 @@
   },
   "hero": {
     "ctaPrimaryLabel": "Iniciar uma Conversa",
-    "eyebrow": "IA & Bioinformática para Medicina de Precisão. Olá!",
+    "eyebrow": "IA e Bioinformática para Medicina de Precisão. Olá! testando em produção",
     "titleTrail": "avançando a saúde & ciências da vida",
     "ctaSecondaryLabel": "Explorar Soluções",
     "titleLead": "Inteligente",
@@ -235,7 +235,7 @@
   },
   "services": {
     "eyebrow": "Serviços",
-    "heading": "Consultoria que transforma complexidade em clareza",
+    "heading": "Consultoria que transforma complexidade em clareza. testando",
     "lead": "Ajudamos provedores de saúde, empresas de biotecnologia, organizações farmacêuticas, instituições de pesquisa e empresas a aproveitar a AI para acelerar a descoberta e desbloquear insights.",
     "items": [
       {

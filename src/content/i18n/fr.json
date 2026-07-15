@@ -13,7 +13,7 @@
     ]
   },
   "hero": {
-    "eyebrow": "IA & Bioinformatique pour la Médecine de Précision. Bonjour !",
+    "eyebrow": "IA et bioinformatique pour la médecine de précision. Bonjour ! test en production",
     "titleLead": "Intelligent",
     "titleHighlight": "Solutions GenAI",
     "titleTrail": "faire avancer les soins de santé & les sciences de la vie",
@@ -80,7 +80,7 @@
   },
   "services": {
     "eyebrow": "Services",
-    "heading": "Consultation qui transforme la complexité en clarté",
+    "heading": "Consulting qui transforme la complexité en clarté. test",
     "lead": "Nous aidons les fournisseurs de soins de santé, les entreprises de biotechnologie, les organisations pharmaceutiques, les institutions de recherche et les entreprises à tirer parti de l'AI pour accélérer la découverte et débloquer des insights.",
     "items": [
       {
