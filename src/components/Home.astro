@@ -338,12 +338,7 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
         <div class="contact-copy">
           <h2 class="section-title">{c.contact.heading}</h2>
           <p class="section-lead">{c.contact.lead}</p>
-          <ul class="contact-points">
-            <li>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-              {c.contact.responseTime}
-            </li>
-          </ul>
+
           <p class="disclaimer">{c.contact.disclaimer}</p>
         </div>
 

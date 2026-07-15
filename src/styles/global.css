@@ -1309,7 +1309,7 @@ main>section:nth-of-type(odd):not(:first-of-type) {
 
 .field label {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--slate-dark);
 }
