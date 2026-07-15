@@ -13,11 +13,11 @@
     ]
   },
   "hero": {
-    "eyebrow": "IA y Bioinformática para la Medicina de Precisión. ¡Hola! probándolo en producción",
-    "titleLead": "Inteligente",
-    "titleHighlight": "soluciones GenAI",
-    "titleTrail": "avanzando en salud y ciencias de la vida",
-    "subtitle": "Este es mi primer cambio. Prueba de traducción.\n\nBioGenAI Solutions desarrolla soluciones avanzadas y escalables de Inteligencia Artificial y Bioinformática que conectan la medicina de precisión y la IA responsable, empoderando decisiones que cambian vidas y acelerando el descubrimiento científico.",
+    "eyebrow": "IA avanzada para la industria biotecnológica.",
+    "titleLead": "IA inteligente y ",
+    "titleHighlight": "soluciones de IA generativa ",
+    "titleTrail": "para bioestadística, bioinformática, biología computacional, ciencias de la vida y atención médica.",
+    "subtitle": "BioGenAI Solutions ofrece soluciones de IA inteligente y IA generativa para bioestadística, bioinformática, biología computacional, ciencias de la vida y atención médica. Ayudamos a organizaciones de biotecnología, farmacéuticas y de atención médica a transformar datos biológicos y clínicos complejos en inteligencia procesable que acelera el descubrimiento científico, mejora la toma de decisiones y avanza la medicina de precisión. Al combinar una profunda experiencia científica con tecnologías de IA de próxima generación, empoderamos a científicos, investigadores y profesionales de la salud para resolver desafíos complejos, acelerar la innovación, mejorar los resultados para los pacientes y dar forma al futuro de las ciencias de la vida y la atención médica.",
     "ctaPrimaryLabel": "Iniciar una Conversación",
     "ctaSecondaryLabel": "Explorar Soluciones",
     "stats": [

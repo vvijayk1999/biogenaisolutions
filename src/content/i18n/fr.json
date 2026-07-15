@@ -13,11 +13,11 @@
     ]
   },
   "hero": {
-    "eyebrow": "IA et bioinformatique pour la médecine de précision. Bonjour ! test en production",
-    "titleLead": "Intelligent",
-    "titleHighlight": "Solutions GenAI",
-    "titleTrail": "faire avancer les soins de santé & les sciences de la vie",
-    "subtitle": "Ceci est mon premier changement. Test de traduction.\n\nBioGenAI Solutions développe des solutions avancées et évolutives en intelligence artificielle et en bioinformatique qui relient la médecine de précision et l'IA responsable — permettant des décisions qui changent la vie et accélérant la découverte scientifique.",
+    "eyebrow": "IA avancée pour l'industrie biotechnologique.",
+    "titleLead": "IA intelligente et ",
+    "titleHighlight": "solutions d'IA générative ",
+    "titleTrail": "pour la biostatistique, la bioinformatique, la biologie computationnelle, les sciences de la vie et la santé.",
+    "subtitle": "BioGenAI Solutions propose des solutions d'IA intelligente et d'IA générative pour la biostatistique, la bioinformatique, la biologie computationnelle, les sciences de la vie et la santé. Nous aidons les organisations biotechnologiques, pharmaceutiques et de santé à transformer des données biologiques et cliniques complexes en informations exploitables qui accélèrent la découverte scientifique, améliorent la prise de décision et font progresser la médecine de précision. En combinant une expertise scientifique approfondie avec des technologies d'IA de nouvelle génération, nous permettons aux scientifiques, chercheurs et professionnels de la santé de résoudre des défis complexes, d'accélérer l'innovation, d'améliorer les résultats pour les patients et de façonner l'avenir des sciences de la vie et de la santé.",
     "ctaPrimaryLabel": "Engagez la conversation",
     "ctaSecondaryLabel": "Explorer les Solutions",
     "stats": [
