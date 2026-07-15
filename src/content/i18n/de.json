@@ -4,12 +4,22 @@
     "brandAccent": "Solutions",
     "tagline": "Fortschrittliche, skalierbare KI- und Bioinformatiklösungen für präzise Medizin und Innovation im Gesundheitswesen. Übersetzungstest.",
     "capabilities": [
-      "Große Sprachmodelle",
-      "Retrieval-Augmented Generation",
-      "Agentic KI-Systeme",
-      "Maschinen- & Deep Learning",
-      "Bioinformatik & Genomik",
-      "Datenengineering"
+      "Machine Learning",
+      "Data Engineering",
+      "Deep Learning",
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation",
+      "Bioinformatics",
+      "Biostatistics",
+      "Computational Biology",
+      "Precision Medicine",
+      "Drug Discovery",
+      "Healthcare Integration",
+      "Large Language Models",
+      "Retrieval-Argument Generation",
+      "Multi-Agent Systems"
     ]
   },
   "hero": {
@@ -35,10 +45,10 @@
       }
     ],
     "tags": [
-      "LLMs & RAG",
-      "Agentic KI",
-      "Genomik",
-      "Deep Learning"
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation"
     ]
   },
   "solutions": {

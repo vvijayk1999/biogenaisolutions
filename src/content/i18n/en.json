@@ -53,12 +53,22 @@
     "brandAccent": "Solutions",
     "tagline": "Advanced, scalable AI and Bioinformatics solutions for precision medicine and healthcare innovation. translation test.",
     "capabilities": [
+      "Machine Learning",
+      "Data Engineering",
+      "Deep Learning",
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation",
+      "Bioinformatics",
+      "Biostatistics",
+      "Computational Biology",
+      "Precision Medicine",
+      "Drug Discovery",
+      "Healthcare Integration",
       "Large Language Models",
-      "Retrieval-Augmented Generation",
-      "Agentic AI Systems",
-      "Machine & Deep Learning",
-      "Bioinformatics & Genomics",
-      "Data Engineering"
+      "Retrieval-Argument Generation",
+      "Multi-Agent Systems"
     ]
   },
   "about": {
@@ -196,10 +206,10 @@
     "titleLead": "Intelligent AI and ",
     "subtitle": "BioGenAI Solutions delivers intelligent AI and Generative AI solutions for Biostatistics, Bioinformatics, Computational Biology, Life Sciences, and Healthcare. We help biotechnology, pharmaceutical, and healthcare organizations transform complex biological and clinical data into actionable intelligence that accelerates scientific discovery, improves decision-making, and advances precision medicine. By combining deep scientific expertise with next-generation AI technologies, we empower scientists, researchers, and healthcare professionals to solve complex challenges, accelerate innovation, improve patient outcomes, and shape the future of life sciences and healthcare.",
     "tags": [
-      "LLMs & RAG",
-      "Agentic AI",
-      "Genomics",
-      "Deep Learning"
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation"
     ],
     "titleHighlight": "Generative AI solutions ",
     "stats": [

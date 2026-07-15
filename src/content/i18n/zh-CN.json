@@ -53,12 +53,22 @@
     "brandAccent": "Solutions",
     "tagline": "先进、可扩展的人工智能和生物信息学解决方案，致力于精准医疗和医疗创新。翻译测试。",
     "capabilities": [
-      "大型语言模型",
-      "检索增强生成",
-      "自主AI系统",
-      "机器与深度学习",
-      "生物信息学与基因组学",
-      "数据工程"
+      "Machine Learning",
+      "Data Engineering",
+      "Deep Learning",
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation",
+      "Bioinformatics",
+      "Biostatistics",
+      "Computational Biology",
+      "Precision Medicine",
+      "Drug Discovery",
+      "Healthcare Integration",
+      "Large Language Models",
+      "Retrieval-Argument Generation",
+      "Multi-Agent Systems"
     ]
   },
   "about": {
@@ -196,10 +206,10 @@
     "titleLead": "智能人工智能和",
     "subtitle": "BioGenAI Solutions 提供智能人工智能和生成式人工智能解决方案，适用于生物统计学、生物信息学、计算生物学、生命科学和医疗保健。我们帮助生物技术、制药和医疗保健组织将复杂的生物和临床数据转化为可操作的智能，从而加速科学发现、改善决策制定并推动精准医疗的发展。通过将深厚的科学专业知识与下一代人工智能技术相结合，我们赋能科学家、研究人员和医疗专业人士解决复杂挑战，加速创新，改善患者结果，并塑造生命科学和医疗保健的未来。",
     "tags": [
-      "LLMs与RAG",
-      "自主AI",
-      "基因组学",
-      "深度学习"
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation"
     ],
     "titleHighlight": "生成式人工智能解决方案 ",
     "stats": [

@@ -4,12 +4,22 @@
     "brandAccent": "Solutions",
     "tagline": "Solutions avancées et évolutives en IA et bioinformatique pour la médecine de précision et l'innovation en santé. test de traduction.",
     "capabilities": [
-      "Modèles de Langage de Grande Taille",
-      "Génération Augmentée par Récupération",
-      "Systèmes AI Agentiques",
-      "Apprentissage Machine & Profond",
-      "Bioinformatique & Génomique",
-      "Ingénierie des Données"
+      "Machine Learning",
+      "Data Engineering",
+      "Deep Learning",
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation",
+      "Bioinformatics",
+      "Biostatistics",
+      "Computational Biology",
+      "Precision Medicine",
+      "Drug Discovery",
+      "Healthcare Integration",
+      "Large Language Models",
+      "Retrieval-Argument Generation",
+      "Multi-Agent Systems"
     ]
   },
   "hero": {
@@ -35,10 +45,10 @@
       }
     ],
     "tags": [
-      "LLMs & RAG",
-      "AI Agentique",
-      "Génomique",
-      "Apprentissage Profond"
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation"
     ]
   },
   "solutions": {

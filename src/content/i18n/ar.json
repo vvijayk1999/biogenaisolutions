@@ -4,12 +4,22 @@
     "brandAccent": "Solutions",
     "tagline": "حلول متقدمة وقابلة للتوسع في الذكاء الاصطناعي والمعلوماتية الحيوية للطب الدقيق وابتكار الرعاية الصحية. اختبار الترجمة.",
     "capabilities": [
-      "نماذج اللغة الكبيرة",
-      "التوليد المعزز بالاسترجاع",
-      "نظم الذكاء الاصطناعي الوكيلة",
-      "التعلم الآلي والعميق",
-      "المعلوماتية الحيوية وعلم الجينوم",
-      "هندسة البيانات"
+      "Machine Learning",
+      "Data Engineering",
+      "Deep Learning",
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation",
+      "Bioinformatics",
+      "Biostatistics",
+      "Computational Biology",
+      "Precision Medicine",
+      "Drug Discovery",
+      "Healthcare Integration",
+      "Large Language Models",
+      "Retrieval-Argument Generation",
+      "Multi-Agent Systems"
     ]
   },
   "hero": {
@@ -35,10 +45,10 @@
       }
     ],
     "tags": [
-      "نماذج LLM وRAG",
-      "الذكاء الاصطناعي الوكيل",
-      "علم الجينوم",
-      "التعلم العميق"
+      "Generative AI",
+      "AI Agent",
+      "AI SKILLS",
+      "AI Automation"
     ]
   },
   "solutions": {
