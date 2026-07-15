@@ -190,7 +190,7 @@
   },
   "hero": {
     "ctaPrimaryLabel": "Start a Conversation",
-    "eyebrow": "AI & Bioinformatics for Precision Medicine. Hello!",
+    "eyebrow": "AI & Bioinformatics for Precision Medicine. Hello! testing it in prod",
     "titleTrail": "advancing healthcare & life sciences",
     "ctaSecondaryLabel": "Explore Solutions",
     "titleLead": "Intelligent",
@@ -235,7 +235,7 @@
   },
   "services": {
     "eyebrow": "Services",
-    "heading": "Consulting that turns complexity into clarity",
+    "heading": "Consulting that turns complexity into clarity . testing",
     "lead": "We help healthcare providers, biotech companies, pharmaceutical organizations, research institutions, and enterprises harness AI to accelerate discovery and unlock insight.",
     "items": [
       {
