@@ -1,0 +1,52 @@
+name: Translate content
+
+# English is the source of truth. Whenever a change to the English site
+# copy or an English news article is published (Decap CMS commits directly
+# to main via Git Gateway), this workflow translates the change into all
+# other supported languages with OpenAI and pushes the result back to
+# main, which triggers the normal Netlify rebuild.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/i18n/en.json'
+      - 'src/content/news/**.md'
+
+permissions:
+  contents: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    # Skip runs triggered by the bot's own commit — the bot only touches
+    # non-English files, so path filters alone can't prevent a loop when a
+    # translated news file lives under src/content/news/**.
+    if: "!contains(github.event.head_commit.message, '[auto-translate]')"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run translation pipeline
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npm run translate
+
+      - name: Commit and push translations
+        run: |
+          git config user.name "biogenai-translate-bot"
+          git config user.email "actions@github.com"
+          git add src/content/i18n src/content/news
+          if git diff --cached --quiet; then
+            echo "No translation changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: auto-translate content [auto-translate]"
+          git push

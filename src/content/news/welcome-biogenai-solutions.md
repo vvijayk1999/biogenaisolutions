@@ -1,10 +1,12 @@
 ---
 title: Introducing BioGenAI Solutions
-date: 2026-06-26
+date: 2026-06-26T00:00:00.000Z
 lang: en
-summary: We're launching to help healthcare, biotech, and research teams deploy
+summary: >-
+  We're launching to help healthcare, biotech, and research teams deploy
   responsible, scalable GenAI for precision medicine.
 draft: false
+translationKey: welcome-biogenai-solutions
 ---
 BioGenAI Solutions is officially open. We partner with healthcare providers,
 biotechnology companies, pharmaceutical organizations, research institutions, and

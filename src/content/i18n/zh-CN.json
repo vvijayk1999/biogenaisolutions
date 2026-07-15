@@ -1,85 +1,85 @@
 {
   "contact": {
     "eyebrow": "联系",
-    "heading": "给我们发信息",
-    "lead": "填写表格，我们的团队将在24小时内回复您。",
+    "heading": "给我们发送消息",
+    "lead": "填写表格，我们的团队将在24小时内与您联系。",
     "email": "ernest.bonat@biogenaisolutions.com",
     "responseTime": "24小时内回复",
     "interests": [
-      "精准医疗人工智能",
-      "生物信息学和基因组学",
-      "生成式和代理人工智能",
-      "医疗互操作性(HL7)",
+      "精准医疗AI",
+      "生物信息学与基因组学",
+      "生成与自主AI",
+      "医疗互操作性（HL7）",
       "数据工程",
       "机器学习与深度学习",
-      "人工智能战略与咨询",
+      "AI战略与咨询",
       "其他"
     ],
-    "disclaimer": "在 BioGenAI Solutions，我们珍视您的信任，并致力于对您的信息保密。"
+    "disclaimer": "在BioGenAI Solutions，我们重视您的信任，并致力于维护您的信息的机密性和安全性。通过我们网站提交的任何信息仅用于回应您的请求、提供专业咨询服务，并让您了解人工智能、生物统计学、生物信息学、精准医疗、医疗技术和生命科学的相关发展。您可以随时取消订阅我们的通讯。请查看我们的隐私政策以了解更多关于我们的数据保护和隐私实践的信息。"
   },
   "carousel": {
-    "eyebrow": "我们服务",
+    "eyebrow": "我们的服务对象",
     "heading": "我们服务的行业",
-    "lead": "在医疗和生命科学领域备受信赖。",
+    "lead": "在医疗和生命科学生态系统中受到信任。",
     "slides": [
       {
         "title": "医疗服务提供者",
-        "description": "临床决策支持和 HL7 互操作性，可改善结果。"
+        "description": "临床决策支持、患者洞察和HL7互操作性，改善结果。"
       },
       {
         "title": "生物技术",
-        "description": "基因组学管道和机器学习可加速发现。"
+        "description": "基因组管道和机器学习，加速从实验室到洞察的发现。"
       },
       {
         "title": "制药",
-        "description": "用于研发和临床试验的人工智能，以做出数据驱动的决策。"
+        "description": "在研发、临床试验和运营中应用AI，实现更快的数据驱动决策。"
       },
       {
         "title": "研究机构",
-        "description": "可扩展的生物信息学和计算生物学。"
+        "description": "可扩展的生物信息学和计算生物学，确保严格和可重复的科学研究。"
       },
       {
         "title": "企业",
-        "description": "LLM，RAG和代理系统，从复杂数据中释放价值。"
+        "description": "LLM、RAG和自主系统，从复杂的大规模数据中释放价值。"
       },
       {
-        "title": "My new SLIDE",
-        "description": "Blah blah"
+        "title": "我的新幻灯片",
+        "description": "等等"
       }
     ]
   },
   "general": {
     "brandName": "BioGenAI",
     "brandAccent": "Solutions",
-    "tagline": "用于精准医疗和医疗创新的高级可扩展人工智能和生物信息学解决方案。",
+    "tagline": "先进、可扩展的人工智能和生物信息学解决方案，致力于精准医疗和医疗创新。翻译测试。",
     "capabilities": [
       "大型语言模型",
       "检索增强生成",
-      "代理人工智能系统",
-      "机器学习与深度学习",
-      "生物信息学和基因组学",
+      "自主AI系统",
+      "机器与深度学习",
+      "生物信息学与基因组学",
       "数据工程"
     ]
   },
   "about": {
-    "eyebrow": "关于",
-    "heading": "一家专业的人工智能、生物信息学和医疗技术公司",
+    "eyebrow": "关于我们",
+    "heading": "一家专注于AI、生物信息学与医疗技术的公司",
     "paragraphs": [
-      "BioGenAI Solutions 是一家专业的人工智能咨询公司。",
-      "我们帮助医疗提供商和研究机构利用数据加速发现并释放可操作的见解。"
+      "BioGenAI Solutions是一家专注于人工智能、生物信息学和医疗技术的咨询公司，致力于通过负责任的人本创新来改变医疗和生命科学。",
+      "我们帮助医疗服务提供者、生物技术公司、制药组织、研究机构和企业利用LLM、RAG、自主AI、机器学习、深度学习、数据工程、生物信息学、基因组学和HL7互操作性的力量，加速发现、改善患者结果，并从复杂数据中提取可操作的洞察。"
     ],
     "founderInitials": "EB",
-    "founderName": "Ernest Bonat, 博士",
-    "founderRole": "创始人兼负责人 — 数据科学教授，高级AI工程师",
-    "founderBio": "超过25年的软件工程经验，以及8年以上的机器学习解决方案开发经验。",
+    "founderName": "欧内斯特·博纳特，博士",
+    "founderRole": "创始人兼首席 — 数据科学教授，高级AI工程师，生物信息学科学家",
+    "founderBio": "拥有超过25年的软件工程经验和8年以上开发先进机器学习、生成AI、自主AI、生物统计学、生物信息学和计算生物学解决方案的经验。",
     "stats": [
       {
         "value": "25+",
-        "label": "年软件工程经验"
+        "label": "软件工程年数"
       },
       {
         "value": "8+",
-        "label": "年机器学习经验"
+        "label": "机器学习与生成AI年数"
       },
       {
         "value": "5",
@@ -87,44 +87,44 @@
       },
       {
         "value": "24h",
-        "label": "响应时间"
+        "label": "响应时间承诺"
       }
     ]
   },
   "ui": {
     "backToHome": "← 返回首页",
-    "newsKeepUpdated": "保持更新",
+    "newsKeepUpdated": "保持我更新",
     "nav": {
       "home": "首页",
       "solutions": "解决方案",
       "services": "服务",
       "research": "研究",
       "news": "新闻",
-      "about": "关于",
+      "about": "关于我们",
       "contact": "联系",
       "contactCta": "联系我们"
     },
     "form": {
       "lastName": "姓",
-      "success": "谢谢 — 您的消息已发送。我们将在24小时内回复。",
-      "recaptcha": "受 reCAPTCHA 保护",
+      "success": "谢谢 — 您的信息已准备好。我们将在24小时内回复。",
+      "recaptcha": "受reCAPTCHA保护",
       "interestPlaceholder": "选择一个选项",
-      "interest": "感兴趣的",
+      "interest": "感兴趣于",
       "comments": "评论",
       "submit": "提交",
       "jobTitle": "职位",
       "firstName": "名",
       "email": "邮箱",
       "company": "公司",
-      "commentsPlaceholder": "告诉我们您的项目或问题…"
+      "commentsPlaceholder": "告诉我们您的项目或问题……"
     },
-    "newsEmptyText": "我们正在准备有关最新解决方案和研究的公告。",
+    "newsEmptyText": "我们正在准备关于最新解决方案和研究的公告。请稍后查看 — 或与我们联系以保持信息更新。",
     "readMore": "阅读更多",
-    "searchPlaceholder": "搜索网站…",
+    "searchPlaceholder": "搜索网站……",
     "searchLabel": "搜索",
     "searchNoResults": "未找到结果",
-    "newsLead": "人工智能，精准医学和生命科学领域的公告和发展。",
-    "newsHeading": "BioGenAI Solutions 的最新消息",
+    "newsLead": "关于AI、精准医疗和生命科学的公告和发展。",
+    "newsHeading": "来自BioGenAI Solutions的最新消息",
     "menuLabel": "菜单",
     "backToNews": "← 返回新闻",
     "readPaper": "阅读论文",
@@ -136,80 +136,80 @@
       "rights": "版权所有。",
       "privacy": "隐私政策",
       "terms": "服务条款",
-      "legalLink": "法律信息"
+      "legalLink": "法律"
     },
     "newsEmptyTitle": "更新即将到来",
     "capabilitiesLabel": "核心能力"
   },
   "principles": {
-    "eyebrow": "我们的动力",
-    "heading": "愿景，使命和理念",
+    "eyebrow": "我们的驱动力",
+    "heading": "愿景、使命与哲学",
     "visionLabel": "愿景",
     "missionLabel": "使命",
-    "philosophyLabel": "理念",
-    "vision": "提供智能化的个性化GenAI解决方案，彻底改变医疗保健行业。",
-    "mission": "将精准医疗与负责任的AI结合，提供个性化医疗。",
-    "philosophy": "我们构建以人为本，符合伦理道德的GenAI。"
+    "philosophyLabel": "哲学",
+    "vision": "通过提供智能、个性化的GenAI解决方案，彻底改变医疗和生命科学，赋予改变生活的决策能力。",
+    "mission": "连接精准医疗与负责任的GenAI解决方案，提供个性化医疗并推动生命科学进步。",
+    "philosophy": "我们构建以人为本、伦理为基础的GenAI，个性化护理，赋能决策，促进合作，共同改变医疗和生命科学。"
   },
   "solutions": {
     "eyebrow": "解决方案",
-    "heading": "为科学和临床影响而建立的解决方案",
-    "lead": "为医疗保健、生物技术、制药和研究的复杂需求量身定制。XYZ",
+    "heading": "为科学与临床影响而构建的解决方案",
+    "lead": "可扩展、负责任的AI，针对医疗、生物技术、制药和研究的复杂需求量身定制 — 从原始数据到可操作的洞察。XYZ",
     "items": [
       {
         "icon": "precision",
-        "title": "精准医疗人工智能",
-        "description": "将基因组数据转化为决策的个性化模型。"
+        "title": "精准医疗AI",
+        "description": "个性化模型，将基因组和临床数据转化为改变生活的患者特定决策。"
       },
       {
         "icon": "genomics",
-        "title": "生物信息学和基因组学",
-        "description": "用于大规模测序分析的高级管道。"
+        "title": "生物信息学与基因组学",
+        "description": "用于大规模测序分析、变异发现和计算生物学的先进管道。"
       },
       {
         "icon": "llm",
-        "title": "生成式和代理人工智能",
-        "description": "推理复杂数据的 LLM、RAG 和自治代理系统。"
+        "title": "生成与自主AI",
+        "description": "LLM、RAG和自主代理系统，能够对复杂的科学和企业数据进行推理。"
       },
       {
         "icon": "hl7",
         "title": "医疗互操作性",
-        "description": "HL7驱动的集成可连接系统并简化工作流程。"
+        "description": "基于HL7的集成，连接系统，简化工作流程，改善患者结果。"
       },
       {
         "icon": "data",
         "title": "数据工程",
-        "description": "为可靠分析提供支持的强大数据基础架构。"
+        "description": "强大、可扩展的数据基础设施，支持可靠的分析和生产ML。"
       },
       {
         "icon": "ml",
-        "title": "机器学习与深度学习",
-        "description": "专为准确性而设计的预测模型。"
+        "title": "机器与深度学习",
+        "description": "为准确性、透明性和实际部署而设计的预测和诊断模型。"
       }
     ]
   },
   "hero": {
     "ctaPrimaryLabel": "开始对话",
-    "eyebrow": "用于精准医疗的人工智慧和生物信息学",
-    "titleTrail": "推动医疗与生命科学的发展",
+    "eyebrow": "精准医疗的人工智能与生物信息学。您好！",
+    "titleTrail": "推动医疗与生命科学",
     "ctaSecondaryLabel": "探索解决方案",
     "titleLead": "智能",
-    "subtitle": "This is my first change\n\nBioGenAI Solutions 开发高级人工智能和生物信息学解决方案。",
+    "subtitle": "这是我的第一次修改。翻译测试。\n\nBioGenAI Solutions 开发先进、可扩展的人工智能和生物信息学解决方案，连接精准医疗与负责任的人工智能——赋能改变生命的决策，加速科学发现。",
     "tags": [
-      "LLMs & RAG",
-      "代理AI",
+      "LLMs与RAG",
+      "自主AI",
       "基因组学",
       "深度学习"
     ],
-    "titleHighlight": "GenAI 解决方案",
+    "titleHighlight": "GenAI解决方案",
     "stats": [
       {
         "value": "25+",
-        "label": "年软件工程经验"
+        "label": "软件工程年数"
       },
       {
         "value": "8+",
-        "label": "年 ML 和 GenAI 经验"
+        "label": "机器学习与GenAI年数"
       },
       {
         "value": "HL7",
@@ -219,44 +219,44 @@
   },
   "research": {
     "eyebrow": "研究",
-    "heading": "已发表的研究",
-    "lead": "关于人工智能和生物信息学的同行观点。",
+    "heading": "已发布的研究与思想领导",
+    "lead": "关于AI、生物统计学、生物信息学和计算生物学的同行观点。",
     "items": [
       {
         "tag": "Medium · 文章",
-        "title": "人工智能在生物统计学和生物信息学中的应用",
-        "author": "Ernest Bonat 博士",
+        "title": "人工智能在生物统计学、生物信息学和计算生物学中的应用",
+        "author": "作者：欧内斯特·博纳特，博士",
         "url": "https://ernest-bonat.medium.com/machine-learning-applications-in-genomics-life-sciences-by-ernest-bonat-ph-d-83598e67ccbc"
       }
     ],
     "comingSoonTag": "即将推出",
-    "comingSoonTitle": "更多关于 GenAI 的出版物",
-    "comingSoonText": "新研究定期发表。"
+    "comingSoonTitle": "更多关于GenAI与精准医疗的出版物",
+    "comingSoonText": "新研究定期发布。"
   },
   "services": {
     "eyebrow": "服务",
-    "heading": "化繁为简的咨询",
-    "lead": "我们帮助组织利用人工智能加速发现。",
+    "heading": "将复杂转化为清晰的咨询服务",
+    "lead": "我们帮助医疗服务提供者、生物技术公司、制药组织、研究机构和企业利用AI加速发现并解锁洞察。",
     "items": [
       {
         "number": "01",
-        "title": "人工智能战略与咨询",
-        "description": "实施具有可衡量投资回报率的人工智能架构。"
+        "title": "AI战略与咨询",
+        "description": "制定路线图、可行性和架构，以部署负责任的AI，实现可衡量的投资回报。"
       },
       {
         "number": "02",
-        "title": "自定义模型开发",
-        "description": "机器学习和深度学习系统的端到端设计和部署。"
+        "title": "定制模型开发",
+        "description": "机器学习、深度学习和GenAI系统的端到端设计、训练和部署。"
       },
       {
         "number": "03",
         "title": "生物信息学工程",
-        "description": "为规模化而构建的基因组学管道。"
+        "description": "为规模和严谨性而构建的基因组管道、生物统计学和计算生物学。"
       },
       {
         "number": "04",
         "title": "医疗数据集成",
-        "description": "统一临床系统的 HL7 互操作性。"
+        "description": "HL7互操作性和数据工程，统一分散的临床系统。"
       }
     ]
   }

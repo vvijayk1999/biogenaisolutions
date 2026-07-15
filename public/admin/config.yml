@@ -2,6 +2,13 @@
 # Decap CMS configuration — BioGenAI Solutions
 # Edit content at /admin. Changes are committed to Git and the
 # static host rebuilds automatically.
+#
+# English is the source of truth for translations: publishing a change
+# to an English "site" file or "news" article automatically translates
+# it into all other languages via a GitHub Action (see
+# .github/workflows/translate-content.yml). Don't hand-edit the other
+# languages — they're regenerated from English and manual edits will
+# be overwritten the next time the matching English field changes.
 # ============================================================
 
 backend:
@@ -46,10 +53,17 @@ collections:
           - { label: French, value: fr }
           - { label: German, value: de }
           - { label: Arabic, value: ar }
+          - { label: Portuguese, value: pt }
+          - { label: Russian, value: ru }
+          - { label: Ukrainian, value: uk }
+          - { label: Korean, value: ko }
+          - { label: "Chinese (Simplified)", value: "zh-CN" }
+          - { label: Cantonese, value: yue }
       - { label: Summary, name: summary, widget: text, hint: "Short teaser shown on the News cards." }
       - { label: Featured Image, name: thumbnail, widget: image, required: false }
       - { label: Draft, name: draft, widget: boolean, default: false, hint: "Keep ON to hide from the live site." }
       - { label: Body, name: body, widget: markdown }
+      - { label: Translation Key, name: translationKey, widget: string, required: false, hint: "Auto-managed — links this article to its translations across languages. Leave blank on English articles; it is filled in automatically." }
 
   # ---------------------------------------------------------
   # SITE CONTENT — one editable file per language.
@@ -265,4 +279,28 @@ collections:
       - name: ar
         label: "🇸🇦 العربية"
         file: "src/content/i18n/ar.json"
+        fields: *site_fields
+      - name: pt
+        label: "🇧🇷 Português"
+        file: "src/content/i18n/pt.json"
+        fields: *site_fields
+      - name: ru
+        label: "🇷🇺 Русский"
+        file: "src/content/i18n/ru.json"
+        fields: *site_fields
+      - name: uk
+        label: "🇺🇦 Українська"
+        file: "src/content/i18n/uk.json"
+        fields: *site_fields
+      - name: ko
+        label: "🇰🇷 한국어"
+        file: "src/content/i18n/ko.json"
+        fields: *site_fields
+      - name: zh-CN
+        label: "🇨🇳 中文 (简体)"
+        file: "src/content/i18n/zh-CN.json"
+        fields: *site_fields
+      - name: yue
+        label: "🇭🇰 粵語"
+        file: "src/content/i18n/yue.json"
         fields: *site_fields

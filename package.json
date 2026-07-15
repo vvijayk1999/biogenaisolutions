@@ -8,10 +8,13 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "cms": "decap-server"
+    "cms": "decap-server",
+    "translate": "node scripts/translate/run.mjs"
   },
   "dependencies": {
-    "astro": "^5.13.0"
+    "astro": "^5.13.0",
+    "gray-matter": "^4.0.3",
+    "openai": "^4.104.0"
   },
   "devDependencies": {
     "decap-server": "^3.1.4"

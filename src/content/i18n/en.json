@@ -51,7 +51,7 @@
   "general": {
     "brandName": "BioGenAI",
     "brandAccent": "Solutions",
-    "tagline": "Advanced, scalable AI and Bioinformatics solutions for precision medicine and healthcare innovation.",
+    "tagline": "Advanced, scalable AI and Bioinformatics solutions for precision medicine and healthcare innovation. translation test.",
     "capabilities": [
       "Large Language Models",
       "Retrieval-Augmented Generation",
@@ -190,11 +190,11 @@
   },
   "hero": {
     "ctaPrimaryLabel": "Start a Conversation",
-    "eyebrow": "AI & Bioinformatics for Precision Medicine",
+    "eyebrow": "AI & Bioinformatics for Precision Medicine. Hello!",
     "titleTrail": "advancing healthcare & life sciences",
     "ctaSecondaryLabel": "Explore Solutions",
     "titleLead": "Intelligent",
-    "subtitle": "This is my first change\n\nBioGenAI Solutions develops advanced, scalable Artificial Intelligence and Bioinformatics solutions that bridge precision medicine and responsible AI — empowering life-changing decisions and accelerating scientific discovery.",
+    "subtitle": "This is my first change. Translation test.\n\nBioGenAI Solutions develops advanced, scalable Artificial Intelligence and Bioinformatics solutions that bridge precision medicine and responsible AI — empowering life-changing decisions and accelerating scientific discovery.",
     "tags": [
       "LLMs & RAG",
       "Agentic AI",

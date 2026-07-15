@@ -2,53 +2,107 @@
   "general": {
     "brandName": "BioGenAI",
     "brandAccent": "Solutions",
-    "tagline": "Fortschrittliche, skalierbare KI- und Bioinformatik-Lösungen für Präzisionsmedizin und Innovation im Gesundheitswesen.",
+    "tagline": "Fortschrittliche, skalierbare KI- und Bioinformatiklösungen für präzise Medizin und Innovation im Gesundheitswesen. Übersetzungstest.",
     "capabilities": [
-      "Große Sprachmodelle (LLMs)",
-      "Retrieval-Augmented Generation (RAG)",
-      "Agentische KI-Systeme",
-      "Machine Learning & Deep Learning",
+      "Große Sprachmodelle",
+      "Retrieval-Augmented Generation",
+      "Agentic KI-Systeme",
+      "Maschinen- & Deep Learning",
       "Bioinformatik & Genomik",
-      "Data Engineering"
+      "Datenengineering"
     ]
   },
   "hero": {
-    "eyebrow": "KI & Bioinformatik für die Präzisionsmedizin",
-    "titleLead": "Intelligente",
+    "eyebrow": "KI & Bioinformatik für Präzisionsmedizin. Hallo!",
+    "titleLead": "Intelligent",
     "titleHighlight": "GenAI-Lösungen",
-    "titleTrail": "für Gesundheit und Life Sciences",
-    "subtitle": "BioGenAI Solutions entwickelt fortschrittliche, skalierbare Lösungen für Künstliche Intelligenz und Bioinformatik, die Präzisionsmedizin und verantwortungsvolle KI verbinden – für Entscheidungen, die Leben verändern, und eine beschleunigte wissenschaftliche Forschung.",
-    "ctaPrimaryLabel": "Gespräch beginnen",
-    "ctaSecondaryLabel": "Lösungen entdecken",
+    "titleTrail": "Gesundheitsversorgung & Lebenswissenschaften voranbringen",
+    "subtitle": "Das ist meine erste Änderung. Übersetzungstest.\n\nBioGenAI Solutions entwickelt fortschrittliche, skalierbare Lösungen in Künstlicher Intelligenz und Bioinformatik, die präzise Medizin und verantwortungsvolle KI verbinden – und damit lebensverändernde Entscheidungen ermöglichen und wissenschaftliche Entdeckungen beschleunigen.",
+    "ctaPrimaryLabel": "Ein Gespräch beginnen",
+    "ctaSecondaryLabel": "Lösungen erkunden",
     "stats": [
-      { "value": "25+", "label": "Jahre Softwareentwicklung" },
-      { "value": "8+", "label": "Jahre ML & GenAI" },
-      { "value": "HL7", "label": "Interoperabilität im Gesundheitswesen" }
+      {
+        "value": "25+",
+        "label": "Jahre Softwareentwicklung"
+      },
+      {
+        "value": "8+",
+        "label": "Jahre ML & GenAI"
+      },
+      {
+        "value": "HL7",
+        "label": "Interoperabilität im Gesundheitswesen"
+      }
     ],
-    "tags": ["LLMs & RAG", "Agentische KI", "Genomik", "Deep Learning"]
+    "tags": [
+      "LLMs & RAG",
+      "Agentic KI",
+      "Genomik",
+      "Deep Learning"
+    ]
   },
   "solutions": {
     "eyebrow": "Lösungen",
-    "heading": "Lösungen für wissenschaftliche und klinische Wirkung",
-    "lead": "Skalierbare, verantwortungsvolle KI, zugeschnitten auf die komplexen Anforderungen von Gesundheitswesen, Biotech, Pharma und Forschung – von Rohdaten bis zu umsetzbaren Erkenntnissen.",
+    "heading": "Lösungen für wissenschaftliche & klinische Auswirkungen",
+    "lead": "Skalierbare, verantwortungsvolle KI, die auf die komplexen Anforderungen von Gesundheitswesen, Biotech, Pharma und Forschung zugeschnitten ist — von Rohdaten zu umsetzbaren Erkenntnissen. XYZ",
     "items": [
-      { "icon": "precision", "title": "KI für Präzisionsmedizin", "description": "Personalisierte Modelle, die genomische und klinische Daten in lebensverändernde, patientenspezifische Entscheidungen übersetzen." },
-      { "icon": "genomics", "title": "Bioinformatik & Genomik", "description": "Fortschrittliche Pipelines für Sequenzierungsanalyse, Variantenentdeckung und computergestützte Biologie im großen Maßstab." },
-      { "icon": "llm", "title": "Generative & Agentische KI", "description": "LLM-, RAG- und autonome Agentensysteme, die über komplexe wissenschaftliche und unternehmerische Daten schlussfolgern." },
-      { "icon": "hl7", "title": "Interoperabilität im Gesundheitswesen", "description": "HL7-basierte Integration, die Systeme verbindet, Arbeitsabläufe optimiert und die Behandlungsergebnisse verbessert." },
-      { "icon": "data", "title": "Data Engineering", "description": "Robuste, skalierbare Dateninfrastruktur, die zuverlässige Analysen und produktives ML ermöglicht." },
-      { "icon": "ml", "title": "Machine Learning & Deep Learning", "description": "Prädiktive und diagnostische Modelle, entwickelt für Genauigkeit, Transparenz und den Einsatz in der Praxis." }
+      {
+        "icon": "precision",
+        "title": "Präzisionsmedizin KI",
+        "description": "Personalisierte Modelle, die genomische und klinische Daten in lebensverändernde, patientenspezifische Entscheidungen umsetzen."
+      },
+      {
+        "icon": "genomics",
+        "title": "Bioinformatik & Genomik",
+        "description": "Fortgeschrittene Pipelines für Sequenzierungsanalysen, Variantenentdeckung und computergestützte Biologie in großem Maßstab."
+      },
+      {
+        "icon": "llm",
+        "title": "Generative & Agentic KI",
+        "description": "LLM, RAG und autonome Agentensysteme, die über komplexe wissenschaftliche und unternehmerische Daten nachdenken."
+      },
+      {
+        "icon": "hl7",
+        "title": "Interoperabilität im Gesundheitswesen",
+        "description": "HL7-gesteuerte Integration, die Systeme verbindet, Arbeitsabläufe optimiert und die Patientenergebnisse verbessert."
+      },
+      {
+        "icon": "data",
+        "title": "Datenengineering",
+        "description": "Robuste, skalierbare Dateninfrastruktur, die zuverlässige Analysen und produktives ML ermöglicht."
+      },
+      {
+        "icon": "ml",
+        "title": "Maschinen- & Deep Learning",
+        "description": "Prädiktive und diagnostische Modelle, die für Genauigkeit, Transparenz und den Einsatz in der realen Welt entwickelt wurden."
+      }
     ]
   },
   "services": {
-    "eyebrow": "Leistungen",
+    "eyebrow": "Dienstleistungen",
     "heading": "Beratung, die Komplexität in Klarheit verwandelt",
-    "lead": "Wir unterstützen Gesundheitsdienstleister, Biotech-Unternehmen, Pharmaorganisationen, Forschungseinrichtungen und Unternehmen dabei, KI zu nutzen, um Forschung zu beschleunigen und Erkenntnisse zu gewinnen.",
+    "lead": "Wir helfen Gesundheitsdienstleistern, Biotech-Unternehmen, pharmazeutischen Organisationen, Forschungseinrichtungen und Unternehmen, KI zu nutzen, um Entdeckungen zu beschleunigen und Erkenntnisse zu gewinnen.",
     "items": [
-      { "number": "01", "title": "KI-Strategie & Beratung", "description": "Roadmaps, Machbarkeitsanalysen und Architektur für den Einsatz verantwortungsvoller KI mit messbarem ROI." },
-      { "number": "02", "title": "Individuelle Modellentwicklung", "description": "Durchgängige Konzeption, Training und Deployment von ML-, Deep-Learning- und GenAI-Systemen." },
-      { "number": "03", "title": "Bioinformatik-Engineering", "description": "Genomik-Pipelines, Biostatistik und computergestützte Biologie, entwickelt für Skalierbarkeit und Präzision." },
-      { "number": "04", "title": "Integration von Gesundheitsdaten", "description": "HL7-Interoperabilität und Data Engineering, die fragmentierte klinische Systeme zusammenführen." }
+      {
+        "number": "01",
+        "title": "KI-Strategie & Beratung",
+        "description": "Roadmaps, Machbarkeitsstudien und Architektur zur Implementierung verantwortungsvoller KI mit messbarem ROI."
+      },
+      {
+        "number": "02",
+        "title": "Entwicklung maßgeschneiderter Modelle",
+        "description": "End-to-End-Design, Training und Bereitstellung von ML-, Deep Learning- und GenAI-Systemen."
+      },
+      {
+        "number": "03",
+        "title": "Bioinformatik-Engineering",
+        "description": "Genomik-Pipelines, Biostatistik und computergestützte Biologie, die für Skalierung und Rigor entwickelt wurden."
+      },
+      {
+        "number": "04",
+        "title": "Integration von Gesundheitsdaten",
+        "description": "HL7-Interoperabilität und Datenengineering, die fragmentierte klinische Systeme vereinheitlichen."
+      }
     ]
   },
   "principles": {
@@ -57,108 +111,153 @@
     "visionLabel": "Vision",
     "missionLabel": "Mission",
     "philosophyLabel": "Philosophie",
-    "vision": "Das Gesundheitswesen und die Life Sciences zu revolutionieren, indem wir intelligente, personalisierte GenAI-Lösungen bereitstellen, die lebensverändernde Entscheidungen ermöglichen.",
-    "mission": "Präzisionsmedizin und verantwortungsvolle GenAI-Lösungen zu verbinden, um personalisierte Gesundheitsversorgung zu liefern und die Life Sciences voranzubringen.",
-    "philosophy": "Wir entwickeln menschzentrierte, ethisch fundierte GenAI, die die Versorgung personalisiert, Entscheidungen stärkt und die Zusammenarbeit fördert, um Gesundheitswesen und Life Sciences gemeinsam zu transformieren."
+    "vision": "Die Gesundheitsversorgung und Lebenswissenschaften zu revolutionieren, indem intelligente, personalisierte GenAI-Lösungen bereitgestellt werden, die lebensverändernde Entscheidungen ermöglichen.",
+    "mission": "Die Präzisionsmedizin und verantwortungsvolle GenAI-Lösungen zu verbinden, um personalisierte Gesundheitsversorgung zu bieten und die Lebenswissenschaften voranzubringen.",
+    "philosophy": "Wir entwickeln menschenzentrierte, ethisch fundierte GenAI, die die Versorgung personalisiert, Entscheidungen stärkt und die Zusammenarbeit fördert, um das Gesundheitswesen und die Lebenswissenschaften gemeinsam zu transformieren."
   },
   "about": {
     "eyebrow": "Über uns",
-    "heading": "Eine spezialisierte Beratung für KI, Bioinformatik & Gesundheitstechnologie",
+    "heading": "Ein spezialisiertes Unternehmen für KI, Bioinformatik & Gesundheitstechnologie",
     "paragraphs": [
-      "BioGenAI Solutions ist eine spezialisierte Beratung für Künstliche Intelligenz, Bioinformatik und Gesundheitstechnologie, die sich der Transformation von Gesundheitswesen und Life Sciences durch verantwortungsvolle, menschzentrierte Innovation verschrieben hat.",
-      "Wir helfen Gesundheitsdienstleistern, Biotechnologie-Unternehmen, Pharmaorganisationen, Forschungseinrichtungen und Unternehmen, die Möglichkeiten von LLMs, RAG, agentischer KI, Machine Learning, Deep Learning, Data Engineering, Bioinformatik, Genomik und HL7-Interoperabilität zu nutzen, um Forschung zu beschleunigen, Behandlungsergebnisse zu verbessern und umsetzbare Erkenntnisse aus komplexen Daten zu gewinnen."
+      "BioGenAI Solutions ist ein spezialisiertes Beratungsunternehmen für Künstliche Intelligenz, Bioinformatik und Gesundheitstechnologie, das sich der Transformation des Gesundheitswesens und der Lebenswissenschaften durch verantwortungsvolle, menschenzentrierte Innovation widmet.",
+      "Wir helfen Gesundheitsdienstleistern, Biotechnologieunternehmen, pharmazeutischen Organisationen, Forschungseinrichtungen und Unternehmen, die Leistungsfähigkeit von LLMs, RAG, agentischer KI, maschinellem Lernen, Deep Learning, Datenengineering, Bioinformatik, Genomik und HL7-Interoperabilität zu nutzen, um Entdeckungen zu beschleunigen, die Patientenergebnisse zu verbessern und umsetzbare Erkenntnisse aus komplexen Daten zu gewinnen."
     ],
     "founderInitials": "EB",
     "founderName": "Ernest Bonat, Ph.D.",
-    "founderRole": "Gründer & Geschäftsführer — Professor für Data Science, Senior AI Engineer, Bioinformatik-Wissenschaftler",
-    "founderBio": "Über 25 Jahre Erfahrung in der Softwareentwicklung und mehr als 8 Jahre in der Entwicklung fortschrittlicher Lösungen für Machine Learning, Generative KI, Agentische KI, Biostatistik, Bioinformatik und computergestützte Biologie.",
+    "founderRole": "Gründer & Hauptverantwortlicher — Professor für Datenwissenschaft, Senior AI Engineer, Bioinformatiker",
+    "founderBio": "Über 25 Jahre Erfahrung in der Softwareentwicklung und mehr als 8 Jahre in der Entwicklung fortschrittlicher Lösungen in den Bereichen maschinelles Lernen, generative KI, agentische KI, Biostatistik, Bioinformatik und computergestützte Biologie.",
     "stats": [
-      { "value": "25+", "label": "Jahre Softwareentwicklung" },
-      { "value": "8+", "label": "Jahre ML & Generative KI" },
-      { "value": "5", "label": "Betreute Branchen" },
-      { "value": "24h", "label": "Zugesagte Reaktionszeit" }
+      {
+        "value": "25+",
+        "label": "Jahre Softwareentwicklung"
+      },
+      {
+        "value": "8+",
+        "label": "Jahre ML & Generative KI"
+      },
+      {
+        "value": "5",
+        "label": "Bediente Branchen"
+      },
+      {
+        "value": "24h",
+        "label": "Verpflichtung zur Reaktionszeit"
+      }
     ]
   },
   "research": {
     "eyebrow": "Forschung",
-    "heading": "Publizierte Forschung & Thought Leadership",
-    "lead": "Fachliche Perspektiven zu KI, Biostatistik, Bioinformatik und computergestützter Biologie.",
+    "heading": "Veröffentlichte Forschung & Gedankenführung",
+    "lead": "Peer-Perspektiven zu KI, Biostatistik, Bioinformatik und computergestützter Biologie.",
     "items": [
-      { "tag": "Medium · Artikel", "title": "Artificial Intelligence Applications in Biostatistics, Bioinformatics and Computational Biology", "author": "Von Ernest Bonat, Ph.D.", "url": "https://ernest-bonat.medium.com/machine-learning-applications-in-genomics-life-sciences-by-ernest-bonat-ph-d-83598e67ccbc" }
+      {
+        "tag": "Medium · Artikel",
+        "title": "Anwendungen der Künstlichen Intelligenz in Biostatistik, Bioinformatik und computergestützter Biologie",
+        "author": "Von Ernest Bonat, Ph.D.",
+        "url": "https://ernest-bonat.medium.com/machine-learning-applications-in-genomics-life-sciences-by-ernest-bonat-ph-d-83598e67ccbc"
+      }
     ],
     "comingSoonTag": "Demnächst",
-    "comingSoonTitle": "Weitere Publikationen zu GenAI & Präzisionsmedizin",
+    "comingSoonTitle": "Weitere Veröffentlichungen zu GenAI & Präzisionsmedizin",
     "comingSoonText": "Neue Forschung wird regelmäßig veröffentlicht."
   },
   "contact": {
     "eyebrow": "Kontakt",
-    "heading": "Schreiben Sie uns",
-    "lead": "Füllen Sie das Formular aus und unser Team meldet sich innerhalb von 24 Stunden bei Ihnen.",
+    "heading": "Senden Sie uns eine Nachricht",
+    "lead": "Füllen Sie das Formular aus, und unser Team wird sich innerhalb von 24 Stunden bei Ihnen melden.",
     "email": "ernest.bonat@biogenaisolutions.com",
     "responseTime": "Antwort innerhalb von 24 Stunden",
     "interests": [
-      "KI für Präzisionsmedizin",
+      "Präzisionsmedizin KI",
       "Bioinformatik & Genomik",
-      "Generative & Agentische KI",
+      "Generative & Agentic KI",
       "Interoperabilität im Gesundheitswesen (HL7)",
-      "Data Engineering",
-      "Machine Learning & Deep Learning",
+      "Datenengineering",
+      "Maschinen- & Deep Learning",
       "KI-Strategie & Beratung",
       "Sonstiges"
     ],
-    "disclaimer": "Bei BioGenAI Solutions schätzen wir Ihr Vertrauen und verpflichten uns, die Vertraulichkeit und Sicherheit Ihrer Daten zu wahren. Alle über unsere Website übermittelten Informationen werden ausschließlich dazu verwendet, auf Ihre Anfragen zu antworten, professionelle Beratungsleistungen zu erbringen und Sie über relevante Entwicklungen in den Bereichen Künstliche Intelligenz, Biostatistik, Bioinformatik, Präzisionsmedizin, Gesundheitstechnologie und Life Sciences zu informieren. Sie können sich jederzeit von der Kommunikation abmelden. Bitte lesen Sie unsere Datenschutzerklärung, um mehr über unsere Praktiken zum Datenschutz und zur Privatsphäre zu erfahren."
+    "disclaimer": "Bei BioGenAI Solutions schätzen wir Ihr Vertrauen und verpflichten uns, die Vertraulichkeit und Sicherheit Ihrer Informationen zu wahren. Alle über unsere Website übermittelten Informationen werden ausschließlich verwendet, um auf Ihre Anfragen zu reagieren, professionelle Beratungsdienste anzubieten und Sie über relevante Entwicklungen in den Bereichen Künstliche Intelligenz, Biostatistik, Bioinformatik, Präzisionsmedizin, Gesundheitstechnologie und Lebenswissenschaften zu informieren. Sie können sich jederzeit von unseren Mitteilungen abmelden. Bitte lesen Sie unsere Datenschutzrichtlinie, um mehr über unsere Praktiken zum Datenschutz und zur Privatsphäre zu erfahren."
   },
   "carousel": {
-    "eyebrow": "Wen wir betreuen",
-    "heading": "Branchen, die wir betreuen",
-    "lead": "Vertrauen im gesamten Ökosystem von Gesundheitswesen und Life Sciences.",
+    "eyebrow": "Wer wir bedienen",
+    "heading": "Branchen, die wir bedienen",
+    "lead": "Vertraut im gesamten Gesundheits- und Lebenswissenschaftsökosystem.",
     "slides": [
-      { "title": "Gesundheitsdienstleister", "description": "Klinische Entscheidungsunterstützung, Patienteneinblicke und HL7-Interoperabilität für bessere Ergebnisse." },
-      { "title": "Biotechnologie", "description": "Genomik-Pipelines und Machine Learning, die die Forschung vom Labor bis zur Erkenntnis beschleunigen." },
-      { "title": "Pharmaindustrie", "description": "KI in F&E, klinischen Studien und Betrieb für schnellere, datenbasierte Entscheidungen." },
-      { "title": "Forschungseinrichtungen", "description": "Skalierbare Bioinformatik und computergestützte Biologie für rigorose, reproduzierbare Wissenschaft." },
-      { "title": "Unternehmen", "description": "LLM-, RAG- und agentische Systeme, die Wert aus komplexen, großen Datenmengen schaffen." }
+      {
+        "title": "Gesundheitsdienstleister",
+        "description": "Klinische Entscheidungsunterstützung, Patienteninformationen und HL7-Interoperabilität, die Ergebnisse verbessern."
+      },
+      {
+        "title": "Biotechnologie",
+        "description": "Genomik-Pipelines und maschinelles Lernen, die die Entdeckung vom Labor bis zur Einsicht beschleunigen."
+      },
+      {
+        "title": "Pharmazeutika",
+        "description": "KI in F&E, klinischen Studien und Betrieb für schnellere, datengestützte Entscheidungen."
+      },
+      {
+        "title": "Forschungseinrichtungen",
+        "description": "Skalierbare Bioinformatik und computergestützte Biologie für rigorose, reproduzierbare Wissenschaft."
+      },
+      {
+        "title": "Unternehmen",
+        "description": "LLM, RAG und agentische Systeme, die Wert aus komplexen, großflächigen Daten schöpfen."
+      },
+      {
+        "title": "Meine neue FOLIE",
+        "description": "Blah blah"
+      }
     ]
   },
   "ui": {
     "menuLabel": "Menü",
-    "searchPlaceholder": "Website durchsuchen…",
+    "searchPlaceholder": "Durchsuchen Sie die Seite…",
     "searchNoResults": "Keine Ergebnisse gefunden",
-    "searchLabel": "Suchen",
-    "nav": { "home": "Start", "solutions": "Lösungen", "services": "Leistungen", "research": "Forschung", "news": "Neuigkeiten", "about": "Über uns", "contact": "Kontakt", "contactCta": "Kontakt aufnehmen" },
+    "searchLabel": "Suche",
+    "nav": {
+      "home": "Startseite",
+      "solutions": "Lösungen",
+      "services": "Dienstleistungen",
+      "research": "Forschung",
+      "news": "Nachrichten",
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "contactCta": "Kontaktieren Sie uns"
+    },
     "capabilitiesLabel": "Kernkompetenzen",
-    "readPaper": "Artikel lesen",
-    "readMore": "Weiterlesen",
-    "newsHeading": "Neuigkeiten von BioGenAI Solutions",
-    "newsLead": "Ankündigungen und Entwicklungen rund um KI, Präzisionsmedizin und Life Sciences.",
-    "newsEmptyTitle": "Neuigkeiten sind in Vorbereitung",
-    "newsEmptyText": "Wir bereiten Ankündigungen zu unseren neuesten Lösungen und Forschungen vor. Schauen Sie bald wieder vorbei – oder nehmen Sie Kontakt auf, um informiert zu bleiben.",
-    "newsKeepUpdated": "Mich auf dem Laufenden halten",
-    "backToNews": "← Zurück zu den Neuigkeiten",
+    "readPaper": "Papier lesen",
+    "readMore": "Mehr lesen",
+    "newsHeading": "Neueste von BioGenAI Solutions",
+    "newsLead": "Ankündigungen und Entwicklungen in den Bereichen KI, Präzisionsmedizin und Lebenswissenschaften.",
+    "newsEmptyTitle": "Updates sind auf dem Weg",
+    "newsEmptyText": "Wir bereiten Ankündigungen zu unseren neuesten Lösungen und Forschungen vor. Schauen Sie bald wieder vorbei — oder kontaktieren Sie uns, um informiert zu bleiben.",
+    "newsKeepUpdated": "Halten Sie mich auf dem Laufenden",
+    "backToNews": "← Zurück zu den Nachrichten",
     "backToHome": "← Zurück zur Startseite",
     "form": {
       "firstName": "Vorname",
       "lastName": "Nachname",
       "email": "E-Mail",
-      "jobTitle": "Position",
+      "jobTitle": "Berufsbezeichnung",
       "company": "Unternehmen",
-      "interest": "Interesse an",
-      "interestPlaceholder": "Bitte auswählen",
-      "comments": "Anmerkungen",
+      "interest": "Interessiert an",
+      "interestPlaceholder": "Wählen Sie eine Option",
+      "comments": "Kommentare",
       "commentsPlaceholder": "Erzählen Sie uns von Ihrem Projekt oder Ihrer Frage…",
       "recaptcha": "Geschützt durch reCAPTCHA",
       "submit": "Absenden",
-      "success": "Vielen Dank — Ihre Nachricht ist vorbereitet. Wir antworten innerhalb von 24 Stunden."
+      "success": "Vielen Dank — Ihre Nachricht wurde vorbereitet. Wir werden innerhalb von 24 Stunden antworten."
     },
     "footer": {
-      "explore": "Entdecken",
+      "explore": "Erforschen",
       "company": "Unternehmen",
       "legal": "Rechtliches",
       "visionMission": "Vision & Mission",
       "rights": "Alle Rechte vorbehalten.",
-      "privacy": "Datenschutzerklärung",
+      "privacy": "Datenschutzrichtlinie",
       "terms": "Nutzungsbedingungen",
-      "legalLink": "Impressum"
+      "legalLink": "Rechtliches"
     }
   }
 }
