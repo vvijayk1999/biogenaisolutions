@@ -4,22 +4,22 @@
     "brandAccent": "Solutions",
     "tagline": "Fortschrittliche, skalierbare KI- und Bioinformatiklösungen für präzise Medizin und Innovation im Gesundheitswesen. Übersetzungstest.",
     "capabilities": [
-      "Machine Learning",
-      "Data Engineering",
-      "Deep Learning",
-      "Generative AI",
-      "AI Agent",
-      "AI SKILLS",
-      "AI Automation",
-      "Bioinformatics",
-      "Biostatistics",
+      "Maschinelles Lernen",
+      "Datenengineering",
+      "Tiefes Lernen",
+      "Generative KI",
+      "KI-Agent",
+      "KI-FÄHIGKEITEN",
+      "KI-Automatisierung",
+      "Bioinformatik",
+      "Biostatistik",
       "Computational Biology",
-      "Precision Medicine",
-      "Drug Discovery",
-      "Healthcare Integration",
-      "Large Language Models",
-      "Retrieval-Argument Generation",
-      "Multi-Agent Systems"
+      "Präzisionsmedizin",
+      "Arzneimittelentdeckung",
+      "Integration im Gesundheitswesen",
+      "Große Sprachmodelle",
+      "Retrieval-Argument-Generierung",
+      "Multi-Agenten-Systeme"
     ]
   },
   "hero": {
@@ -27,7 +27,7 @@
     "titleLead": "Intelligente KI und ",
     "titleHighlight": "Generative KI-Lösungen ",
     "titleTrail": "für Biostatistik, Bioinformatik, Computational Biology, Lebenswissenschaften und Gesundheitswesen.",
-    "subtitle": "BioGenAI Solutions bietet intelligente KI- und Generative KI-Lösungen für Biostatistik, Bioinformatik, Computational Biology, Lebenswissenschaften und Gesundheitswesen. Wir unterstützen Biotechnologie-, Pharma- und Gesundheitsorganisationen dabei, komplexe biologische und klinische Daten in umsetzbare Erkenntnisse zu verwandeln, die wissenschaftliche Entdeckungen beschleunigen, die Entscheidungsfindung verbessern und die Präzisionsmedizin vorantreiben. Durch die Kombination tiefgreifender wissenschaftlicher Expertise mit KI-Technologien der nächsten Generation befähigen wir Wissenschaftler, Forscher und Gesundheitsfachkräfte, komplexe Herausforderungen zu lösen, Innovationen zu beschleunigen, die Patientenergebnisse zu verbessern und die Zukunft der Lebenswissenschaften und des Gesundheitswesens zu gestalten.",
+    "subtitle": "BioGenAI Solutions bietet intelligente KI- und Generative KI-Lösungen für Biostatistik, Bioinformatik, Computational Biology, Lebenswissenschaften und Gesundheitswesen. Wir unterstützen Biotechnologie-, Pharma- und Gesundheitsorganisationen dabei, komplexe biologische und klinische Daten in umsetzbare Erkenntnisse zu verwandeln, die wissenschaftliche Entdeckungen beschleunigen, die Entscheidungsfindung verbessern und die Präzisionsmedizin vorantreiben.",
     "ctaPrimaryLabel": "Ein Gespräch beginnen",
     "ctaSecondaryLabel": "Lösungen erkunden",
     "stats": [
@@ -45,10 +45,10 @@
       }
     ],
     "tags": [
-      "Generative AI",
-      "AI Agent",
-      "AI SKILLS",
-      "AI Automation"
+      "Generative KI",
+      "KI-Agent",
+      "KI-FÄHIGKEITEN",
+      "KI-Automatisierung"
     ]
   },
   "solutions": {

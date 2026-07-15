@@ -53,22 +53,22 @@
     "brandAccent": "Solutions",
     "tagline": "정밀 의학과 헬스케어 혁신을 위한 고급의 확장 가능한 AI 및 생물정보학 솔루션. 번역 테스트.",
     "capabilities": [
-      "Machine Learning",
-      "Data Engineering",
-      "Deep Learning",
-      "Generative AI",
-      "AI Agent",
-      "AI SKILLS",
-      "AI Automation",
-      "Bioinformatics",
-      "Biostatistics",
-      "Computational Biology",
-      "Precision Medicine",
-      "Drug Discovery",
-      "Healthcare Integration",
-      "Large Language Models",
-      "Retrieval-Argument Generation",
-      "Multi-Agent Systems"
+      "기계 학습",
+      "데이터 엔지니어링",
+      "딥 러닝",
+      "생성적 AI",
+      "AI 에이전트",
+      "AI 기술",
+      "AI 자동화",
+      "생물정보학",
+      "생물통계학",
+      "계산 생물학",
+      "정밀 의학",
+      "약물 발견",
+      "헬스케어 통합",
+      "대형 언어 모델",
+      "검색-주장 생성",
+      "다중 에이전트 시스템"
     ]
   },
   "about": {
@@ -204,12 +204,12 @@
     "titleTrail": "생물통계학, 생물정보학, 계산 생물학, 생명과학 및 의료 분야를 위한.",
     "ctaSecondaryLabel": "솔루션 탐색",
     "titleLead": "지능형 AI 및 ",
-    "subtitle": "BioGenAI Solutions는 생물통계학, 생물정보학, 계산 생물학, 생명과학 및 의료 분야를 위한 지능형 AI 및 생성적 AI 솔루션을 제공합니다. 우리는 생명공학, 제약 및 의료 조직이 복잡한 생물학적 및 임상 데이터를 실행 가능한 정보로 변환하여 과학적 발견을 가속화하고, 의사결정을 개선하며, 정밀 의학을 발전시키도록 돕습니다. 심층적인 과학 전문성과 차세대 AI 기술을 결합함으로써, 우리는 과학자, 연구자 및 의료 전문가가 복잡한 문제를 해결하고, 혁신을 가속화하며, 환자 결과를 개선하고, 생명과학 및 의료의 미래를 형성할 수 있도록 지원합니다.",
+    "subtitle": "BioGenAI Solutions는 생물통계학, 생물정보학, 계산 생물학, 생명 과학 및 헬스케어를 위한 지능형 AI 및 생성적 AI 솔루션을 제공합니다. 우리는 생명공학, 제약 및 헬스케어 조직이 복잡한 생물학적 및 임상 데이터를 실행 가능한 정보로 변환하여 과학적 발견을 가속화하고, 의사 결정을 개선하며, 정밀 의학을 발전시키도록 돕습니다.",
     "tags": [
-      "Generative AI",
-      "AI Agent",
-      "AI SKILLS",
-      "AI Automation"
+      "생성적 AI",
+      "AI 에이전트",
+      "AI 기술",
+      "AI 자동화"
     ],
     "titleHighlight": "생성적 AI 솔루션 ",
     "stats": [

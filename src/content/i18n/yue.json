@@ -53,22 +53,22 @@
     "brandAccent": "Solutions",
     "tagline": "先進、可擴展的人工智能和生物信息學解決方案，專注於精準醫療和醫療創新。翻譯測試。",
     "capabilities": [
-      "Machine Learning",
-      "Data Engineering",
-      "Deep Learning",
-      "Generative AI",
-      "AI Agent",
-      "AI SKILLS",
-      "AI Automation",
-      "Bioinformatics",
-      "Biostatistics",
-      "Computational Biology",
-      "Precision Medicine",
-      "Drug Discovery",
-      "Healthcare Integration",
-      "Large Language Models",
-      "Retrieval-Argument Generation",
-      "Multi-Agent Systems"
+      "機器學習",
+      "數據工程",
+      "深度學習",
+      "生成式人工智能",
+      "人工智能代理",
+      "人工智能技能",
+      "人工智能自動化",
+      "生物信息學",
+      "生物統計學",
+      "計算生物學",
+      "精準醫療",
+      "藥物發現",
+      "醫療整合",
+      "大型語言模型",
+      "檢索-論證生成",
+      "多代理系統"
     ]
   },
   "about": {
@@ -204,12 +204,12 @@
     "titleTrail": "適用於生物統計學、生物信息學、計算生物學、生命科學及醫療保健。",
     "ctaSecondaryLabel": "探索解決方案",
     "titleLead": "智能人工智能及",
-    "subtitle": "BioGenAI Solutions 提供智能人工智能及生成式人工智能解決方案，專注於生物統計學、生物信息學、計算生物學、生命科學及醫療保健。我們幫助生物科技、製藥及醫療機構將複雜的生物和臨床數據轉化為可行的智慧，從而加速科學發現、改善決策及推進精準醫療。通過結合深厚的科學專業知識與下一代人工智能技術，我們賦能科學家、研究人員及醫療專業人士解決複雜挑戰，加速創新，改善病人結果，並塑造生命科學及醫療保健的未來。",
+    "subtitle": "BioGenAI Solutions 提供智能人工智能及生成式人工智能解決方案，專注於生物統計學、生物信息學、計算生物學、生命科學及醫療保健。我們幫助生物技術、製藥及醫療機構將複雜的生物及臨床數據轉化為可行的智慧，加速科學發現，改善決策，推進精準醫療。",
     "tags": [
-      "Generative AI",
-      "AI Agent",
-      "AI SKILLS",
-      "AI Automation"
+      "生成式人工智能",
+      "人工智能代理",
+      "人工智能技能",
+      "人工智能自動化"
     ],
     "titleHighlight": "生成式人工智能解決方案",
     "stats": [

@@ -4,30 +4,30 @@
     "brandAccent": "Solutions",
     "tagline": "Soluciones avanzadas y escalables de IA y bioinformática para la medicina de precisión y la innovación en salud. prueba de traducción.",
     "capabilities": [
-      "Machine Learning",
-      "Data Engineering",
-      "Deep Learning",
-      "Generative AI",
-      "AI Agent",
-      "AI SKILLS",
-      "AI Automation",
-      "Bioinformatics",
-      "Biostatistics",
-      "Computational Biology",
-      "Precision Medicine",
-      "Drug Discovery",
-      "Healthcare Integration",
-      "Large Language Models",
-      "Retrieval-Argument Generation",
-      "Multi-Agent Systems"
+      "Aprendizaje Automático",
+      "Ingeniería de Datos",
+      "Aprendizaje Profundo",
+      "IA Generativa",
+      "Agente de IA",
+      "HABILIDADES de IA",
+      "Automatización de IA",
+      "Bioinformática",
+      "Bioestadística",
+      "Biología Computacional",
+      "Medicina de Precisión",
+      "Descubrimiento de Fármacos",
+      "Integración en Salud",
+      "Modelos de Lenguaje Grande",
+      "Generación de Argumentos de Recuperación",
+      "Sistemas Multi-Agente"
     ]
   },
   "hero": {
     "eyebrow": "IA avanzada para la industria biotecnológica.",
     "titleLead": "IA inteligente y ",
-    "titleHighlight": "soluciones de IA generativa ",
+    "titleHighlight": "Soluciones de IA Generativa ",
     "titleTrail": "para bioestadística, bioinformática, biología computacional, ciencias de la vida y atención médica.",
-    "subtitle": "BioGenAI Solutions ofrece soluciones de IA inteligente y IA generativa para bioestadística, bioinformática, biología computacional, ciencias de la vida y atención médica. Ayudamos a organizaciones de biotecnología, farmacéuticas y de atención médica a transformar datos biológicos y clínicos complejos en inteligencia procesable que acelera el descubrimiento científico, mejora la toma de decisiones y avanza la medicina de precisión. Al combinar una profunda experiencia científica con tecnologías de IA de próxima generación, empoderamos a científicos, investigadores y profesionales de la salud para resolver desafíos complejos, acelerar la innovación, mejorar los resultados para los pacientes y dar forma al futuro de las ciencias de la vida y la atención médica.",
+    "subtitle": "BioGenAI Solutions ofrece soluciones inteligentes de IA y IA Generativa para Bioestadística, Bioinformática, Biología Computacional, Ciencias de la Vida y Atención Médica. Ayudamos a las organizaciones de biotecnología, farmacéuticas y de atención médica a transformar datos biológicos y clínicos complejos en inteligencia procesable que acelera el descubrimiento científico, mejora la toma de decisiones y avanza en la medicina de precisión.",
     "ctaPrimaryLabel": "Iniciar una Conversación",
     "ctaSecondaryLabel": "Explorar Soluciones",
     "stats": [
@@ -45,10 +45,10 @@
       }
     ],
     "tags": [
-      "Generative AI",
-      "AI Agent",
-      "AI SKILLS",
-      "AI Automation"
+      "IA Generativa",
+      "Agente de IA",
+      "HABILIDADES de IA",
+      "Automatización de IA"
     ]
   },
   "solutions": {
