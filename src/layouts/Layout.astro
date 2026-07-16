@@ -112,14 +112,31 @@ const {
         revealEls.forEach((el) => el.classList.add('visible'));
       }
 
-      // Contact form confirmation
+      // Contact form confirmation (Netlify Forms via AJAX)
       const form = document.getElementById('contactForm') as HTMLFormElement | null;
       const success = document.getElementById('formSuccess');
-      form?.addEventListener('submit', () => {
-        if (form.checkValidity() && success) {
-          success.hidden = false;
-          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+      const encodeFormData = (data: FormData) =>
+        Array.from(data.entries())
+          .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+          .join('&');
+      form?.addEventListener('submit', (e) => {
+        if (!form.checkValidity()) return;
+        e.preventDefault();
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encodeFormData(new FormData(form)),
+        })
+          .then(() => {
+            form.reset();
+            if (success) {
+              success.hidden = false;
+              success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          })
+          .catch(() => {
+            alert('Something went wrong sending your message. Please try again or email us directly.');
+          });
       });
 
       // Footer year
