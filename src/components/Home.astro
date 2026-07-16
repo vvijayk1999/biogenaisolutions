@@ -342,7 +342,7 @@ news = news.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
           <p class="disclaimer">{c.contact.disclaimer}</p>
         </div>
 
-      <form class="contact-form" id="contactForm" name="contact" method="post" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <form class="contact-form" id="contactForm" name="contact" method="post" {...(locale === 'en' ? { 'data-netlify': 'true', 'netlify-honeypot': 'bot-field' } : {})} novalidate>
         <input type="hidden" name="form-name" value="contact" />
         <p hidden>
           <label>Don't fill this out if you're human: <input name="bot-field" /></label>
