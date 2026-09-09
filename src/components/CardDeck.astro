@@ -1,0 +1,84 @@
+---
+import Icon from './Icon.astro';
+
+/**
+ * 3D coverflow deck for long card sets (Solutions, Services).
+ *
+ * Every card stays in the DOM — the previous and next cards sit rotated and
+ * dimmed either side of the active one, so a 14-card section reads as one
+ * screen instead of seven rows of scrolling. Behaviour lives in the
+ * `initDeck` handler in Layout.astro, driven by the data-deck-* hooks.
+ */
+export interface Props {
+  items: any[];
+  idPrefix: string;
+  label?: string;
+}
+const { items, idPrefix, label = 'Cards' } = Astro.props;
+const list = (v: unknown): string[] => (Array.isArray(v) ? (v as string[]) : []);
+const longest = (v: unknown) => list(v).reduce((n, b) => Math.max(n, b.length), 0);
+
+// A list of short labels ("Genomics", "Semantic Search", …) is far more
+// compact as wrapping chips than as one bullet per line. Lists whose entries
+// are full sentences stay as bullets, where the line breaks carry meaning.
+const asChips = (v: unknown) => list(v).length >= 3 && longest(v) <= 40;
+
+// Bullet lists that stay bullets can still run in columns when the entries
+// are short enough — multicol does not apply to a grid container, so the
+// split variants switch back to block flow in CSS.
+const listClass = (v: unknown) => {
+  const n = list(v).length;
+  if (n >= 8 && longest(v) <= 24) return 'card-list-split-3';
+  if (n >= 6 && longest(v) <= 46) return 'card-list-split';
+  return null;
+};
+---
+<div class="deck" data-deck aria-roledescription="carousel" aria-label={label}>
+  <div class="deck-viewport">
+    <button class="carousel-arrow deck-arrow deck-arrow-prev" data-deck-prev aria-label="Previous card">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
+    <div class="deck-stage" data-deck-stage>
+      {items.map((item, i) => (
+        <div class="deck-slide" data-deck-slide role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${items.length}`}>
+          <article class="card" id={`${idPrefix}-${i + 1}`} tabindex="-1">
+            <div class="card-head">
+              <span class="card-icon"><Icon name={item.icon} size={26} /></span>
+              <h3>{item.title}</h3>
+            </div>
+            {item.tagline && <p class="card-tagline">{item.tagline}</p>}
+            {item.description && <p>{item.description}</p>}
+            {item.bulletsLabel && <p class="card-list-label">{item.bulletsLabel}</p>}
+            {list(item.bullets).length > 0 && (
+              asChips(item.bullets) ? (
+                <ul class="card-chips">
+                  {list(item.bullets).map((b) => <li>{b}</li>)}
+                </ul>
+              ) : (
+                <ul class:list={['card-list', listClass(item.bullets)]}>
+                  {list(item.bullets).map((b) => <li>{b}</li>)}
+                </ul>
+              )
+            )}
+            {list(item.flow).length > 0 && (
+              <ol class="card-flow">
+                {list(item.flow).map((f) => <li>{f}</li>)}
+              </ol>
+            )}
+            {item.note && <p class="card-note">{item.note}</p>}
+          </article>
+        </div>
+      ))}
+    </div>
+
+    <button class="carousel-arrow deck-arrow deck-arrow-next" data-deck-next aria-label="Next card">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <div class="deck-footer">
+    <div class="deck-dots" data-deck-dots role="tablist" aria-label={label}></div>
+    <span class="deck-counter" data-deck-counter aria-live="polite"></span>
+  </div>
+</div>

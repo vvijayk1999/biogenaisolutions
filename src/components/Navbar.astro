@@ -16,7 +16,10 @@ let recent = allNews.filter((p) => (p.data.lang ?? DEFAULT_LOCALE) === locale);
 if (recent.length === 0) recent = allNews.filter((p) => (p.data.lang ?? DEFAULT_LOCALE) === DEFAULT_LOCALE);
 recent = recent.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 4);
 
-const solHalf = Math.ceil(c.solutions.items.length / 2);
+// Mega-menu entries link to the matching card, which the page highlights on
+// arrival (see the card-highlight handler in Layout.astro).
+const solutionLinks = c.solutions.items.map((it, i) => ({ title: it.title, href: `${home}#solution-${i + 1}` }));
+const serviceLinks = c.services.items.map((it, i) => ({ title: it.title, href: `${home}#service-${i + 1}` }));
 ---
 <header class="navbar" id="navbar">
   <div class="container nav-bar">
@@ -33,18 +36,13 @@ const solHalf = Math.ceil(c.solutions.items.length / 2);
         <a href={`${home}#solutions`} class="nav-link">{nav.solutions}</a>
         <div class="mega">
           <div class="container mega-inner">
-            <div class="mega-col mega-feature">
+            <div class="mega-col mega-feature mega-col-full">
               <h4>{c.solutions.eyebrow}</h4>
-              {c.solutions.items.slice(0, solHalf).map((it) => (
-                <a class="mega-link-lg" href={`${home}#solutions`}>{it.title}</a>
-              ))}
-            </div>
-            <div class="mega-col">
-              <h4>{nav.solutions}</h4>
-              {c.solutions.items.slice(solHalf).map((it) => (
-                <a href={`${home}#solutions`}>{it.title}</a>
-              ))}
-              <a class="mega-more" href={`${home}#solutions`}>{nav.solutions} →</a>
+              <div class="mega-list">
+                {solutionLinks.map((it) => (
+                  <a class="mega-link-lg" href={it.href}>{it.title}</a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -54,11 +52,13 @@ const solHalf = Math.ceil(c.solutions.items.length / 2);
         <a href={`${home}#services`} class="nav-link">{nav.services}</a>
         <div class="mega">
           <div class="container mega-inner">
-            <div class="mega-col mega-feature">
+            <div class="mega-col mega-feature mega-col-full">
               <h4>{c.services.eyebrow}</h4>
-              {c.services.items.map((it) => (
-                <a class="mega-link-lg" href={`${home}#services`}>{it.title}</a>
-              ))}
+              <div class="mega-list">
+                {serviceLinks.map((it) => (
+                  <a class="mega-link-lg" href={it.href}>{it.title}</a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -100,6 +100,12 @@ const solHalf = Math.ceil(c.solutions.items.length / 2);
           </div>
         </div>
       </div>
+
+      {(c as any).partners && (
+        <div class="nav-item">
+          <a href={`${home}#partners`} class="nav-link">{(nav as any).partners ?? 'Partners'}</a>
+        </div>
+      )}
 
       <div class="nav-item has-mega">
         <a href={`${home}#about`} class="nav-link">{nav.about}</a>

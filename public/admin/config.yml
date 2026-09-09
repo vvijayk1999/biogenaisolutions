@@ -112,13 +112,29 @@ collections:
               - { label: Eyebrow, name: eyebrow, widget: string }
               - { label: Heading, name: heading, widget: string }
               - { label: Lead, name: lead, widget: text }
+              - label: "Image Overlay Intro"
+                name: intro
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Lead, name: lead, widget: text }
+                  - { label: Highlight Line, name: highlight, widget: text, required: false, hint: "The '+' separated discipline line, shown in accent colour." }
+                  - { label: Paragraphs, name: paragraphs, widget: list }
               - label: Cards
                 name: items
                 widget: list
+                collapsed: true
+                summary: "{{title}}"
                 fields:
-                  - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml] }
+                  - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml, neural, nlp, xai, disease, biomarker, drug, genai, rag, agent, layers, lifecycle, shield, strategy, stats, code, cloud, training, provider, biotech, pharma, research, enterprise, vision, mission, philosophy, partners, default] }
                   - { label: Title, name: title, widget: string }
+                  - { label: Tagline, name: tagline, widget: string, required: false }
                   - { label: Description, name: description, widget: text }
+                  - { label: List Label, name: bulletsLabel, widget: string, required: false, hint: "Small heading above the bullet list, e.g. 'Our capabilities include'. Leave blank to hide." }
+                  - { label: Bullets, name: bullets, widget: list, required: false }
+                  - { label: Workflow Chain, name: flow, widget: list, required: false, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                  - { label: Closing Note, name: note, widget: text, required: false }
           - label: Services
             name: services
             widget: object
@@ -127,13 +143,29 @@ collections:
               - { label: Heading, name: heading, widget: string }
               - { label: Lead, name: lead, widget: text }
               - { label: Background Image, name: backgroundImage, widget: image, default: "/capabilities-bg.png", required: false }
+              - label: "Image Overlay Intro"
+                name: intro
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Lead, name: lead, widget: text }
+                  - { label: Highlight Line, name: highlight, widget: text, required: false, hint: "The '+' separated discipline line, shown in accent colour." }
+                  - { label: Paragraphs, name: paragraphs, widget: list }
               - label: Services
                 name: items
                 widget: list
+                collapsed: true
+                summary: "{{title}}"
                 fields:
-                  - { label: Number, name: number, widget: string }
+                  - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml, neural, nlp, xai, disease, biomarker, drug, genai, rag, agent, layers, lifecycle, shield, strategy, stats, code, cloud, training, provider, biotech, pharma, research, enterprise, vision, mission, philosophy, partners, default] }
                   - { label: Title, name: title, widget: string }
+                  - { label: Tagline, name: tagline, widget: string, required: false }
                   - { label: Description, name: description, widget: text }
+                  - { label: List Label, name: bulletsLabel, widget: string, required: false }
+                  - { label: Bullets, name: bullets, widget: list, required: false }
+                  - { label: Workflow Chain, name: flow, widget: list, required: false }
+                  - { label: Closing Note, name: note, widget: text, required: false }
           - label: Vision / Mission / Philosophy
             name: principles
             widget: object
@@ -203,7 +235,24 @@ collections:
                 name: slides
                 widget: list
                 fields:
+                  - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml, neural, nlp, xai, disease, biomarker, drug, genai, rag, agent, layers, lifecycle, shield, strategy, stats, code, cloud, training, provider, biotech, pharma, research, enterprise, vision, mission, philosophy, partners, default] }
                   - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+          - label: Partners
+            name: partners
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Lead, name: lead, widget: text }
+              - label: Partners
+                name: items
+                widget: list
+                summary: "{{name}}"
+                fields:
+                  - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml, neural, nlp, xai, disease, biomarker, drug, genai, rag, agent, layers, lifecycle, shield, strategy, stats, code, cloud, training, provider, biotech, pharma, research, enterprise, vision, mission, philosophy, partners, default] }
+                  - { label: Name, name: name, widget: string }
+                  - { label: Role, name: role, widget: string, required: false }
                   - { label: Description, name: description, widget: text }
           - label: UI Labels
             name: ui
@@ -226,6 +275,7 @@ collections:
                   - { label: About, name: about, widget: string }
                   - { label: Contact, name: contact, widget: string }
                   - { label: Contact CTA, name: contactCta, widget: string }
+                  - { label: Partners, name: partners, widget: string }
               - { label: Capabilities Label, name: capabilitiesLabel, widget: string }
               - { label: "Read the paper", name: readPaper, widget: string }
               - { label: "Read more", name: readMore, widget: string }
@@ -252,6 +302,7 @@ collections:
                   - { label: reCAPTCHA Note, name: recaptcha, widget: string }
                   - { label: Submit, name: submit, widget: string }
                   - { label: Success Message, name: success, widget: text }
+                  - { label: "Validation Error Message", name: errorRequired, widget: string }
               - label: Footer
                 name: footer
                 widget: object

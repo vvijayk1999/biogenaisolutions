@@ -29,6 +29,19 @@ const {
     <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
+    <!-- Shared gradient referenced by every inline card icon (Icon.astro). -->
+    <svg class="icon-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="bgaiGrad" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stop-color="#2D7FF9" />
+          <stop offset="30%" stop-color="#3658F5" />
+          <stop offset="55%" stop-color="#A83BF7" />
+          <stop offset="80%" stop-color="#FF3B8B" />
+          <stop offset="100%" stop-color="#FF8A00" />
+        </linearGradient>
+      </defs>
+    </svg>
+
     <slot />
 
     <!-- After accepting an invite / logging in, send the user to the CMS -->
@@ -91,9 +104,10 @@ const {
       // Reveal on scroll
       const revealEls = Array.from(
         document.querySelectorAll(
-          '.card, .pillar, .service-row, .research-card, .news-card, .stat, .news-empty, .section-head, .hero-copy, .hero-visual, .about-copy, .contact-form'
+          '.card, .pillar, .deck, .research-card, .news-card, .stat, .news-empty, .section-head, .hero-copy, .hero-visual, .about-copy, .contact-form'
         )
-      );
+        // Deck cards are stacked and 3D-transformed; the deck reveals as a unit.
+      ).filter((el) => !(el.classList.contains('card') && el.closest('[data-deck]')));
       revealEls.forEach((el) => el.classList.add('reveal'));
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver(
@@ -115,13 +129,39 @@ const {
       // Contact form confirmation (Netlify Forms via AJAX)
       const form = document.getElementById('contactForm') as HTMLFormElement | null;
       const success = document.getElementById('formSuccess');
+      const formError = document.getElementById('formError');
       const encodeFormData = (data: FormData) =>
         Array.from(data.entries())
           .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
           .join('&');
+
+      // Clear the invalid state as soon as a field is filled in.
+      form?.querySelectorAll('input, select, textarea').forEach((el) => {
+        el.addEventListener('input', () => el.classList.remove('invalid'));
+        el.addEventListener('change', () => el.classList.remove('invalid'));
+      });
+
       form?.addEventListener('submit', (e) => {
-        if (!form.checkValidity()) return;
+        // The form carries `novalidate`, so nothing stops an empty submission
+        // by itself — always cancel the native POST and validate here first.
         e.preventDefault();
+
+        const fields = Array.from(
+          form.querySelectorAll('input:not([type=hidden]), select, textarea')
+        ) as (HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement)[];
+        const invalid = fields.filter((f) => !f.checkValidity());
+        fields.forEach((f) => f.classList.toggle('invalid', !f.checkValidity()));
+
+        if (invalid.length > 0) {
+          if (formError) formError.hidden = false;
+          if (success) success.hidden = true;
+          invalid[0].focus();
+          invalid[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          invalid[0].reportValidity();
+          return;
+        }
+
+        if (formError) formError.hidden = true;
         fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -163,9 +203,13 @@ const {
             seen.add('#' + id);
           }
           // Cards / items inside the section
-          sec.querySelectorAll('.card h3, .service-row h3, .pillar h3, .research-card h3, .news-card h3, .carousel-card h3').forEach((h) => {
+          sec.querySelectorAll('.card h3, .pillar h3, .research-card h3, .news-card h3, .carousel-card h3').forEach((h) => {
             const t = (h.textContent || '').trim();
-            if (t) index.push({ title: t, section: sectionName, href: '#' + id });
+            // Deck cards aren't all on screen at once, so point at the card
+            // itself where it has an id — the deck brings it to the front.
+            const card = h.closest('.card');
+            const href = card?.id ? '#' + card.id : '#' + id;
+            if (t) index.push({ title: t, section: sectionName, href });
           });
         });
 
@@ -207,7 +251,7 @@ const {
             const a = document.createElement('a');
             a.href = m.href;
             a.innerHTML = '<span class="sr-section">' + m.section + '</span><span class="sr-title">' + m.title + '</span>';
-            a.addEventListener('click', () => { searchInput.value = ''; hideSearchBar(); });
+            a.addEventListener('click', () => { searchInput.value = ''; hideSearchBar(); setTimeout(() => window.dispatchEvent(new HashChangeEvent('hashchange')), 0); });
             li.appendChild(a);
             searchResults.appendChild(li);
           });
@@ -224,19 +268,28 @@ const {
         });
       }
 
-      // ---------- Carousel ----------
-      const carousel = document.getElementById('carousel');
-      const track = document.getElementById('carouselTrack');
-      const dotsWrap = document.getElementById('carouselDots');
-      const prevBtn = document.getElementById('carouselPrev');
-      const nextBtn = document.getElementById('carouselNext');
-      if (carousel && track && dotsWrap) {
+
+      // ---------- Carousels ----------
+      // One initialiser drives every [data-carousel] on the page: the
+      // industries carousel (responsive, 1–3 cards) and the single-card
+      // Partners carousel (data-per-view="1").
+      const initCarousel = (carousel: HTMLElement) => {
+        const track = carousel.querySelector('[data-carousel-track]') as HTMLElement | null;
+        const dotsWrap = carousel.parentElement?.querySelector('[data-carousel-dots]') as HTMLElement | null;
+        const prevBtn = carousel.querySelector('[data-carousel-prev]');
+        const nextBtn = carousel.querySelector('[data-carousel-next]');
+        if (!track || !dotsWrap) return;
+
         const slides = Array.from(track.children) as HTMLElement[];
         const rtl = document.documentElement.dir === 'rtl';
+        const fixedPerView = Number(carousel.dataset.perView);
         let index = 0;
         let timer: ReturnType<typeof setInterval> | null = null;
 
-        const perView = () => (window.innerWidth <= 640 ? 1 : window.innerWidth <= 960 ? 2 : 3);
+        const perView = () =>
+          Number.isFinite(fixedPerView) && fixedPerView > 0
+            ? fixedPerView
+            : window.innerWidth <= 640 ? 1 : window.innerWidth <= 960 ? 2 : 3;
         const maxIndex = () => Math.max(0, slides.length - perView());
 
         const buildDots = () => {
@@ -301,7 +354,172 @@ const {
         buildDots();
         apply();
         restart();
-      }
+      };
+      document.querySelectorAll('[data-carousel]').forEach((el) => initCarousel(el as HTMLElement));
+
+      // ---------- 3D card decks (Solutions, Services) ----------
+      // Cards are stacked in one place and transformed into a coverflow: the
+      // active card sits front and centre, its neighbours are rotated back and
+      // dimmed but still visible either side.
+      const initDeck = (deck: HTMLElement) => {
+        const stage = deck.querySelector('[data-deck-stage]') as HTMLElement | null;
+        const slides = Array.from(deck.querySelectorAll('[data-deck-slide]')) as HTMLElement[];
+        const dotsWrap = deck.querySelector('[data-deck-dots]') as HTMLElement | null;
+        const counter = deck.querySelector('[data-deck-counter]');
+        const prevBtn = deck.querySelector('[data-deck-prev]');
+        const nextBtn = deck.querySelector('[data-deck-next]');
+        if (!stage || slides.length === 0) return;
+
+        let index = 0;
+
+        // How far each neighbour sits from the middle, per depth level.
+        // `op` is the strength of the white veil drawn over an inactive card.
+        const step = (depth: number, narrow: boolean) => {
+          if (depth === 1) return { x: narrow ? 76 : 54, z: -180, ry: narrow ? 0 : 22, s: narrow ? 0.9 : 0.86, op: 0.5, zi: 30 };
+          if (depth === 2) return { x: narrow ? 104 : 80, z: -340, ry: narrow ? 0 : 28, s: narrow ? 0.82 : 0.74, op: 0.78, zi: 20 };
+          return { x: narrow ? 120 : 96, z: -430, ry: narrow ? 0 : 30, s: 0.7, op: 0.9, zi: 10 };
+        };
+
+        // Offsets wrap, so the deck always has a card on both sides.
+        const offsetOf = (i: number) => {
+          const n = slides.length;
+          let o = i - index;
+          if (o > n / 2) o -= n;
+          if (o < -n / 2) o += n;
+          return o;
+        };
+
+        const layout = () => {
+          const narrow = window.innerWidth <= 760;
+          slides.forEach((slide, i) => {
+            const offset = offsetOf(i);
+            const depth = Math.abs(offset);
+            const dir = Math.sign(offset);
+            const active = depth === 0;
+            const { x, z, ry, s, op, zi } = active
+              ? { x: 0, z: 0, ry: 0, s: 1, op: 0, zi: 40 }
+              : step(depth, narrow);
+            slide.style.transform =
+              `translate3d(calc(-50% + ${dir * x}%), 0, ${z}px) rotateY(${-dir * ry}deg) scale(${s})`;
+            // Cards stay opaque so they don't show through one another; the
+            // fade comes from a veil over each inactive card instead.
+            slide.style.opacity = depth > 2 ? '0' : '1';
+            slide.style.setProperty('--veil', String(op));
+            slide.style.zIndex = String(zi);
+            slide.style.pointerEvents = depth > 2 ? 'none' : 'auto';
+            slide.classList.toggle('is-active', active);
+            slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          });
+          Array.from(dotsWrap?.children ?? []).forEach((d, i) => {
+            d.classList.toggle('active', i === index);
+            d.setAttribute('aria-selected', i === index ? 'true' : 'false');
+          });
+          if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+        };
+
+        // The stage is absolutely stacked, so it needs an explicit height. It
+        // is sized once to the tallest card so navigating never resizes the
+        // section and no card ever scrolls inside itself.
+        const cards = slides
+          .map((s) => s.querySelector('.card'))
+          .filter(Boolean) as HTMLElement[];
+
+        const setHeight = () => {
+          if (cards.length === 0) return;
+          // Free every card in one pass, read them all, then restore — one
+          // reflow instead of one per card.
+          cards.forEach((c) => { c.style.height = 'auto'; });
+          const tallest = cards.reduce((max, c) => Math.max(max, c.scrollHeight), 0);
+          cards.forEach((c) => { c.style.height = ''; });
+          stage.style.height = tallest + 8 + 'px';
+        };
+
+        const go = (i: number) => {
+          index = (i + slides.length) % slides.length;
+          layout();
+        };
+
+        nextBtn?.addEventListener('click', () => go(index + 1));
+        prevBtn?.addEventListener('click', () => go(index - 1));
+
+        slides.forEach((slide, i) => {
+          if (dotsWrap) {
+            const b = document.createElement('button');
+            b.setAttribute('role', 'tab');
+            b.setAttribute('aria-label', 'Go to card ' + (i + 1));
+            b.addEventListener('click', () => go(i));
+            dotsWrap.appendChild(b);
+          }
+          // Clicking a neighbouring card brings it to the front.
+          slide.addEventListener('click', () => { if (i !== index) go(i); });
+        });
+
+        deck.addEventListener('keydown', (e) => {
+          const key = (e as KeyboardEvent).key;
+          if (key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
+          if (key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
+        });
+
+        // Swipe / drag between cards.
+        let startX: number | null = null;
+        stage.addEventListener('pointerdown', (e) => { startX = (e as PointerEvent).clientX; });
+        stage.addEventListener('pointerup', (e) => {
+          if (startX === null) return;
+          const dx = (e as PointerEvent).clientX - startX;
+          startX = null;
+          if (Math.abs(dx) > 60) go(index + (dx < 0 ? 1 : -1));
+        });
+
+        // Jump to a specific card (used by the menu links, see below).
+        deck.addEventListener('deck:goto', (e) => {
+          const i = slides.indexOf((e as CustomEvent).detail.slide);
+          if (i >= 0) go(i);
+        });
+
+        let resizeT: ReturnType<typeof setTimeout>;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeT);
+          resizeT = setTimeout(() => { setHeight(); layout(); }, 120);
+        });
+        // Re-measure once webfonts and images have settled.
+        window.addEventListener('load', setHeight);
+
+        deck.classList.add('deck-ready');
+        setHeight();
+        go(0);
+      };
+      document.querySelectorAll('[data-deck]').forEach((el) => initDeck(el as HTMLElement));
+
+      // ---------- Card highlight from a menu / hash link ----------
+      // Menu entries point at a specific card (#solution-3, #service-7, …);
+      // arriving at one lifts the card with a gradient border and glow.
+      const highlightFromHash = () => {
+        const id = decodeURIComponent(window.location.hash.replace('#', ''));
+        document.querySelectorAll('.is-highlighted').forEach((el) => el.classList.remove('is-highlighted'));
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target || !target.classList.contains('card')) return;
+        target.classList.add('is-highlighted');
+        // A card inside a deck has to be brought to the front first.
+        const slide = target.closest('[data-deck-slide]');
+        const deck = slide?.closest('[data-deck]') as HTMLElement | null;
+        if (deck && slide) deck.dispatchEvent(new CustomEvent('deck:goto', { detail: { slide } }));
+        // The hash jump happens before this runs on a fresh load. Cards are
+        // often taller than the viewport, so align the top under the navbar
+        // rather than centring them.
+        const scrollTarget = deck ?? target;
+        requestAnimationFrame(() => {
+          const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 120;
+          const top = scrollTarget.getBoundingClientRect().top + window.scrollY - navH - 24;
+          window.scrollTo({ top, behavior: 'smooth' });
+        });
+      };
+      window.addEventListener('hashchange', highlightFromHash);
+      // Re-run for repeat clicks on the link for the card already targeted.
+      document.querySelectorAll('a[href*="#solution-"], a[href*="#service-"]').forEach((a) => {
+        a.addEventListener('click', () => setTimeout(highlightFromHash, 0));
+      });
+      highlightFromHash();
     </script>
   </body>
 </html>
