@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 import { getContent, localizedPath, type Locale } from '../i18n';
 
 export interface Props {
@@ -15,7 +17,7 @@ const home = localizedPath(locale, '');
   <div class="container footer-inner">
     <div class="footer-brand">
       <a href={home} class="brand">
-        <img src="/logo.png" alt={`${c.general.brandName} ${c.general.brandAccent} logo`} class="brand-logo" />
+        <Image src={logo} alt={`${c.general.brandName} ${c.general.brandAccent} logo`} class="brand-logo" width={200} height={200} loading="lazy" />
         <span class="brand-name gradient-text">{c.general.brandName}<span class="brand-name-accent"> {c.general.brandAccent}</span></span>
       </a>
       <p>{c.general.tagline}</p>

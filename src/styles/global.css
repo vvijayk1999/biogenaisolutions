@@ -21,9 +21,19 @@
   --gradient: linear-gradient(90deg, #2D7FF9 0%, #3658F5 25%, #A83BF7 50%, #FF3B8B 75%, #FF8A00 100%);
   --gradient-soft: linear-gradient(135deg, rgba(45, 127, 249, 0.08) 0%, rgba(168, 59, 247, 0.08) 50%, rgba(255, 138, 0, 0.08) 100%);
 
-  /* Type */
-  --font-head: Arial, Helvetica, sans-serif;
-  --font-body: "Arial Narrow", "Helvetica Neue Condensed", Arial, sans-serif;
+  /* Type
+     Manrope for headings — geometric with enough character to carry a
+     headline; Inter for body, which stays legible down to 13px. Both are
+     self-hosted variable fonts covering Latin, Latin-ext and Cyrillic.
+     Scripts they don't cover (Arabic, Korean, Chinese) fall through to the
+     platform's own faces, picked per glyph. */
+  --font-intl: "Noto Sans Arabic", "Geeza Pro", "Noto Sans SC", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans KR", "Apple SD Gothic Neo",
+    "Malgun Gothic";
+  --font-head: "Manrope Variable", system-ui, -apple-system, "Segoe UI",
+    var(--font-intl), sans-serif;
+  --font-body: "Inter Variable", system-ui, -apple-system, "Segoe UI",
+    var(--font-intl), sans-serif;
 
   /* Spacing & shape */
   --radius: 16px;

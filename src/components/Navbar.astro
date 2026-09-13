@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 import { getCollection } from 'astro:content';
 import { getContent, localizedPath, LOCALES, LANG_NAMES, DEFAULT_LOCALE, type Locale } from '../i18n';
 
@@ -25,7 +27,7 @@ const researchSeries = ((c.research as any)?.series ?? {}) as any;
 <header class="navbar" id="navbar">
   <div class="container nav-bar">
     <a href={home} class="brand" aria-label={`${c.general.brandName} ${c.general.brandAccent} home`}>
-      <img src="/logo.png" alt={`${c.general.brandName} ${c.general.brandAccent} logo`} class="brand-logo" />
+      <Image src={logo} alt={`${c.general.brandName} ${c.general.brandAccent} logo`} class="brand-logo" width={200} height={200} loading="eager" />
     </a>
 
     <nav class="nav-menu" id="navLinks" aria-label="Primary">

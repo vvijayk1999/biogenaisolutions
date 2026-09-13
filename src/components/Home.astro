@@ -4,6 +4,18 @@ import Footer from './Footer.astro';
 import Icon from './Icon.astro';
 import CardDeck from './CardDeck.astro';
 import ContentBlocks from './ContentBlocks.astro';
+import { Image } from 'astro:assets';
+import { backgroundStyle } from '../lib/backgrounds';
+import logoWhite from '../assets/logo-white.png';
+import heroBg from '../assets/backgrounds/hero-bg.png';
+import solutionsBg from '../assets/backgrounds/solutions-bg.png';
+import capabilitiesBg from '../assets/backgrounds/capabilities-bg.png';
+import whoWeServeBg from '../assets/backgrounds/who-we-serve-bg.png';
+import whatDrivesUsBg from '../assets/backgrounds/what-drives-us-bg.png';
+import researchBg from '../assets/backgrounds/research-bg.png';
+import newsBg from '../assets/backgrounds/news-bg.png';
+import aboutBg from '../assets/backgrounds/about-bg.png';
+import contactBg from '../assets/backgrounds/contact-bg.png';
 import { getCollection } from 'astro:content';
 import { getContent, formatDate, DEFAULT_LOCALE, type Locale } from '../i18n';
 
@@ -33,6 +45,19 @@ const newsIntro = (c.news as any)?.intro;
 const partnersContent = (c as any).partners ?? {};
 const partnersIntro = partnersContent.intro;
 // One story is lifted into the large card at the top; the rest fill the grid.
+// Section backgrounds, run through the build (AVIF with a WebP fallback).
+const bg = {
+  hero: await backgroundStyle(heroBg),
+  solutions: await backgroundStyle(solutionsBg),
+  services: await backgroundStyle((c.services as any)?.backgroundImage || capabilitiesBg),
+  industries: await backgroundStyle(whoWeServeBg),
+  principles: await backgroundStyle(whatDrivesUsBg),
+  research: await backgroundStyle(researchBg),
+  news: await backgroundStyle(newsBg),
+  about: await backgroundStyle(aboutBg),
+  contact: await backgroundStyle(contactBg),
+};
+
 const featuredPost = news.find((p) => p.data.featured) ?? news[0];
 const restPosts = news.filter((p) => p.id !== featuredPost?.id);
 const servicesIntro = (c.services as any)?.intro;
@@ -43,7 +68,7 @@ const servicesIntro = (c.services as any)?.intro;
 <main>
   <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true" style="background-image: url('/hero-bg.png'); background-size: cover; background-position: center;"></div>
+    <div class="hero-bg" aria-hidden="true" style={`${bg.hero} background-size: cover; background-position: center;`}></div>
     <div class="container hero-inner">
       <div class="hero-copy">
         <span class="eyebrow">{c.hero.eyebrow}</span>
@@ -64,7 +89,7 @@ const servicesIntro = (c.services as any)?.intro;
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="hero-card">
-          <img src="/logo-white.png" alt="" class="hero-logo" />
+          <Image src={logoWhite} alt="" class="hero-logo" width={240} height={240} loading="eager" />
           <div class="hero-card-glow"></div>
           <div class="hero-tags">
             {c.hero.tags.map((t) => <span>{t}</span>)}
@@ -93,7 +118,7 @@ const servicesIntro = (c.services as any)?.intro;
       </div>
     </div>
 
-    <div class="split-top-bg" style="background-image: url('/solutions-bg.png');">
+    <div class="split-top-bg" style={bg.solutions}>
       <div class="split-top-overlay" aria-hidden="true"></div>
       <div class="container split-header-container">
         <div class="section-head">
@@ -119,7 +144,7 @@ const servicesIntro = (c.services as any)?.intro;
 
   <!-- SERVICES -->
   <section class="section section-split" id="services">
-    <div class="split-top-bg" style="background-image: url('/capabilities-bg.png');">
+    <div class="split-top-bg" style={bg.services}>
       <div class="split-top-overlay" aria-hidden="true"></div>
       <div class="container split-header-container">
         <div class="section-head">
@@ -145,7 +170,7 @@ const servicesIntro = (c.services as any)?.intro;
 
   <!-- CAROUSEL: INDUSTRIES -->
   <section class="section section-split carousel-section" id="industries">
-    <div class="split-top-bg" style="background-image: url('/who-we-serve-bg.png');">
+    <div class="split-top-bg" style={bg.industries}>
       <div class="split-top-overlay" aria-hidden="true"></div>
       <div class="container split-header-container">
         <div class="section-head">
@@ -189,7 +214,7 @@ const servicesIntro = (c.services as any)?.intro;
 
   <!-- VISION / MISSION / PHILOSOPHY -->
   <section class="section section-split" id="principles">
-    <div class="split-top-bg" style="background-image: url('/what-drives-us-bg.png');">
+    <div class="split-top-bg" style={bg.principles}>
       <div class="split-top-overlay" aria-hidden="true"></div>
       <div class="container split-header-container">
         <div class="section-head">
@@ -233,7 +258,7 @@ const servicesIntro = (c.services as any)?.intro;
 
   <!-- RESEARCH -->
   <section class="section section-split" id="research">
-    <div class="split-top-bg" style="background-image: url('/research-bg.png');">
+    <div class="split-top-bg" style={bg.research}>
       <div class="split-top-overlay" aria-hidden="true"></div>
       <div class="container split-header-container">
         <div class="section-head">
@@ -283,7 +308,7 @@ const servicesIntro = (c.services as any)?.intro;
 
   <!-- NEWS -->
   <section class="section section-split section-alt" id="news">
-    <div class="split-top-bg" style="background-image: url('/news-bg.png');">
+    <div class="split-top-bg" style={bg.news}>
       <div class="split-top-overlay" aria-hidden="true"></div>
       <div class="container split-header-container">
         <div class="section-head">
@@ -418,7 +443,7 @@ const servicesIntro = (c.services as any)?.intro;
 
   <!-- ABOUT -->
   <section class="section section-split section-alt" id="about">
-    <div class="split-top-bg" style="background-image: url('/about-bg.png');">
+    <div class="split-top-bg" style={bg.about}>
       <div class="split-top-overlay" aria-hidden="true"></div>
       <div class="container split-header-container">
         <div class="section-head">
@@ -454,7 +479,7 @@ const servicesIntro = (c.services as any)?.intro;
 
   <!-- CONTACT -->
   <section class="section section-split" id="contact">
-    <div class="split-top-bg" style="background-image: url('/contact-bg.png');">
+    <div class="split-top-bg" style={bg.contact}>
       <div class="split-top-overlay" aria-hidden="true"></div>
       <div class="container split-header-container">
         <div class="section-head">

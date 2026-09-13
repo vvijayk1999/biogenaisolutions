@@ -1,4 +1,8 @@
 ---
+// Self-hosted variable fonts. Fontsource splits them by unicode-range, so a
+// visitor only downloads the subsets their page actually uses.
+import '@fontsource-variable/inter';
+import '@fontsource-variable/manrope';
 import '../styles/global.css';
 import '../styles/variation-1.css';
 import { dir, type Locale } from '../i18n';
@@ -23,10 +27,18 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Netlify Identity widget: handles invite/recovery tokens and CMS login -->
-    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Netlify Identity invite / recovery links land on the site root with the
+         token in the hash. Previously the full identity widget (a blocking
+         third-party script) was loaded on every page just to catch that. This
+         forwards the token to /admin/, where the widget actually lives, and
+         costs visitors nothing. -->
+    <script is:inline>
+      if (window.location.hash && /^#(invite_token|recovery_token|confirmation_token|error)=/.test(window.location.hash)) {
+        window.location.replace('/admin/' + window.location.hash);
+      }
+    </script>
   </head>
   <body>
     <!-- Shared gradient referenced by every inline card icon (Icon.astro). -->

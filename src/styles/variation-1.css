@@ -849,8 +849,13 @@
 }
 @media (max-width: 900px) {
   .split-top-bg .split-intro { padding: 22px 20px; }
-  /* The title rail becomes a header band once there is no room beside it. */
-  .card-split { grid-template-columns: minmax(0, 1fr); }
+  /* The title rail becomes a header band once there is no room beside it.
+     Cards are stretched to a common height, so the body row has to absorb
+     the slack — otherwise the grid shares it out and the band balloons. */
+  .card-split {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
   .card-aside {
     padding: 28px 30px 22px;
     border-right: none;
