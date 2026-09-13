@@ -20,6 +20,7 @@ recent = recent.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).sl
 // arrival (see the card-highlight handler in Layout.astro).
 const solutionLinks = c.solutions.items.map((it, i) => ({ title: it.title, href: `${home}#solution-${i + 1}` }));
 const serviceLinks = c.services.items.map((it, i) => ({ title: it.title, href: `${home}#service-${i + 1}` }));
+const researchSeries = ((c.research as any)?.series ?? {}) as any;
 ---
 <header class="navbar" id="navbar">
   <div class="container nav-bar">
@@ -37,7 +38,7 @@ const serviceLinks = c.services.items.map((it, i) => ({ title: it.title, href: `
         <div class="mega">
           <div class="container mega-inner">
             <div class="mega-col mega-feature mega-col-full">
-              <h4>{c.solutions.eyebrow}</h4>
+              <h4>{nav.solutions}</h4>
               <div class="mega-list">
                 {solutionLinks.map((it) => (
                   <a class="mega-link-lg" href={it.href}>{it.title}</a>
@@ -53,7 +54,7 @@ const serviceLinks = c.services.items.map((it, i) => ({ title: it.title, href: `
         <div class="mega">
           <div class="container mega-inner">
             <div class="mega-col mega-feature mega-col-full">
-              <h4>{c.services.eyebrow}</h4>
+              <h4>{nav.services}</h4>
               <div class="mega-list">
                 {serviceLinks.map((it) => (
                   <a class="mega-link-lg" href={it.href}>{it.title}</a>
@@ -69,10 +70,9 @@ const serviceLinks = c.services.items.map((it, i) => ({ title: it.title, href: `
         <div class="mega">
           <div class="container mega-inner">
             <div class="mega-col mega-feature">
-              <h4>{c.research.eyebrow}</h4>
-              {c.research.items.map((it) => (
-                <a class="mega-link-lg" href={it.url} target="_blank" rel="noopener noreferrer">{it.title}</a>
-              ))}
+              <h4>{nav.research}</h4>
+              <a class="mega-link-lg" href={researchSeries.url} target="_blank" rel="noopener noreferrer">{researchSeries.title}</a>
+              <a class="mega-link-lg" href={`${home}#research`}>{c.research.papersHeading}</a>
             </div>
             <div class="mega-col">
               <h4>{c.carousel.eyebrow}</h4>

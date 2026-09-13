@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
-import { collectUnits } from './lib/walk.mjs';
+import { collectUnits, restoreStructure } from './lib/walk.mjs';
 import { getPath, setPath, pathToKey } from './lib/path.mjs';
 import { hashValue } from './lib/hash.mjs';
 import { translateJson } from './lib/openai.mjs';
@@ -65,7 +65,9 @@ export async function translateSiteJson() {
         console.warn(`[${locale}] missing translation for "${key}", skipping.`);
         continue;
       }
-      setPath(localeData, unitPath, value);
+      // Put icon names, block types and the like back — the model sees them
+      // inside the arrays it translates and can't be trusted to leave them.
+      setPath(localeData, unitPath, restoreStructure(toTranslate[key], value));
     }
 
     await writeJson(localePath, localeData);

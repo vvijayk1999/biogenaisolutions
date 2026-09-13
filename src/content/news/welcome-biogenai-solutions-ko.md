@@ -3,7 +3,7 @@ title: BioGenAI 솔루션 소개
 date: 2026-06-26T00:00:00.000Z
 summary: '우리는 의료, 생명공학 및 연구 팀이 정밀 의학을 위한 책임감 있고 확장 가능한 GenAI를 배포할 수 있도록 돕기 위해 출범합니다.'
 lang: ko
-draft: false
+draft: true
 translationKey: welcome-biogenai-solutions
 ---
 BioGenAI 솔루션이 공식적으로 개설되었습니다. 우리는 의료 제공자, 생명공학 회사, 제약 조직, 연구 기관 및 기업과 협력하여 대규모 언어 모델, 검색 보강 생성, 에이전틱 AI, 기계 학습, 생물정보학, 유전체학 및 HL7 상호 운용성을 활용합니다.

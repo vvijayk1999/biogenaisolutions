@@ -16,3 +16,5 @@ yarn-error.log*
 # editor
 .vscode/
 .idea/
+# Word lock files (docs/ is tracked)
+~$*

@@ -6,7 +6,7 @@ summary: >-
   investigación a implementar GenAI responsable y escalable para la medicina de
   precisión.
 lang: es
-draft: false
+draft: true
 translationKey: welcome-biogenai-solutions
 ---
 BioGenAI Solutions está oficialmente abierta. Colaboramos con proveedores de atención médica,

@@ -271,64 +271,103 @@
 [dir="rtl"] .card-head { flex-direction: row; }
 
 /* ============================================================
-   3D CARD DECK — Solutions & Services
-   The active card sits front and centre with its neighbours
-   rotated back either side, so a long card set reads as one
-   screen instead of many rows.
+   FLAT CARD CAROUSEL — Solutions & Services
+   One card fills the window and the track slides sideways, so
+   a long card set reads as one screen instead of many rows.
    ============================================================ */
-.deck-content {
-  /* Let the side cards bleed past the container without adding
-     a horizontal scrollbar to the page. `clip` avoids making this a
-     scroll container; `hidden` is the fallback for older browsers. */
-  overflow-x: hidden;
-  overflow-x: clip;
-  padding-bottom: 72px;
-}
-/* The deck gets a wider container than the rest of the page so the cards can
-   be wide enough to keep the copy from stacking up vertically. */
-.deck-content > .container { max-width: 1420px; }
+.deck-content { padding-bottom: 72px; }
+/* The carousel gets a wider container than the rest of the page so the cards
+   can be wide enough to keep the copy from stacking up vertically. */
+.deck-content > .container { max-width: 1120px; }
 .deck { position: relative; }
 .deck-viewport { position: relative; }
 
-.deck-stage {
-  position: relative;
-  height: 620px;
-  perspective: 1700px;
-  transition: height 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
-  /* Fade the neighbours out at the edges rather than letting the viewport
-     slice them mid-word. */
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+/* The window clips the track. The inline padding leaves room for the card
+   shadow, and is pulled back out so the card still lines up with the
+   container edge. */
+.deck-window {
+  overflow: hidden;
+  padding: 6px 14px;
+  margin: -6px -14px;
 }
 
-.deck-slide {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 68%;
-  height: 100%;
-  transform: translateX(-50%);
-  transform-origin: 50% 50%;
-  transition:
-    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 0.45s ease;
-  will-change: transform, opacity;
+.deck-track {
+  display: flex;
+  align-items: stretch;
+  column-gap: 28px;
+  /* Every card takes the height of the tallest, so the section never
+     resizes as you move between them. */
+  align-items: stretch;
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+  touch-action: pan-y;
 }
-/* Before the script runs, show the first card and hide the stack
-   behind it rather than piling every card on top of each other. */
-.deck:not(.deck-ready) .deck-slide { opacity: 0; }
-.deck:not(.deck-ready) .deck-slide:first-child { opacity: 1; }
+/* Before the script runs, show the first card and hide the rest rather than
+   letting all fourteen render in a row. */
+.deck:not(.deck-ready) .deck-slide + .deck-slide { visibility: hidden; }
+
+.deck-slide { flex: 0 0 100%; min-width: 0; display: flex; }
 
 .deck-slide .card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 36px 40px;
-  overflow: hidden;
+  flex: 1;
+  padding: 0;
 }
 
+/* The card is a title rail beside a content column. Without this the copy
+   ran the full 1100px — 150 characters a line — and every card was a slab
+   of white with the text clinging to the top-left. */
+.card-split {
+  display: grid;
+  grid-template-columns: 296px minmax(0, 1fr);
+  align-items: stretch;
+}
+.card-aside {
+  padding: 42px 34px 42px 40px;
+  background: linear-gradient(170deg, #FBFCFE 0%, #F5F7FB 100%);
+  border-right: 1px solid var(--border);
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+[dir="rtl"] .card-aside {
+  border-right: none;
+  border-left: 1px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.card-aside h3 {
+  margin: 18px 0 0;
+  font-size: 25px !important;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.card-aside .card-tagline {
+  margin: 12px 0 0;
+  font-size: 15px !important;
+  line-height: 1.45;
+  color: var(--slate);
+}
+/* A short gradient rule ties the rail to the brand without another box. */
+.card-aside::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 3px;
+  border-radius: 3px;
+  margin-top: 20px;
+  background: var(--gradient);
+}
+.card-body {
+  padding: 42px 44px;
+  min-width: 0;
+}
+.deck-slide .card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+}
+.deck-slide.is-active .card { box-shadow: var(--shadow-lg); }
+
 /* A wide card leaves room to run a long list in columns, which is what
-   actually keeps the deck short. */
+   actually keeps the carousel short. */
 /* `.card-list` is a grid, and multicol does not apply to grid containers —
    the split variants have to go back to block flow. */
 .deck-slide .card-list.card-list-split,
@@ -347,23 +386,106 @@
   .deck-slide .card-list.card-list-split-3 { columns: 1; }
 }
 .deck-slide .card h3 { font-size: 22px; line-height: 1.2; }
-.deck-slide:not(.is-active) { cursor: pointer; }
-.deck-slide.is-active .card { box-shadow: var(--shadow-lg); }
 
-/* Inactive cards are dimmed by a veil rather than by their own opacity, so
-   the card behind never shows through the one in front. */
-.deck-slide::after {
+/* A "A + B + C" line that the source document sets apart from the body copy. */
+.blocks > * + * { margin-top: 14px; }
+.blocks > p {
+  font-size: 17px !important;
+  line-height: 1.58;
+  color: var(--slate-dark);
+}
+/* The opening line carries the card, so it gets the weight. */
+.blocks > p:first-child {
+  font-size: 19px !important;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.blocks > p strong { color: var(--ink); font-weight: 700; }
+/* A line ending in a colon introduces whatever follows — pull them together
+   so the pair reads as one unit instead of two stranded paragraphs. */
+.blocks > p:has(+ ul),
+.blocks > p:has(+ ol) { margin-bottom: -2px; }
+.blocks > .card-list + p,
+.blocks > .card-chips + p,
+.blocks > .card-flow + p,
+.blocks > .card-steps + p { margin-top: 20px; }
+
+.card-highlight {
+  position: relative;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 16px !important;
+  line-height: 1.55;
+  color: var(--ink);
+  background: linear-gradient(135deg, rgba(45, 127, 249, 0.07) 0%, rgba(168, 59, 247, 0.07) 55%, rgba(255, 59, 139, 0.05) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.16);
+  border-radius: 12px;
+  padding: 15px 20px 15px 24px;
+  margin: 0;
+}
+.card-highlight::before {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  background: var(--bg-soft);
-  opacity: var(--veil, 0);
-  transition: opacity 0.45s ease;
-  pointer-events: none;
+  inset-inline-start: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--gradient);
 }
-.deck-slide:hover::after { opacity: calc(var(--veil, 0) * 0.72); }
+/* When it follows the sentence that introduces it, it belongs tight under
+   that line rather than floating above the next block. */
+.card-highlight + .card-note { margin-top: 16px; }
 
+/* Named stages. Laid out as one timeline down the column rather than a grid
+   of boxes: five boxes wrapped 3-then-2 and left a hole, and each box was too
+   narrow to hold its chain without stacking one chip per line. */
+.card-stages {
+  position: relative;
+  margin: 18px 0 0;
+  padding-inline-start: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.card-stages::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #2D7FF9 0%, #A83BF7 55%, #FF3B8B 100%);
+  opacity: 0.55;
+}
+.card-stage { position: relative; }
+.card-stage::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -28px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #A83BF7;
+}
+.card-stage h4 {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.card-stage p {
+  margin: 5px 0 0;
+  font-size: 15px !important;
+  line-height: 1.5;
+  color: var(--slate-dark);
+}
+.card-stage .card-flow { margin-top: 10px; gap: 7px; }
+.card-stage .card-flow li { font-size: 13px !important; padding: 5px 12px; gap: 8px; }
 
 .deck-arrow {
   position: absolute;
@@ -371,11 +493,16 @@
   transform: translateY(-50%);
   z-index: 50;
 }
-.deck-arrow-prev { left: -8px; }
-.deck-arrow-next { right: -8px; }
-[dir="rtl"] .deck-arrow-prev { left: auto; right: -8px; }
-[dir="rtl"] .deck-arrow-next { right: auto; left: -8px; }
+.deck-arrow-prev { left: -22px; }
+.deck-arrow-next { right: -22px; }
+[dir="rtl"] .deck-arrow-prev { left: auto; right: -22px; }
+[dir="rtl"] .deck-arrow-next { right: auto; left: -22px; }
 .deck-arrow:hover { transform: translateY(-50%) scale(1.06); }
+.deck-arrow:disabled {
+  opacity: 0.32;
+  cursor: default;
+  transform: translateY(-50%);
+}
 
 .deck-footer {
   display: flex;
@@ -415,15 +542,6 @@
   color: var(--slate-dark);
   margin-bottom: 8px;
 }
-.card-list-label {
-  font-family: var(--font-head);
-  font-size: 13px !important;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--slate);
-  margin-top: 15px;
-}
 .card-list {
   list-style: none;
   margin: 12px 0 0;
@@ -449,40 +567,113 @@
 [dir="rtl"] .card-list li { padding-left: 0; padding-right: 22px; }
 [dir="rtl"] .card-list li::before { left: auto; right: 0; }
 
-/* Pipeline / workflow chains rendered as connected chips. */
+/* The documents' numbered lists ("1. Applied Scientific Innovation — …").
+   The marker is real list numbering, so the copy never carries "1." itself. */
+.card-numbered {
+  list-style: none;
+  counter-reset: cardnum;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.card-numbered li {
+  counter-increment: cardnum;
+  position: relative;
+  padding-inline-start: 38px;
+  font-size: 16px !important;
+  line-height: 1.55;
+  color: var(--slate-dark);
+}
+.card-numbered li::before {
+  content: counter(cardnum);
+  position: absolute;
+  inset-inline-start: 0;
+  top: 1px;
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #3658F5 0%, #A83BF7 100%);
+}
+.card-numbered li strong { color: var(--ink); }
+
+/* Pipeline chains. The connector sits INSIDE each pill: floating it in the
+   gap left arrows stranded in white space and dangling at line ends. */
 .card-flow {
   list-style: none;
   margin: 16px 0 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 26px;
+  gap: 8px;
 }
 .card-flow li {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-family: var(--font-head);
   font-size: 14px !important;
   font-weight: 600;
-  color: var(--slate-dark);
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
+  color: var(--ink);
+  background: #F3F5FA;
+  border: 1px solid #E0E5EF;
   border-radius: 999px;
-  padding: 5px 12px;
+  padding: 7px 14px;
+}
+.card-flow li:not(:last-child)::after {
+  content: "\2192";
+  color: #94A3B8;
+  font-weight: 400;
+  margin-inline-end: -2px;
+}
+[dir="rtl"] .card-flow li:not(:last-child)::after { content: "\2190"; }
+
+/* Ordered pipelines. Numbered pills that wrap, rather than a vertical
+   timeline: eight stacked steps set the height for every card in the
+   carousel. The number carries the sequence, so a line break mid-chain
+   can't be misread the way a dangling arrow would be. */
+.card-steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.card-steps li {
+  counter-increment: step;
   display: inline-flex;
   align-items: center;
+  gap: 9px;
+  font-family: var(--font-head);
+  font-size: 14px !important;
+  font-weight: 600;
+  color: var(--ink);
+  background: #F3F5FA;
+  border: 1px solid #E0E5EF;
+  border-radius: 999px;
+  padding: 5px 15px 5px 5px;
 }
-/* The connector sits between the chips, not inside them. */
-.card-flow li { position: relative; }
-.card-flow li:not(:last-child)::after {
-  content: "→";
-  position: absolute;
-  top: 50%;
-  right: -21px;
-  transform: translateY(-50%);
-  color: var(--slate-light);
-  font-weight: 400;
+.card-steps li::before {
+  content: counter(step);
+  flex: none;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #3658F5 0%, #A83BF7 100%);
 }
-[dir="rtl"] .card-flow li:not(:last-child)::after { content: "←"; right: auto; left: -21px; }
 
 /* Short list entries render as wrapping chips — several per row instead of
    one bullet per line, which is what keeps the deck short. */
@@ -495,15 +686,14 @@
   gap: 8px;
 }
 .card-chips li {
-  display: inline-flex;
-  align-items: center;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--slate-dark);
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
+  font-family: var(--font-head);
+  font-size: 14px !important;
+  font-weight: 600;
+  color: var(--ink);
+  background: #F3F5FA;
+  border: 1px solid #E0E5EF;
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 7px 14px;
 }
 
 .card-note {
@@ -541,40 +731,66 @@
 .split-top-bg .split-intro {
   position: relative;
   z-index: 2;
-  max-width: 880px;
-  margin: 4px auto 26px;
-  text-align: center;
-  padding: 26px 32px;
-  border-radius: var(--radius);
-  background: rgba(10, 15, 26, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  -webkit-backdrop-filter: blur(7px);
-  backdrop-filter: blur(7px);
+  max-width: 820px;
+  margin: 10px auto 30px;
+  /* Centred multi-line paragraphs are hard to track back to; the ragged
+     left edge was the main reason this block read as dense and unfinished. */
+  text-align: start;
+  padding: 30px 36px;
+  border-radius: 18px;
+  background: rgba(8, 13, 24, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 .split-intro-title {
   color: #ffffff;
   font-size: 26px;
   margin-bottom: 12px;
 }
-.split-intro-lead {
-  color: #E2E8F0 !important;
-  font-size: 18px !important;
-  line-height: 1.45;
-}
-.split-intro-highlight {
-  margin: 14px 0;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 15px !important;
-  line-height: 1.6;
-  color: #7DD3FC !important;
-}
-.split-intro-p {
+/* The intro sits on a dark image overlay, so its blocks take a
+   light-on-dark palette rather than the card palette. */
+.split-intro-blocks > p {
   color: #CBD5E1 !important;
   font-size: 16px !important;
   line-height: 1.5;
   margin-top: 10px;
 }
+.split-intro-blocks > p:first-child {
+  color: #E2E8F0 !important;
+  font-size: 18px !important;
+  line-height: 1.45;
+  margin-top: 0;
+}
+.split-intro-blocks > .card-highlight {
+  margin: 16px 0;
+  padding: 14px 18px;
+  background: rgba(56, 189, 248, 0.10);
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  border-radius: 12px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 15px !important;
+  line-height: 1.6;
+  color: #BAE6FD !important;
+}
+.split-intro-blocks > .card-highlight::before {
+  top: 10px;
+  bottom: 10px;
+  opacity: 0.9;
+}
+.card-highlight::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--gradient);
+}
+.split-intro-blocks > p strong { color: #FFFFFF; font-weight: 700; }
 
 /* ---------- Mega menu: single column list (todo 1) ---------- */
 .mega-col-full { flex: 1 1 100%; }
@@ -625,28 +841,63 @@
 @media (max-width: 1024px) {
   .mega-col-full .mega-list { columns: 2; }
 }
+@media (max-width: 1024px) {
+  .card-split { grid-template-columns: 248px minmax(0, 1fr); }
+  .card-aside { padding: 34px 26px 34px 30px; }
+  .card-body { padding: 34px 32px; }
+  .card-aside h3 { font-size: 22px !important; }
+}
 @media (max-width: 900px) {
   .split-top-bg .split-intro { padding: 22px 20px; }
-  .deck-slide { width: 72%; }
+  /* The title rail becomes a header band once there is no room beside it. */
+  .card-split { grid-template-columns: minmax(0, 1fr); }
+  .card-aside {
+    padding: 28px 30px 22px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  [dir="rtl"] .card-aside {
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .card-aside::after { margin-top: 16px; }
+  .card-body { padding: 28px 30px 32px; }
+}
+@media (max-width: 1160px) {
+  /* Not enough container gutter left for the arrows to hang outside, so
+     inset the window and let them sit in the space that frees up. */
+  .deck-viewport { padding-inline: 52px; }
+  .deck-arrow-prev { left: 0; }
+  .deck-arrow-next { right: 0; }
+  [dir="rtl"] .deck-arrow-prev { left: auto; right: 0; }
+  [dir="rtl"] .deck-arrow-next { right: auto; left: 0; }
+}
+@media (max-width: 640px) {
+  /* On a phone the arrows would cost more width than they are worth —
+     swiping and the dots carry the navigation instead. */
+  .deck-viewport { padding-inline: 0; }
+  .deck-arrow { display: none; }
 }
 @media (max-width: 760px) {
-  .deck-slide { width: 84%; }
-  .deck-arrow-prev { left: -14px; }
-  .deck-arrow-next { right: -14px; }
-  [dir="rtl"] .deck-arrow-prev { left: auto; right: -14px; }
-  [dir="rtl"] .deck-arrow-next { right: auto; left: -14px; }
   .deck-footer { flex-direction: column-reverse; gap: 14px; }
+  .card-stages { padding-inline-start: 24px; }
 }
 @media (max-width: 560px) {
   .card-head { gap: 11px; }
   .card-icon { width: 40px; height: 40px; border-radius: 11px; }
-  .deck-slide .card { padding: 26px 22px; }
-  .deck-slide .card h3 { font-size: 20px; }
+  .deck-slide .card-icon { width: 44px; height: 44px; border-radius: 12px; }
+  .card-aside { padding: 22px 20px 18px; }
+  .card-body { padding: 22px 20px 26px; }
+  .deck-slide .card h3 { font-size: 20px !important; }
+  .blocks > p { font-size: 16px !important; }
+  .blocks > p:first-child { font-size: 17px !important; }
   .carousel-single .carousel-card { padding: 28px 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .card.is-highlighted { animation: none; }
-  .deck-slide, .deck-stage { transition: none; }
+  .deck-track { transition: none; }
 }
 
 /* Card body copy sits at 18px in the carousel and pillar cards too (todo 6). */
@@ -654,3 +905,212 @@
 .carousel-card .carousel-badge { font-size: 24px; margin-bottom: 10px; }
 .pillar p { font-size: 18px; line-height: 1.45; }
 .pillar .card-head { margin-bottom: 10px; }
+
+/* ============================================================
+   RESEARCH — flagship series card + published papers
+   ============================================================ */
+.research-series { margin-bottom: 56px; }
+.research-series .card-aside h3 { font-size: 21px !important; }
+.research-series .research-link { margin-top: 20px; display: inline-flex; }
+
+.papers-heading {
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.papers-heading + .papers-list { margin-top: 22px; }
+
+/* Twenty-nine entries: numbered, and in columns so the list doesn't become
+   a single scroll of its own. */
+.papers-list {
+  list-style: none;
+  counter-reset: paper;
+  margin: 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 46px;
+}
+.paper {
+  counter-increment: paper;
+  break-inside: avoid;
+  position: relative;
+  padding: 0 0 18px 34px;
+}
+.paper::before {
+  content: counter(paper);
+  position: absolute;
+  inset-inline-start: 0;
+  top: 2px;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slate-light);
+  font-variant-numeric: tabular-nums;
+}
+.paper-title {
+  margin: 0;
+  font-size: 15px !important;
+  line-height: 1.45;
+  color: var(--ink);
+  font-weight: 600;
+}
+.paper-credit {
+  margin: 4px 0 0;
+  font-size: 14px !important;
+  line-height: 1.4;
+  color: var(--slate);
+}
+@media (max-width: 900px) { .papers-list { columns: 1; } }
+
+/* ============================================================
+   NEWS — one featured story above the grid
+   ============================================================ */
+.news-featured {
+  position: relative;
+  background: linear-gradient(135deg, #10182B 0%, #1B1233 55%, #2A1430 100%);
+  border-radius: var(--radius);
+  padding: 42px 46px;
+  margin-bottom: 34px;
+  overflow: hidden;
+}
+.news-featured::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--gradient);
+}
+.news-featured-body { max-width: 760px; }
+.news-featured h3 {
+  margin: 14px 0 0;
+  font-size: 30px;
+  line-height: 1.18;
+  color: #fff;
+}
+.news-featured-summary {
+  margin: 14px 0 0;
+  font-size: 17px !important;
+  line-height: 1.55;
+  color: #CBD5E1;
+}
+.news-featured .news-category {
+  margin: 16px 0 0;
+  color: #7DD3FC;
+}
+.news-featured .news-date { color: #94A3B8; }
+.news-featured .research-link { margin-top: 20px; color: #fff; }
+
+.news-featured-tag {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gradient);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+.news-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin: 0;
+}
+.news-category {
+  font-family: var(--font-head);
+  font-size: 12px !important;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6D5AE6;
+  margin: 0;
+}
+.news-card .news-date { font-size: 13px; }
+.news-card h3 { margin-top: 10px; }
+
+/* ============================================================
+   PARTNERS — intro copy and the closing call to action
+   ============================================================ */
+.partners-intro {
+  max-width: 820px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+.partners-intro .blocks > p { font-size: 17px !important; line-height: 1.6; color: var(--slate-dark); }
+.partners-intro .blocks > p strong { color: var(--ink); }
+
+.partner-card { position: relative; }
+.partner-index {
+  position: absolute;
+  top: 22px;
+  inset-inline-end: 26px;
+  font-family: var(--font-head);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--border);
+}
+.partners-closing {
+  max-width: 720px;
+  margin: 40px auto 0;
+  text-align: center;
+}
+.partners-closing p {
+  font-size: 18px !important;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+
+/* ============================================================
+   Blocks on a dark image overlay.
+   The card palette is authored for white cards, and several of its rules
+   (`.blocks > p strong`, `.card-numbered li`, …) out-specify a bare
+   `.split-intro-blocks` override — which silently rendered dark ink on a
+   dark panel. Everything the overlay can contain is re-stated here, at
+   matching specificity, so a new block type can't reintroduce the bug.
+   ============================================================ */
+.split-intro-blocks > p,
+.split-intro-blocks > .card-numbered li,
+.split-intro-blocks > .card-list li { color: #CBD5E1 !important; }
+
+.split-intro-blocks > p strong,
+.split-intro-blocks > .card-numbered li strong,
+.split-intro-blocks > .card-list li strong { color: #FFFFFF !important; }
+
+.split-intro-blocks > .card-numbered { gap: 10px; }
+.split-intro-blocks > .card-numbered li { font-size: 15px !important; }
+.split-intro-blocks > .card-numbered li::before {
+  background: rgba(125, 211, 252, 0.16);
+  color: #BAE6FD;
+  border: 1px solid rgba(125, 211, 252, 0.3);
+}
+
+.split-intro-blocks > .card-steps li::before {
+  background: rgba(125, 211, 252, 0.18);
+  color: #BAE6FD;
+}
+.split-intro-blocks > .card-chips li,
+.split-intro-blocks > .card-flow li,
+.split-intro-blocks > .card-steps li {
+  color: #E2E8F0 !important;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.split-intro-blocks > .card-note {
+  color: #94A3B8 !important;
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+
+.news-featured-heading {
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--ink);
+  margin: 0 0 16px;
+}

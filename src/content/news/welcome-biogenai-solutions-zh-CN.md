@@ -3,7 +3,7 @@ title: 推出 BioGenAI 解决方案
 date: 2026-06-26T00:00:00.000Z
 summary: 我们推出此服务，旨在帮助医疗保健、生物科技和研究团队部署负责任、可扩展的 GenAI，以实现精准医疗。
 lang: zh-CN
-draft: false
+draft: true
 translationKey: welcome-biogenai-solutions
 ---
 BioGenAI 解决方案现已正式开放。我们与医疗服务提供者、生物技术公司、制药组织、研究机构和企业合作，利用大型语言模型、增强检索生成、智能代理 AI、机器学习、生物信息学、基因组学以及 HL7 互操作性。

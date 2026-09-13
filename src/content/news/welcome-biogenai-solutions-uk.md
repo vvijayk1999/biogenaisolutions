@@ -6,7 +6,7 @@ summary: >-
   біотехнологій та досліджень впроваджувати відповідальний, масштабований GenAI
   для точної медицини.
 lang: uk
-draft: false
+draft: true
 translationKey: welcome-biogenai-solutions
 ---
 Рішення BioGenAI офіційно відкрито. Ми співпрацюємо з постачальниками медичних послуг,

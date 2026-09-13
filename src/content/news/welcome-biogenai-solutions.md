@@ -5,7 +5,7 @@ lang: en
 summary: >-
   We're launching to help healthcare, biotech, and research teams deploy
   responsible, scalable GenAI for precision medicine.
-draft: false
+draft: true
 translationKey: welcome-biogenai-solutions
 ---
 BioGenAI Solutions is officially open. We partner with healthcare providers,

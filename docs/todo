@@ -1,0 +1,9 @@
+1. When howering the solutions menu, we only need the left column list. Need to remove the right column.
+2. There will be more text overlay content overlay for all the images. (currently the Solutions and Services are given in the documents docs/Services_Page_Content.pdf and docs/Solutions_Page_Content.pdf) add the content given in the first box of each document appropriately.
+3. Replace all the card contents of the Solutions section as per the docs/Solutions_Page_Content.pdf, the cards are bigger now since the content is more.
+4. Replace all the contents of the Services section with the cards same as Solutions section, as per the docs.
+5. For each card in the page will have a relevant icon prefixed before the title.
+6. The text content in cards must be 18 px
+9. When clicking the item from the menu, the card gets highlighted, the highlight will be a color gradient border and shadow behind the card with slight raise in z-axis.
+10. Create a new section between News and About called "Partners", which will be a single card carousal left to right
+11. Need to fix the submit button (when submitting empty form, the request is sent. Need to suppress it)

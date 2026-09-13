@@ -696,7 +696,11 @@ main>section:nth-of-type(odd):not(:first-of-type) {
 .split-top-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(18, 24, 38, 0.4);
+  /* Darker in the middle band where the heading and intro sit, so the type
+     holds up over a busy image without flattening the whole photo. */
+  background:
+    radial-gradient(120% 75% at 50% 45%, rgba(8, 12, 22, 0.72) 0%, rgba(8, 12, 22, 0.42) 60%, rgba(8, 12, 22, 0.3) 100%),
+    rgba(18, 24, 38, 0.28);
   z-index: 1;
 }
 
@@ -717,10 +721,17 @@ main>section:nth-of-type(odd):not(:first-of-type) {
 
 .split-top-bg .split-title {
   color: #ffffff !important;
+  text-shadow: 0 2px 24px rgba(2, 6, 23, 0.5);
 }
 
 .split-top-bg .split-lead {
-  color: #CBD5E1 !important;
+  /* This slot now carries the document's section question ("Why BioGenAI
+     Solutions?"), so it reads as a sub-heading rather than body copy and
+     needs the weight to hold up over a busy image. */
+  color: #F1F5F9 !important;
+  font-family: var(--font-head);
+  font-weight: 600;
+  text-shadow: 0 1px 12px rgba(2, 6, 23, 0.55);
 }
 
 .split-bottom-content {

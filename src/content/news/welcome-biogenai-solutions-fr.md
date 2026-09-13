@@ -6,7 +6,7 @@ summary: >-
   biotechnologie et de recherche à déployer une GenAI responsable et évolutive
   pour la médecine de précision.
 lang: fr
-draft: false
+draft: true
 translationKey: welcome-biogenai-solutions
 ---
 Les solutions BioGenAI sont officiellement lancées. Nous collaborons avec des prestataires de soins de santé, des entreprises de biotechnologie, des organisations pharmaceutiques, des institutions de recherche et des entreprises pour exploiter les modèles de langage de grande taille, la génération augmentée par récupération, l'IA agentique, l'apprentissage automatique, la bioinformatique, la génomique et l'interopérabilité HL7.

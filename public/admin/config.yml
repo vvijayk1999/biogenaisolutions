@@ -60,6 +60,8 @@ collections:
           - { label: "Chinese (Simplified)", value: "zh-CN" }
           - { label: Cantonese, value: yue }
       - { label: Summary, name: summary, widget: text, hint: "Short teaser shown on the News cards." }
+      - { label: Category, name: category, widget: string, required: false, hint: "Shown above the headline, e.g. 'Research & Innovation'." }
+      - { label: Featured, name: featured, widget: boolean, default: false, hint: "Lifts this story into the large card at the top of the News section. Use it on one article at a time." }
       - { label: Featured Image, name: thumbnail, widget: image, required: false }
       - { label: Draft, name: draft, widget: boolean, default: false, hint: "Keep ON to hide from the live site." }
       - { label: Body, name: body, widget: markdown }
@@ -117,10 +119,73 @@ collections:
                 widget: object
                 collapsed: true
                 fields:
-                  - { label: Heading, name: heading, widget: string }
-                  - { label: Lead, name: lead, widget: text }
-                  - { label: Highlight Line, name: highlight, widget: text, required: false, hint: "The '+' separated discipline line, shown in accent colour." }
-                  - { label: Paragraphs, name: paragraphs, widget: list }
+                  - label: Content Blocks
+                    name: blocks
+                    widget: list
+                    label_singular: Block
+                    hint: "Add a block per paragraph or line, in the order it appears in the source document."
+                    typeKey: type
+                    types:
+                      - label: Paragraph
+                        name: paragraph
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "Body copy. Wrap words in **double asterisks** to bold them, as in the source document." }
+                      - label: "Highlight line"
+                        name: highlight
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A stand-alone emphasised line, e.g. 'Genomics + Biomarkers + Clinical Data'. Shown bold in an accent panel." }
+                      - label: "Bubbles (pills)"
+                        name: bubbles
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Short labels, a few words each. They wrap several per row as rounded pills." }
+                      - label: "Bullet list"
+                        name: bullets
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "One per line — use this when entries are full sentences. **Bold** works here too." }
+                      - label: "Numbered list"
+                        name: numbered
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Numbered 1, 2, 3 automatically — do not type the numbers into the text." }
+                      - label: "Flow (left to right)"
+                        name: flow
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Steps, name: items, widget: list, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                      - label: "Numbered steps"
+                        name: steps
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Steps, name: items, widget: list, hint: "A numbered pipeline. Use for long chains — the pills wrap, and the numbers keep the order clear." }
+                      - label: "Closing note"
+                        name: note
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A concluding remark, separated from the body above by a divider." }
+                      - label: "Stages"
+                        name: stages
+                        widget: object
+                        fields:
+                          - label: Stages
+                            name: items
+                            widget: list
+                            summary: "{{name}}"
+                            fields:
+                              - { label: Name, name: name, widget: string }
+                              - { label: Description, name: text, widget: text, required: false }
+                              - { label: Chain, name: flow, widget: list, required: false }
               - label: Cards
                 name: items
                 widget: list
@@ -130,11 +195,73 @@ collections:
                   - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml, neural, nlp, xai, disease, biomarker, drug, genai, rag, agent, layers, lifecycle, shield, strategy, stats, code, cloud, training, provider, biotech, pharma, research, enterprise, vision, mission, philosophy, partners, default] }
                   - { label: Title, name: title, widget: string }
                   - { label: Tagline, name: tagline, widget: string, required: false }
-                  - { label: Description, name: description, widget: text }
-                  - { label: List Label, name: bulletsLabel, widget: string, required: false, hint: "Small heading above the bullet list, e.g. 'Our capabilities include'. Leave blank to hide." }
-                  - { label: Bullets, name: bullets, widget: list, required: false }
-                  - { label: Workflow Chain, name: flow, widget: list, required: false, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
-                  - { label: Closing Note, name: note, widget: text, required: false }
+                  - label: Content Blocks
+                    name: blocks
+                    widget: list
+                    label_singular: Block
+                    hint: "The card body. Add a block per paragraph or list, in the order it appears in the source document — each block picks its own treatment."
+                    typeKey: type
+                    types:
+                      - label: Paragraph
+                        name: paragraph
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "Body copy. Wrap words in **double asterisks** to bold them, as in the source document." }
+                      - label: "Highlight line"
+                        name: highlight
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A stand-alone emphasised line, e.g. 'Genomics + Biomarkers + Clinical Data'. Shown bold in an accent panel." }
+                      - label: "Bubbles (pills)"
+                        name: bubbles
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Short labels, a few words each. They wrap several per row as rounded pills." }
+                      - label: "Bullet list"
+                        name: bullets
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "One per line — use this when entries are full sentences. **Bold** works here too." }
+                      - label: "Numbered list"
+                        name: numbered
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Numbered 1, 2, 3 automatically — do not type the numbers into the text." }
+                      - label: "Flow (left to right)"
+                        name: flow
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Steps, name: items, widget: list, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                      - label: "Numbered steps"
+                        name: steps
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Steps, name: items, widget: list, hint: "A numbered pipeline. Use for long chains — the pills wrap, and the numbers keep the order clear." }
+                      - label: "Closing note"
+                        name: note
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A concluding remark, separated from the body above by a divider." }
+                      - label: "Stages"
+                        name: stages
+                        widget: object
+                        fields:
+                          - label: Stages
+                            name: items
+                            widget: list
+                            summary: "{{name}}"
+                            fields:
+                              - { label: Name, name: name, widget: string }
+                              - { label: Description, name: text, widget: text, required: false }
+                              - { label: Chain, name: flow, widget: list, required: false }
           - label: Services
             name: services
             widget: object
@@ -148,10 +275,73 @@ collections:
                 widget: object
                 collapsed: true
                 fields:
-                  - { label: Heading, name: heading, widget: string }
-                  - { label: Lead, name: lead, widget: text }
-                  - { label: Highlight Line, name: highlight, widget: text, required: false, hint: "The '+' separated discipline line, shown in accent colour." }
-                  - { label: Paragraphs, name: paragraphs, widget: list }
+                  - label: Content Blocks
+                    name: blocks
+                    widget: list
+                    label_singular: Block
+                    hint: "Add a block per paragraph or line, in the order it appears in the source document."
+                    typeKey: type
+                    types:
+                      - label: Paragraph
+                        name: paragraph
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "Body copy. Wrap words in **double asterisks** to bold them, as in the source document." }
+                      - label: "Highlight line"
+                        name: highlight
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A stand-alone emphasised line, e.g. 'Genomics + Biomarkers + Clinical Data'. Shown bold in an accent panel." }
+                      - label: "Bubbles (pills)"
+                        name: bubbles
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Short labels, a few words each. They wrap several per row as rounded pills." }
+                      - label: "Bullet list"
+                        name: bullets
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "One per line — use this when entries are full sentences. **Bold** works here too." }
+                      - label: "Numbered list"
+                        name: numbered
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Numbered 1, 2, 3 automatically — do not type the numbers into the text." }
+                      - label: "Flow (left to right)"
+                        name: flow
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Steps, name: items, widget: list, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                      - label: "Numbered steps"
+                        name: steps
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Steps, name: items, widget: list, hint: "A numbered pipeline. Use for long chains — the pills wrap, and the numbers keep the order clear." }
+                      - label: "Closing note"
+                        name: note
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A concluding remark, separated from the body above by a divider." }
+                      - label: "Stages"
+                        name: stages
+                        widget: object
+                        fields:
+                          - label: Stages
+                            name: items
+                            widget: list
+                            summary: "{{name}}"
+                            fields:
+                              - { label: Name, name: name, widget: string }
+                              - { label: Description, name: text, widget: text, required: false }
+                              - { label: Chain, name: flow, widget: list, required: false }
               - label: Services
                 name: items
                 widget: list
@@ -161,11 +351,73 @@ collections:
                   - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml, neural, nlp, xai, disease, biomarker, drug, genai, rag, agent, layers, lifecycle, shield, strategy, stats, code, cloud, training, provider, biotech, pharma, research, enterprise, vision, mission, philosophy, partners, default] }
                   - { label: Title, name: title, widget: string }
                   - { label: Tagline, name: tagline, widget: string, required: false }
-                  - { label: Description, name: description, widget: text }
-                  - { label: List Label, name: bulletsLabel, widget: string, required: false }
-                  - { label: Bullets, name: bullets, widget: list, required: false }
-                  - { label: Workflow Chain, name: flow, widget: list, required: false }
-                  - { label: Closing Note, name: note, widget: text, required: false }
+                  - label: Content Blocks
+                    name: blocks
+                    widget: list
+                    label_singular: Block
+                    hint: "The card body. Add a block per paragraph or list, in the order it appears in the source document — each block picks its own treatment."
+                    typeKey: type
+                    types:
+                      - label: Paragraph
+                        name: paragraph
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "Body copy. Wrap words in **double asterisks** to bold them, as in the source document." }
+                      - label: "Highlight line"
+                        name: highlight
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A stand-alone emphasised line, e.g. 'Genomics + Biomarkers + Clinical Data'. Shown bold in an accent panel." }
+                      - label: "Bubbles (pills)"
+                        name: bubbles
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Short labels, a few words each. They wrap several per row as rounded pills." }
+                      - label: "Bullet list"
+                        name: bullets
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "One per line — use this when entries are full sentences. **Bold** works here too." }
+                      - label: "Numbered list"
+                        name: numbered
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Numbered 1, 2, 3 automatically — do not type the numbers into the text." }
+                      - label: "Flow (left to right)"
+                        name: flow
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Steps, name: items, widget: list, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                      - label: "Numbered steps"
+                        name: steps
+                        widget: object
+                        summary: "{{items}}"
+                        fields:
+                          - { label: Steps, name: items, widget: list, hint: "A numbered pipeline. Use for long chains — the pills wrap, and the numbers keep the order clear." }
+                      - label: "Closing note"
+                        name: note
+                        widget: object
+                        summary: "{{text}}"
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A concluding remark, separated from the body above by a divider." }
+                      - label: "Stages"
+                        name: stages
+                        widget: object
+                        fields:
+                          - label: Stages
+                            name: items
+                            widget: list
+                            summary: "{{name}}"
+                            fields:
+                              - { label: Name, name: name, widget: string }
+                              - { label: Description, name: text, widget: text, required: false }
+                              - { label: Chain, name: flow, widget: list, required: false }
           - label: Vision / Mission / Philosophy
             name: principles
             widget: object
@@ -199,20 +451,126 @@ collections:
             name: research
             widget: object
             fields:
-              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Eyebrow, name: eyebrow, widget: string, required: false }
               - { label: Heading, name: heading, widget: string }
               - { label: Lead, name: lead, widget: text }
-              - label: Publications
-                name: items
-                widget: list
+              - label: "Image Overlay Intro"
+                name: intro
+                widget: object
+                collapsed: true
                 fields:
-                  - { label: Tag, name: tag, widget: string }
+                  - label: Content Blocks
+                    name: blocks
+                    widget: list
+                    label_singular: Block
+                    hint: "Add a block per paragraph or list, in the order it appears in the source document."
+                    typeKey: type
+                    types:
+                      - label: Paragraph
+                        name: paragraph
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "Body copy. Wrap words in **double asterisks** to bold them, as in the source document." }
+                      - label: "Highlight line"
+                        name: highlight
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A stand-alone emphasised line. Shown bold in an accent panel." }
+                      - label: "Bubbles (pills)"
+                        name: bubbles
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Short labels, a few words each. They wrap several per row as rounded pills." }
+                      - label: "Bullet list"
+                        name: bullets
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "One per line, for entries that are full sentences. **Bold** works here too." }
+                      - label: "Numbered list"
+                        name: numbered
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Numbered 1, 2, 3 automatically — do not type the numbers into the text." }
+                      - label: "Flow (left to right)"
+                        name: flow
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                      - label: "Numbered steps"
+                        name: steps
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "A numbered pipeline. Use for long chains — the pills wrap, and the numbers keep the order clear." }
+                      - label: "Closing note"
+                        name: note
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A concluding remark, separated from the body above by a divider." }
+              - label: "Flagship Research Series"
+                name: series
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml, neural, nlp, xai, disease, biomarker, drug, genai, rag, agent, layers, lifecycle, shield, strategy, stats, code, cloud, training, provider, biotech, pharma, research, enterprise, vision, mission, philosophy, partners, default] }
                   - { label: Title, name: title, widget: string }
-                  - { label: Author, name: author, widget: string }
-                  - { label: URL, name: url, widget: string }
-              - { label: "Coming-soon Tag", name: comingSoonTag, widget: string }
-              - { label: "Coming-soon Title", name: comingSoonTitle, widget: string }
-              - { label: "Coming-soon Text", name: comingSoonText, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: string, required: false }
+                  - { label: URL, name: url, widget: string, required: false }
+                  - label: Content Blocks
+                    name: blocks
+                    widget: list
+                    label_singular: Block
+                    hint: "The description shown beside the series title."
+                    typeKey: type
+                    types:
+                      - label: Paragraph
+                        name: paragraph
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "Body copy. Wrap words in **double asterisks** to bold them, as in the source document." }
+                      - label: "Highlight line"
+                        name: highlight
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A stand-alone emphasised line. Shown bold in an accent panel." }
+                      - label: "Bubbles (pills)"
+                        name: bubbles
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Short labels, a few words each. They wrap several per row as rounded pills." }
+                      - label: "Bullet list"
+                        name: bullets
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "One per line, for entries that are full sentences. **Bold** works here too." }
+                      - label: "Numbered list"
+                        name: numbered
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Numbered 1, 2, 3 automatically — do not type the numbers into the text." }
+                      - label: "Flow (left to right)"
+                        name: flow
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                      - label: "Numbered steps"
+                        name: steps
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "A numbered pipeline. Use for long chains — the pills wrap, and the numbers keep the order clear." }
+                      - label: "Closing note"
+                        name: note
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A concluding remark, separated from the body above by a divider." }
+              - { label: "Papers Heading", name: papersHeading, widget: string }
+              - label: "Published Papers"
+                name: papers
+                widget: list
+                collapsed: true
+                summary: "{{title}}"
+                fields:
+                  - { label: Title, name: title, widget: text }
+                  - { label: "Authors & Date", name: credit, widget: text }
           - label: Contact
             name: contact
             widget: object
@@ -242,9 +600,61 @@ collections:
             name: partners
             widget: object
             fields:
-              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Eyebrow, name: eyebrow, widget: string, required: false }
               - { label: Heading, name: heading, widget: string }
               - { label: Lead, name: lead, widget: text }
+              - label: Intro
+                name: intro
+                widget: object
+                collapsed: true
+                fields:
+                  - label: Content Blocks
+                    name: blocks
+                    widget: list
+                    label_singular: Block
+                    hint: "Intro copy shown above the partner carousel."
+                    typeKey: type
+                    types:
+                      - label: Paragraph
+                        name: paragraph
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "Body copy. Wrap words in **double asterisks** to bold them, as in the source document." }
+                      - label: "Highlight line"
+                        name: highlight
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A stand-alone emphasised line. Shown bold in an accent panel." }
+                      - label: "Bubbles (pills)"
+                        name: bubbles
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Short labels, a few words each. They wrap several per row as rounded pills." }
+                      - label: "Bullet list"
+                        name: bullets
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "One per line, for entries that are full sentences. **Bold** works here too." }
+                      - label: "Numbered list"
+                        name: numbered
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Numbered 1, 2, 3 automatically — do not type the numbers into the text." }
+                      - label: "Flow (left to right)"
+                        name: flow
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                      - label: "Numbered steps"
+                        name: steps
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "A numbered pipeline. Use for long chains — the pills wrap, and the numbers keep the order clear." }
+                      - label: "Closing note"
+                        name: note
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A concluding remark, separated from the body above by a divider." }
               - label: Partners
                 name: items
                 widget: list
@@ -252,8 +662,70 @@ collections:
                 fields:
                   - { label: Icon, name: icon, widget: select, options: [precision, genomics, llm, hl7, data, ml, neural, nlp, xai, disease, biomarker, drug, genai, rag, agent, layers, lifecycle, shield, strategy, stats, code, cloud, training, provider, biotech, pharma, research, enterprise, vision, mission, philosophy, partners, default] }
                   - { label: Name, name: name, widget: string }
-                  - { label: Role, name: role, widget: string, required: false }
                   - { label: Description, name: description, widget: text }
+              - { label: "Closing Line", name: closing, widget: text, required: false }
+              - { label: "Closing Button", name: closingCta, widget: string, required: false }
+          - label: News Section
+            name: news
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Lead, name: lead, widget: text }
+              - label: "Image Overlay Intro"
+                name: intro
+                widget: object
+                collapsed: true
+                fields:
+                  - label: Content Blocks
+                    name: blocks
+                    widget: list
+                    label_singular: Block
+                    hint: "Add a block per paragraph or list, in the order it appears in the source document."
+                    typeKey: type
+                    types:
+                      - label: Paragraph
+                        name: paragraph
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "Body copy. Wrap words in **double asterisks** to bold them, as in the source document." }
+                      - label: "Highlight line"
+                        name: highlight
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A stand-alone emphasised line. Shown bold in an accent panel." }
+                      - label: "Bubbles (pills)"
+                        name: bubbles
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Short labels, a few words each. They wrap several per row as rounded pills." }
+                      - label: "Bullet list"
+                        name: bullets
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "One per line, for entries that are full sentences. **Bold** works here too." }
+                      - label: "Numbered list"
+                        name: numbered
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Numbered 1, 2, 3 automatically — do not type the numbers into the text." }
+                      - label: "Flow (left to right)"
+                        name: flow
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "Rendered as connected chips: Step 1 → Step 2 → Step 3." }
+                      - label: "Numbered steps"
+                        name: steps
+                        widget: object
+                        fields:
+                          - { label: Items, name: items, widget: list, hint: "A numbered pipeline. Use for long chains — the pills wrap, and the numbers keep the order clear." }
+                      - label: "Closing note"
+                        name: note
+                        widget: object
+                        fields:
+                          - { label: Text, name: text, widget: text, hint: "A concluding remark, separated from the body above by a divider." }
+              - { label: "Featured Tag", name: featuredTag, widget: string }
+              - { label: "Featured Heading", name: featuredHeading, widget: string }
           - label: UI Labels
             name: ui
             widget: object

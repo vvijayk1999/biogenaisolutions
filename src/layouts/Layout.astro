@@ -106,7 +106,7 @@ const {
         document.querySelectorAll(
           '.card, .pillar, .deck, .research-card, .news-card, .stat, .news-empty, .section-head, .hero-copy, .hero-visual, .about-copy, .contact-form'
         )
-        // Deck cards are stacked and 3D-transformed; the deck reveals as a unit.
+        // Individual cards sit off-screen in the carousel track; it reveals as a unit.
       ).filter((el) => !(el.classList.contains('card') && el.closest('[data-deck]')));
       revealEls.forEach((el) => el.classList.add('reveal'));
       if ('IntersectionObserver' in window) {
@@ -357,117 +357,82 @@ const {
       };
       document.querySelectorAll('[data-carousel]').forEach((el) => initCarousel(el as HTMLElement));
 
-      // ---------- 3D card decks (Solutions, Services) ----------
-      // Cards are stacked in one place and transformed into a coverflow: the
-      // active card sits front and centre, its neighbours are rotated back and
-      // dimmed but still visible either side.
+      // ---------- Flat card carousels (Solutions, Services) ----------
+      // One card fills the window at a time; the track slides sideways by a
+      // whole slide per step. No perspective, rotation or scaling.
       const initDeck = (deck: HTMLElement) => {
-        const stage = deck.querySelector('[data-deck-stage]') as HTMLElement | null;
+        const track = deck.querySelector('[data-deck-stage]') as HTMLElement | null;
         const slides = Array.from(deck.querySelectorAll('[data-deck-slide]')) as HTMLElement[];
         const dotsWrap = deck.querySelector('[data-deck-dots]') as HTMLElement | null;
         const counter = deck.querySelector('[data-deck-counter]');
-        const prevBtn = deck.querySelector('[data-deck-prev]');
-        const nextBtn = deck.querySelector('[data-deck-next]');
-        if (!stage || slides.length === 0) return;
+        const prevBtn = deck.querySelector('[data-deck-prev]') as HTMLButtonElement | null;
+        const nextBtn = deck.querySelector('[data-deck-next]') as HTMLButtonElement | null;
+        if (!track || slides.length === 0) return;
 
         let index = 0;
 
-        // How far each neighbour sits from the middle, per depth level.
-        // `op` is the strength of the white veil drawn over an inactive card.
-        const step = (depth: number, narrow: boolean) => {
-          if (depth === 1) return { x: narrow ? 76 : 54, z: -180, ry: narrow ? 0 : 22, s: narrow ? 0.9 : 0.86, op: 0.5, zi: 30 };
-          if (depth === 2) return { x: narrow ? 104 : 80, z: -340, ry: narrow ? 0 : 28, s: narrow ? 0.82 : 0.74, op: 0.78, zi: 20 };
-          return { x: narrow ? 120 : 96, z: -430, ry: narrow ? 0 : 30, s: 0.7, op: 0.9, zi: 10 };
-        };
-
-        // Offsets wrap, so the deck always has a card on both sides.
-        const offsetOf = (i: number) => {
-          const n = slides.length;
-          let o = i - index;
-          if (o > n / 2) o -= n;
-          if (o < -n / 2) o += n;
-          return o;
-        };
+        // In RTL the flex row runs right-to-left, so the track has to travel
+        // the other way for the same "next card" gesture.
+        const rtl = () => getComputedStyle(deck).direction === 'rtl';
 
         const layout = () => {
-          const narrow = window.innerWidth <= 760;
+          const first = slides[0];
+          const gap = parseFloat(getComputedStyle(track).columnGap || '0') || 0;
+          const stepPx = first.getBoundingClientRect().width + gap;
+          const dir = rtl() ? 1 : -1;
+          track.style.transform = `translate3d(${dir * index * stepPx}px, 0, 0)`;
+
           slides.forEach((slide, i) => {
-            const offset = offsetOf(i);
-            const depth = Math.abs(offset);
-            const dir = Math.sign(offset);
-            const active = depth === 0;
-            const { x, z, ry, s, op, zi } = active
-              ? { x: 0, z: 0, ry: 0, s: 1, op: 0, zi: 40 }
-              : step(depth, narrow);
-            slide.style.transform =
-              `translate3d(calc(-50% + ${dir * x}%), 0, ${z}px) rotateY(${-dir * ry}deg) scale(${s})`;
-            // Cards stay opaque so they don't show through one another; the
-            // fade comes from a veil over each inactive card instead.
-            slide.style.opacity = depth > 2 ? '0' : '1';
-            slide.style.setProperty('--veil', String(op));
-            slide.style.zIndex = String(zi);
-            slide.style.pointerEvents = depth > 2 ? 'none' : 'auto';
+            const active = i === index;
             slide.classList.toggle('is-active', active);
+            // Keep off-screen cards out of the tab order and the a11y tree.
             slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+            slide.inert = !active;
           });
           Array.from(dotsWrap?.children ?? []).forEach((d, i) => {
             d.classList.toggle('active', i === index);
             d.setAttribute('aria-selected', i === index ? 'true' : 'false');
           });
           if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
-        };
-
-        // The stage is absolutely stacked, so it needs an explicit height. It
-        // is sized once to the tallest card so navigating never resizes the
-        // section and no card ever scrolls inside itself.
-        const cards = slides
-          .map((s) => s.querySelector('.card'))
-          .filter(Boolean) as HTMLElement[];
-
-        const setHeight = () => {
-          if (cards.length === 0) return;
-          // Free every card in one pass, read them all, then restore — one
-          // reflow instead of one per card.
-          cards.forEach((c) => { c.style.height = 'auto'; });
-          const tallest = cards.reduce((max, c) => Math.max(max, c.scrollHeight), 0);
-          cards.forEach((c) => { c.style.height = ''; });
-          stage.style.height = tallest + 8 + 'px';
+          // The track stops at both ends rather than wrapping — a flat strip
+          // that jumps from the last card back to the first reads as a glitch.
+          if (prevBtn) prevBtn.disabled = index === 0;
+          if (nextBtn) nextBtn.disabled = index === slides.length - 1;
         };
 
         const go = (i: number) => {
-          index = (i + slides.length) % slides.length;
+          index = Math.min(Math.max(i, 0), slides.length - 1);
           layout();
         };
 
         nextBtn?.addEventListener('click', () => go(index + 1));
         prevBtn?.addEventListener('click', () => go(index - 1));
 
-        slides.forEach((slide, i) => {
-          if (dotsWrap) {
-            const b = document.createElement('button');
-            b.setAttribute('role', 'tab');
-            b.setAttribute('aria-label', 'Go to card ' + (i + 1));
-            b.addEventListener('click', () => go(i));
-            dotsWrap.appendChild(b);
-          }
-          // Clicking a neighbouring card brings it to the front.
-          slide.addEventListener('click', () => { if (i !== index) go(i); });
+        slides.forEach((_, i) => {
+          if (!dotsWrap) return;
+          const b = document.createElement('button');
+          b.setAttribute('role', 'tab');
+          b.setAttribute('aria-label', 'Go to card ' + (i + 1));
+          b.addEventListener('click', () => go(i));
+          dotsWrap.appendChild(b);
         });
 
         deck.addEventListener('keydown', (e) => {
           const key = (e as KeyboardEvent).key;
-          if (key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
-          if (key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
+          if (key === 'ArrowRight') { e.preventDefault(); go(index + (rtl() ? -1 : 1)); }
+          if (key === 'ArrowLeft') { e.preventDefault(); go(index + (rtl() ? 1 : -1)); }
         });
 
         // Swipe / drag between cards.
         let startX: number | null = null;
-        stage.addEventListener('pointerdown', (e) => { startX = (e as PointerEvent).clientX; });
-        stage.addEventListener('pointerup', (e) => {
+        track.addEventListener('pointerdown', (e) => { startX = (e as PointerEvent).clientX; });
+        track.addEventListener('pointerup', (e) => {
           if (startX === null) return;
           const dx = (e as PointerEvent).clientX - startX;
           startX = null;
-          if (Math.abs(dx) > 60) go(index + (dx < 0 ? 1 : -1));
+          if (Math.abs(dx) <= 60) return;
+          const forward = rtl() ? dx > 0 : dx < 0;
+          go(index + (forward ? 1 : -1));
         });
 
         // Jump to a specific card (used by the menu links, see below).
@@ -479,13 +444,12 @@ const {
         let resizeT: ReturnType<typeof setTimeout>;
         window.addEventListener('resize', () => {
           clearTimeout(resizeT);
-          resizeT = setTimeout(() => { setHeight(); layout(); }, 120);
+          resizeT = setTimeout(layout, 120);
         });
         // Re-measure once webfonts and images have settled.
-        window.addEventListener('load', setHeight);
+        window.addEventListener('load', layout);
 
         deck.classList.add('deck-ready');
-        setHeight();
         go(0);
       };
       document.querySelectorAll('[data-deck]').forEach((el) => initDeck(el as HTMLElement));

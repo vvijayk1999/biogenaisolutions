@@ -3,7 +3,7 @@ title: 介紹 BioGenAI 解決方案
 date: 2026-06-26T00:00:00.000Z
 summary: 我們的目標是幫助醫療、生命科技和研究團隊負責任地、可擴展地部署 GenAI，以實現精準醫療。
 lang: yue
-draft: false
+draft: true
 translationKey: welcome-biogenai-solutions
 ---
 BioGenAI 解決方案正式啟動。我們與醫療服務提供者、

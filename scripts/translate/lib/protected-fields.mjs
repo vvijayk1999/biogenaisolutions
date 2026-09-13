@@ -12,6 +12,11 @@ export const PROTECTED_KEYS = new Set([
   'backgroundImage',
   'brandName',
   'brandAccent',
+  // Content-block discriminators. These sit inside the `items` arrays, which
+  // are handed to the model whole, so the prompt alone isn't enough — a model
+  // localizing "paragraph" to "párrafo" would break the renderer. They're
+  // restored from English after every translation (see restoreStructure).
+  'type',
 ]);
 
 // Full dotted paths to exclude, for cases a bare key name is too broad to

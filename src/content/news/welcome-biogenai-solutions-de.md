@@ -6,7 +6,7 @@ summary: >-
   unterstützen, verantwortungsvolle und skalierbare GenAI für die präzise
   Medizin einzusetzen.
 lang: de
-draft: false
+draft: true
 translationKey: welcome-biogenai-solutions
 ---
 Die BioGenAI Lösungen sind offiziell verfügbar. Wir arbeiten mit Gesundheitsdienstleistern,
