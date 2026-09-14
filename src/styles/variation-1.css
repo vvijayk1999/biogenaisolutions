@@ -950,15 +950,15 @@
 }
 .paper-title {
   margin: 0;
-  font-size: 15px !important;
-  line-height: 1.45;
+  font-size: 18px !important;
+  line-height: 1.4;
   color: var(--ink);
   font-weight: 600;
 }
 .paper-credit {
-  margin: 4px 0 0;
-  font-size: 14px !important;
-  line-height: 1.4;
+  margin: 5px 0 0;
+  font-size: 17px !important;
+  line-height: 1.45;
   color: var(--slate);
 }
 @media (max-width: 900px) { .papers-list { columns: 1; } }
