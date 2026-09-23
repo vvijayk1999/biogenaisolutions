@@ -1,0 +1,128 @@
+/* ============================================================
+   Article and legal pages
+   Loaded only by /news/<slug>/, /legal/, /privacy/ and /terms/.
+   ============================================================ */
+
+/* ---------- Legal pages (legal, privacy, terms) ---------- */
+.legal-inner {
+  max-width: 760px;
+}
+
+.legal-back {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--slate-dark);
+  margin-bottom: 22px;
+}
+
+.legal-back:hover {
+  color: #a83bf7;
+}
+
+.legal-title {
+  text-align: left;
+}
+
+.legal-updated {
+  color: var(--slate);
+  font-size: 14px;
+  margin: 10px 0 28px;
+}
+
+.legal-body {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.legal-body h2 {
+  font-family: var(--font-head);
+  color: var(--ink);
+  font-size: 22px;
+  margin: 28px 0 10px;
+}
+
+.legal-body p {
+  margin-bottom: 16px;
+}
+
+/* ---------- News articles ---------- */
+.article-inner {
+  max-width: 760px;
+}
+
+.article-back {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--slate-dark);
+  margin-bottom: 24px;
+}
+
+.article-back:hover {
+  color: #a83bf7;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 0;
+}
+
+.article-category {
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6d5ae6;
+}
+
+.article-title {
+  font-size: clamp(30px, 4.5vw, 46px);
+  margin: 14px 0 16px;
+}
+
+.article-summary {
+  font-size: 20px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.article-media {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+}
+
+.article-media img {
+  width: 100%;
+  display: block;
+}
+
+.article-body {
+  font-size: 18px;
+  color: var(--ink);
+  line-height: 1.75;
+}
+
+.article-body p {
+  margin-bottom: 20px;
+}
+
+.article-body h2 {
+  font-family: var(--font-head);
+  margin: 32px 0 12px;
+  font-size: 26px;
+}
+
+.article-body a {
+  color: #a83bf7;
+  text-decoration: underline;
+}

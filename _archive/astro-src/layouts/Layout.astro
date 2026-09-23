@@ -1,0 +1,488 @@
+---
+import '../styles/global.css';
+import '../styles/variation-1.css';
+import { dir, type Locale } from '../i18n';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  locale?: Locale;
+}
+
+const {
+  title = 'BioGenAI Solutions — Advanced AI & Bioinformatics for Precision Medicine',
+  description = 'BioGenAI Solutions develops advanced, scalable Artificial Intelligence and Bioinformatics solutions for precision medicine and healthcare innovation.',
+  locale = 'en',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={locale} dir={dir(locale)}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Netlify Identity widget: handles invite/recovery tokens and CMS login -->
+    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <!-- Shared gradient referenced by every inline card icon (Icon.astro). -->
+    <svg class="icon-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="bgaiGrad" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stop-color="#2D7FF9" />
+          <stop offset="30%" stop-color="#3658F5" />
+          <stop offset="55%" stop-color="#A83BF7" />
+          <stop offset="80%" stop-color="#FF3B8B" />
+          <stop offset="100%" stop-color="#FF8A00" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <slot />
+
+    <!-- After accepting an invite / logging in, send the user to the CMS -->
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
+
+    <script>
+      // BioGenAI Solutions — UI interactions
+      const navbar = document.getElementById('navbar');
+      const onScroll = () => {
+        if (window.scrollY > 8) navbar?.classList.add('scrolled');
+        else navbar?.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Mobile menu — toggles the expanding navbar panel
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      const closeMenu = () => {
+        navbar?.classList.remove('nav-open');
+        navToggle?.setAttribute('aria-expanded', 'false');
+      };
+      navToggle?.addEventListener('click', () => {
+        const open = navbar?.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      navLinks?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+
+      // Language selector (menu items are real links that navigate)
+      const langSelect = document.getElementById('langSelect');
+      const langTrigger = document.getElementById('langTrigger');
+      langTrigger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = langSelect?.classList.toggle('open');
+        langTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', (e) => {
+        if (langSelect && !langSelect.contains(e.target as Node)) {
+          langSelect.classList.remove('open');
+          langTrigger?.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          langSelect?.classList.remove('open');
+          closeMenu();
+        }
+      });
+
+      // Reveal on scroll
+      const revealEls = Array.from(
+        document.querySelectorAll(
+          '.card, .pillar, .deck, .research-card, .news-card, .stat, .news-empty, .section-head, .hero-copy, .hero-visual, .about-copy, .contact-form'
+        )
+        // Individual cards sit off-screen in the carousel track; it reveals as a unit.
+      ).filter((el) => !(el.classList.contains('card') && el.closest('[data-deck]')));
+      revealEls.forEach((el) => el.classList.add('reveal'));
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('visible'));
+      }
+
+      // Contact form confirmation (Netlify Forms via AJAX)
+      const form = document.getElementById('contactForm') as HTMLFormElement | null;
+      const success = document.getElementById('formSuccess');
+      const formError = document.getElementById('formError');
+      const encodeFormData = (data: FormData) =>
+        Array.from(data.entries())
+          .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+          .join('&');
+
+      // Clear the invalid state as soon as a field is filled in.
+      form?.querySelectorAll('input, select, textarea').forEach((el) => {
+        el.addEventListener('input', () => el.classList.remove('invalid'));
+        el.addEventListener('change', () => el.classList.remove('invalid'));
+      });
+
+      form?.addEventListener('submit', (e) => {
+        // The form carries `novalidate`, so nothing stops an empty submission
+        // by itself — always cancel the native POST and validate here first.
+        e.preventDefault();
+
+        const fields = Array.from(
+          form.querySelectorAll('input:not([type=hidden]), select, textarea')
+        ) as (HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement)[];
+        const invalid = fields.filter((f) => !f.checkValidity());
+        fields.forEach((f) => f.classList.toggle('invalid', !f.checkValidity()));
+
+        if (invalid.length > 0) {
+          if (formError) formError.hidden = false;
+          if (success) success.hidden = true;
+          invalid[0].focus();
+          invalid[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          invalid[0].reportValidity();
+          return;
+        }
+
+        if (formError) formError.hidden = true;
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encodeFormData(new FormData(form)),
+        })
+          .then(() => {
+            form.reset();
+            if (success) {
+              success.hidden = false;
+              success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          })
+          .catch(() => {
+            alert('Something went wrong sending your message. Please try again or email us directly.');
+          });
+      });
+
+      // Footer year
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // ---------- Site search ----------
+      const searchInput = document.getElementById('siteSearch') as HTMLInputElement | null;
+      const searchResults = document.getElementById('searchResults');
+      const searchEmpty = document.getElementById('searchEmpty');
+      const searchForm = document.getElementById('searchForm');
+      if (searchInput && searchResults && searchForm) {
+        // Build an index from the page: nav sections + section headings.
+        type Entry = { title: string; section: string; href: string };
+        const index: Entry[] = [];
+        const seen = new Set<string>();
+        document.querySelectorAll('main section[id]').forEach((sec) => {
+          const id = sec.getAttribute('id')!;
+          const headingEl = sec.querySelector('.section-title, .hero-title');
+          const sectionName = (headingEl?.textContent || id).trim();
+          // The section itself
+          if (!seen.has('#' + id)) {
+            index.push({ title: sectionName, section: 'Section', href: '#' + id });
+            seen.add('#' + id);
+          }
+          // Cards / items inside the section
+          sec.querySelectorAll('.card h3, .pillar h3, .research-card h3, .news-card h3, .carousel-card h3').forEach((h) => {
+            const t = (h.textContent || '').trim();
+            // Deck cards aren't all on screen at once, so point at the card
+            // itself where it has an id — the deck brings it to the front.
+            const card = h.closest('.card');
+            const href = card?.id ? '#' + card.id : '#' + id;
+            if (t) index.push({ title: t, section: sectionName, href });
+          });
+        });
+
+        const closeSearch = () => {
+          searchResults.hidden = true;
+          if (searchEmpty) searchEmpty.hidden = true;
+        };
+        // Toggle the search bar open/closed from the navbar icon
+        const searchToggle = document.getElementById('searchToggle');
+        const searchClose = document.getElementById('searchClose');
+        const openSearchBar = () => {
+          navbar?.classList.add('search-open');
+          searchToggle?.setAttribute('aria-expanded', 'true');
+          setTimeout(() => searchInput.focus(), 60);
+        };
+        const hideSearchBar = () => {
+          navbar?.classList.remove('search-open');
+          searchToggle?.setAttribute('aria-expanded', 'false');
+          closeSearch();
+        };
+        searchToggle?.addEventListener('click', () => {
+          navbar?.classList.contains('search-open') ? hideSearchBar() : openSearchBar();
+        });
+        searchClose?.addEventListener('click', hideSearchBar);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideSearchBar(); });
+        const render = (q: string) => {
+          const query = q.trim().toLowerCase();
+          if (!query) { closeSearch(); return; }
+          const matches = index.filter((e) => e.title.toLowerCase().includes(query)).slice(0, 8);
+          searchResults.innerHTML = '';
+          if (matches.length === 0) {
+            searchResults.hidden = true;
+            if (searchEmpty) searchEmpty.hidden = false;
+            return;
+          }
+          if (searchEmpty) searchEmpty.hidden = true;
+          matches.forEach((m) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = m.href;
+            a.innerHTML = '<span class="sr-section">' + m.section + '</span><span class="sr-title">' + m.title + '</span>';
+            a.addEventListener('click', () => { searchInput.value = ''; hideSearchBar(); setTimeout(() => window.dispatchEvent(new HashChangeEvent('hashchange')), 0); });
+            li.appendChild(a);
+            searchResults.appendChild(li);
+          });
+          searchResults.hidden = false;
+        };
+        searchInput.addEventListener('input', () => render(searchInput.value));
+        searchForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const first = searchResults.querySelector('a') as HTMLAnchorElement | null;
+          if (first) { first.click(); window.location.hash = first.getAttribute('href') || ''; }
+        });
+        document.addEventListener('click', (e) => {
+          if (!searchForm.contains(e.target as Node) && !searchResults.contains(e.target as Node)) closeSearch();
+        });
+      }
+
+
+      // ---------- Carousels ----------
+      // One initialiser drives every [data-carousel] on the page — currently
+      // the single-card Partners carousel (data-per-view="1").
+      const initCarousel = (carousel: HTMLElement) => {
+        const track = carousel.querySelector('[data-carousel-track]') as HTMLElement | null;
+        const dotsWrap = carousel.parentElement?.querySelector('[data-carousel-dots]') as HTMLElement | null;
+        const prevBtn = carousel.querySelector('[data-carousel-prev]');
+        const nextBtn = carousel.querySelector('[data-carousel-next]');
+        if (!track || !dotsWrap) return;
+
+        const slides = Array.from(track.children) as HTMLElement[];
+        const rtl = document.documentElement.dir === 'rtl';
+        const fixedPerView = Number(carousel.dataset.perView);
+        let index = 0;
+        let timer: ReturnType<typeof setInterval> | null = null;
+
+        const perView = () =>
+          Number.isFinite(fixedPerView) && fixedPerView > 0
+            ? fixedPerView
+            : window.innerWidth <= 640 ? 1 : window.innerWidth <= 960 ? 2 : 3;
+        const maxIndex = () => Math.max(0, slides.length - perView());
+
+        const buildDots = () => {
+          dotsWrap.innerHTML = '';
+          for (let i = 0; i <= maxIndex(); i++) {
+            const b = document.createElement('button');
+            b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            b.addEventListener('click', () => { go(i); restart(); });
+            dotsWrap.appendChild(b);
+          }
+        };
+        const apply = () => {
+          if (!slides.length) return;
+          const gap = parseFloat(getComputedStyle(track).columnGap || '24') || 24;
+          const step = slides[0].offsetWidth + gap;
+          const offset = index * step;
+          track.style.transform = 'translateX(' + (rtl ? offset : -offset) + 'px)';
+          Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === index));
+        };
+        const go = (i: number) => { index = Math.min(Math.max(i, 0), maxIndex()); apply(); };
+        const next = () => go(index >= maxIndex() ? 0 : index + 1);
+        const prev = () => go(index <= 0 ? maxIndex() : index - 1);
+        const restart = () => { if (timer) clearInterval(timer); timer = setInterval(next, 4800); };
+
+        nextBtn?.addEventListener('click', () => { next(); restart(); });
+        prevBtn?.addEventListener('click', () => { prev(); restart(); });
+
+        // Hover-activated scrolling
+        let hoverTimer: ReturnType<typeof setInterval> | null = null;
+        const startHoverScroll = (dir: 'next' | 'prev') => {
+          if (hoverTimer) clearInterval(hoverTimer);
+          if (timer) clearInterval(timer);
+          if (dir === 'next') next();
+          else prev();
+
+          hoverTimer = setInterval(() => {
+            if (dir === 'next') next();
+            else prev();
+          }, 2000);
+        };
+        const stopHoverScroll = () => {
+          if (hoverTimer) {
+            clearInterval(hoverTimer);
+            hoverTimer = null;
+          }
+          restart();
+        };
+
+        nextBtn?.addEventListener('mouseenter', () => startHoverScroll('next'));
+        nextBtn?.addEventListener('mouseleave', stopHoverScroll);
+        prevBtn?.addEventListener('mouseenter', () => startHoverScroll('prev'));
+        prevBtn?.addEventListener('mouseleave', stopHoverScroll);
+
+        carousel.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
+        carousel.addEventListener('mouseleave', restart);
+        let resizeT: ReturnType<typeof setTimeout>;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeT);
+          resizeT = setTimeout(() => { buildDots(); go(index); }, 150);
+        });
+
+        buildDots();
+        apply();
+        restart();
+      };
+      document.querySelectorAll('[data-carousel]').forEach((el) => initCarousel(el as HTMLElement));
+
+      // ---------- Flat card carousels (Solutions, Services) ----------
+      // One card fills the window at a time; the track slides sideways by a
+      // whole slide per step. No perspective, rotation or scaling.
+      const initDeck = (deck: HTMLElement) => {
+        const track = deck.querySelector('[data-deck-stage]') as HTMLElement | null;
+        const slides = Array.from(deck.querySelectorAll('[data-deck-slide]')) as HTMLElement[];
+        const dotsWrap = deck.querySelector('[data-deck-dots]') as HTMLElement | null;
+        const counter = deck.querySelector('[data-deck-counter]');
+        const prevBtn = deck.querySelector('[data-deck-prev]') as HTMLButtonElement | null;
+        const nextBtn = deck.querySelector('[data-deck-next]') as HTMLButtonElement | null;
+        if (!track || slides.length === 0) return;
+
+        let index = 0;
+
+        // In RTL the flex row runs right-to-left, so the track has to travel
+        // the other way for the same "next card" gesture.
+        const rtl = () => getComputedStyle(deck).direction === 'rtl';
+
+        const layout = () => {
+          const first = slides[0];
+          const gap = parseFloat(getComputedStyle(track).columnGap || '0') || 0;
+          const stepPx = first.getBoundingClientRect().width + gap;
+          const dir = rtl() ? 1 : -1;
+          track.style.transform = `translate3d(${dir * index * stepPx}px, 0, 0)`;
+
+          slides.forEach((slide, i) => {
+            const active = i === index;
+            slide.classList.toggle('is-active', active);
+            // Keep off-screen cards out of the tab order and the a11y tree.
+            slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+            slide.inert = !active;
+          });
+          Array.from(dotsWrap?.children ?? []).forEach((d, i) => {
+            d.classList.toggle('active', i === index);
+            d.setAttribute('aria-selected', i === index ? 'true' : 'false');
+          });
+          if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+          // The track stops at both ends rather than wrapping — a flat strip
+          // that jumps from the last card back to the first reads as a glitch.
+          if (prevBtn) prevBtn.disabled = index === 0;
+          if (nextBtn) nextBtn.disabled = index === slides.length - 1;
+        };
+
+        const go = (i: number) => {
+          index = Math.min(Math.max(i, 0), slides.length - 1);
+          layout();
+        };
+
+        nextBtn?.addEventListener('click', () => go(index + 1));
+        prevBtn?.addEventListener('click', () => go(index - 1));
+
+        slides.forEach((_, i) => {
+          if (!dotsWrap) return;
+          const b = document.createElement('button');
+          b.setAttribute('role', 'tab');
+          b.setAttribute('aria-label', 'Go to card ' + (i + 1));
+          b.addEventListener('click', () => go(i));
+          dotsWrap.appendChild(b);
+        });
+
+        deck.addEventListener('keydown', (e) => {
+          const key = (e as KeyboardEvent).key;
+          if (key === 'ArrowRight') { e.preventDefault(); go(index + (rtl() ? -1 : 1)); }
+          if (key === 'ArrowLeft') { e.preventDefault(); go(index + (rtl() ? 1 : -1)); }
+        });
+
+        // Swipe / drag between cards.
+        let startX: number | null = null;
+        track.addEventListener('pointerdown', (e) => { startX = (e as PointerEvent).clientX; });
+        track.addEventListener('pointerup', (e) => {
+          if (startX === null) return;
+          const dx = (e as PointerEvent).clientX - startX;
+          startX = null;
+          if (Math.abs(dx) <= 60) return;
+          const forward = rtl() ? dx > 0 : dx < 0;
+          go(index + (forward ? 1 : -1));
+        });
+
+        // Jump to a specific card (used by the menu links, see below).
+        deck.addEventListener('deck:goto', (e) => {
+          const i = slides.indexOf((e as CustomEvent).detail.slide);
+          if (i >= 0) go(i);
+        });
+
+        let resizeT: ReturnType<typeof setTimeout>;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeT);
+          resizeT = setTimeout(layout, 120);
+        });
+        // Re-measure once webfonts and images have settled.
+        window.addEventListener('load', layout);
+
+        deck.classList.add('deck-ready');
+        go(0);
+      };
+      document.querySelectorAll('[data-deck]').forEach((el) => initDeck(el as HTMLElement));
+
+      // ---------- Card highlight from a menu / hash link ----------
+      // Menu entries point at a specific card (#solution-3, #service-7, …);
+      // arriving at one lifts the card with a gradient border and glow.
+      const highlightFromHash = () => {
+        const id = decodeURIComponent(window.location.hash.replace('#', ''));
+        document.querySelectorAll('.is-highlighted').forEach((el) => el.classList.remove('is-highlighted'));
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target || !target.classList.contains('card')) return;
+        target.classList.add('is-highlighted');
+        // A card inside a deck has to be brought to the front first.
+        const slide = target.closest('[data-deck-slide]');
+        const deck = slide?.closest('[data-deck]') as HTMLElement | null;
+        if (deck && slide) deck.dispatchEvent(new CustomEvent('deck:goto', { detail: { slide } }));
+        // The hash jump happens before this runs on a fresh load. Cards are
+        // often taller than the viewport, so align the top under the navbar
+        // rather than centring them.
+        const scrollTarget = deck ?? target;
+        requestAnimationFrame(() => {
+          const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 120;
+          const top = scrollTarget.getBoundingClientRect().top + window.scrollY - navH - 24;
+          window.scrollTo({ top, behavior: 'smooth' });
+        });
+      };
+      window.addEventListener('hashchange', highlightFromHash);
+      // Re-run for repeat clicks on the link for the card already targeted.
+      document.querySelectorAll('a[href*="#solution-"], a[href*="#service-"]').forEach((a) => {
+        a.addEventListener('click', () => setTimeout(highlightFromHash, 0));
+      });
+      highlightFromHash();
+    </script>
+  </body>
+</html>

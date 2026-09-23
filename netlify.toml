@@ -1,12 +1,25 @@
+# Static site — no build step. Netlify serves site/ as-is.
 [build]
-  command = "npm run build"
-  publish = "dist"
+  publish = "site"
 
-[build.environment]
-  NODE_VERSION = "22"
-
-# Redirect the Netlify Identity confirmation links back to the admin panel.
+# Pretty URLs for the section pages (served as folders with index.html),
+# so /privacy resolves without the trailing slash.
 [[redirects]]
-  from = "/admin"
-  to = "/admin/index.html"
+  from = "/privacy"
+  to = "/privacy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/legal"
+  to = "/legal/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/news/:slug"
+  to = "/news/:slug/index.html"
   status = 200
