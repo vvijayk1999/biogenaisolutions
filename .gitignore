@@ -1,20 +1,15 @@
-# build output
-dist/
-# generated types
-.astro/
-# dependencies
+# dependencies (none are needed to run this site; v3/ is a local scratch copy)
 node_modules/
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-# environment
-.env
-.env.production
 # macOS
 .DS_Store
 # editor
 .vscode/
 .idea/
+# environment
+.env
+.env.production
 # Word lock files (docs/ is tracked)
 ~$*
+
+# v3/ is an untracked local copy of an earlier build — was never in git
+v3/
