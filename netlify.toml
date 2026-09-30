@@ -1,6 +1,9 @@
 # Static site — no build step. Netlify serves site/ as-is.
 [build]
   publish = "site"
+  # Set explicitly so it overrides the "npm run build" still saved in the
+  # Netlify UI from the Astro setup; there is no package.json to run.
+  command = "echo 'No build step: publishing site/ as-is'"
 
 # Pretty URLs for the section pages (served as folders with index.html),
 # so /privacy resolves without the trailing slash.
